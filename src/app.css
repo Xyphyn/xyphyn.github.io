@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@font-face {
+  font-family: 'Cabinet';
+  src: url('/font/Cabinet.woff2') format('woff2');
+  font-display: swap;
+}
+
+body,
+html {
+  font-family: 'Cabinet';
+  @apply bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50;
+}
