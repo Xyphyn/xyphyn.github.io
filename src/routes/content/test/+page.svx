@@ -1,0 +1,47 @@
+---
+title: The History of Photon
+published: 2024-9-21
+author: Xylight
+description: sometimes test posts are stupid. This also is stupid.
+thumbnail: https://sh.itjust.works/pictrs/image/94a544eb-ed78-498f-93cb-ac18e47f96a8.png
+slug: test
+---
+
+# Getting Started with Svelte: A Modern Framework
+
+Svelte is a revolutionary front-end framework that has gained popularity for its simplicity and performance. Unlike traditional frameworks, Svelte shifts much of the work to compile time, resulting in faster and more efficient applications.
+
+## What is Svelte?
+
+Svelte is a component-based framework that allows developers to build user interfaces with minimal overhead. It compiles components into highly optimized JavaScript at build time, eliminating the need for a virtual DOM.
+
+## Key Features
+
+1. **Reactivity**: Svelte's reactivity model is intuitive. You can easily create reactive variables using the `$:` syntax, making state management straightforward.
+
+2. **No Virtual DOM**: By compiling to efficient JavaScript, Svelte reduces the runtime overhead, leading to faster updates and better performance.
+
+3. **Scoped Styles**: Styles defined in Svelte components are scoped to those components by default, preventing style clashes and making it easier to manage CSS.
+
+4. **Simplicity**: Svelte has a clean syntax that is easy to learn, making it accessible for both beginners and experienced developers.
+
+## Getting Started
+
+To get started with Svelte, you can use the official template:
+
+```bash
+npx degit sveltejs/template svelte-app
+cd svelte-app
+npm install
+npm run dev
+```
+
+This will set up a new Svelte project, and you can start building your application immediately.
+
+## Conclusion
+
+Svelte is a powerful tool for modern web development. Its innovative approach to building user interfaces can significantly enhance performance and developer experience. Whether you're a seasoned developer or just starting, Svelte is definitely worth exploring.
+
+---
+
+_Have you tried Svelte? Share your experiences in the comments below!_

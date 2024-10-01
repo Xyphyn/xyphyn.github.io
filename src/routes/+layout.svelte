@@ -7,12 +7,15 @@
   export let data
 </script>
 
+<div
+  class="fixed top-0 left-0 w-full h-px bg-gradient-to-r from-teal-500 to-blue-500"
+/>
 <div class="dark relative">
   {#key data.pathname}
     <main
       in:fly|global={{ y: 12, duration: 300, delay: 400, easing: expoOut }}
       out:fly|global={{ y: 12, duration: 300, easing: expoOut }}
-      class="max-w-screen-lg mx-auto"
+      class=""
     >
       <slot></slot>
     </main>
