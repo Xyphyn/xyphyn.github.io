@@ -7,6 +7,10 @@
   export let data
 </script>
 
+<svelte:head>
+  <title>xylight.dev</title>
+  <meta name="description" content="A web developer who made Photon" />
+</svelte:head>
 <div
   class="fixed top-0 left-0 w-full h-px bg-gradient-to-r from-teal-500 to-blue-500"
 />
