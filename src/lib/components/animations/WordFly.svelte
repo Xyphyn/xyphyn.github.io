@@ -3,6 +3,7 @@
   import { fade } from 'svelte/transition'
 
   export let delayBetweenWords = 50
+  export let delay: number = 0
   let slotContent: HTMLDivElement
 
   $: words = (slotContent?.innerText || '').split(' ')
@@ -21,7 +22,7 @@
   {#each words as word, index}
     <span
       style="margin-right: .3rem"
-      transition:fade={{ delay: index * delayBetweenWords }}
+      transition:fade={{ delay: delay + index * delayBetweenWords }}
     >
       {word}
     </span>

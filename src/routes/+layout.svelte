@@ -20,4 +20,9 @@
       <slot></slot>
     </main>
   {/key}
+  <footer class="px-4 py-2 flex">
+    © 2024 Xylight
+    <div class="flex-1" />
+    <a href="/content">Posts</a>
+  </footer>
 </div>

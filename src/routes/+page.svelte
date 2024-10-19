@@ -39,7 +39,9 @@
   </h1>
   <div class="flex gap-2 text-2xl max-w-screen-md leading-[1.4] my-5">
     <div>
-      <WordFly>Developer and designer experimenting with new things.</WordFly>
+      <WordFly delay={200} delayBetweenWords={50}>
+        {'Developer and designer, turning complex problems into intuitive user experiences.'}
+      </WordFly>
     </div>
   </div>
   <div class="flex items-center gap-2 text-lg">
@@ -63,19 +65,35 @@
     </a>
   </div>
 </header>
-<section style="--anim-delay: 300ms;" class="px-16 pop-in">
-  <h3 class="font-medium text-xl mb-4">
-    <Icon src={ArrowDown} micro size="20" class="inline" /> My work
-  </h3>
-  <Project
-    img="/img/projects/photon-dark.webp"
-    mainClass="bg-gradient-to-br from-blue-50 dark:to-blue-200/0 dark:from-zinc-900 dark:to-zinc-900/0"
-  >
-    <svelte:fragment slot="title">Photon</svelte:fragment>
-    <svelte:fragment slot="body">
-      A web app for the fediverse to make discovery easier.
-    </svelte:fragment>
-  </Project>
+
+<section
+  style="--anim-delay: 300ms;"
+  class="px-8 md:px-16 blur-fade bg-slate-50 dark:bg-black prose prose-zinc dark:prose-invert prose-lg
+  prose-h1:font-medium py-8 !max-w-none"
+>
+  <header class="*:my-0">
+    <h1 class="font-medium text-xl mb-4">
+      Photon
+
+      <div class="rounded-full w-4 h-4 bg-current inline-block self-center" />
+    </h1>
+    <p>Making the fediverse an accessible and engaging place.</p>
+    <div class="flex gap-8">
+      <a href="https://phtn.app">Try it</a>
+
+      <a href="https://github.com/xyphyn/photon">GitHub</a>
+    </div>
+  </header>
+  <div class=" relative rounded-xl max-w-2xl w-full mx-auto">
+    <div
+      class="bg-gradient-to-br from-white/50 via-white/0 rounded-xl to-white/50 -inset-px absolute -z-10"
+    />
+    <img
+      src="/img/projects/photon-dark.webp"
+      class="w-full object-cover object-top rounded-xl"
+      alt="A screenshot of the Photon Lemmy client"
+    />
+  </div>
 </section>
 
 <svg

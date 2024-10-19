@@ -1,0 +1,20 @@
+---
+title: God I hate the chrome scrollbar
+published: 2024-10-19
+author: Xylight
+description: This is a test post. and a cry for help.
+thumbnail: https://sh.itjust.works/pictrs/image/94a544eb-ed78-498f-93cb-ac18e47f96a8.png
+slug: screw-chrome-scrollbar
+---
+
+# Chrome's scrollbar can go die
+
+This is technically supposed to be a test post for mdsvex. But I also want to rant about this.
+
+The browser should ideally interfere as little as possible with the content of a page, unless the page has explicitly used a browser-specific feature like form validation. So why on earth is Chrome's scrollbar not an overlay scrollbar? That piece of garbage will shift the page slightly if the content suddenly is longer than a page width. It's terrible, die.
+
+## AAAAAAAAAAA
+
+On your OWN LIGHTHOUSE TOOL you consider CLS a very important part of the score. And yet YOUR STUPID SCROLLBAR CONTRIBUTES TO IT. I don't use Chrome because I prefer Firefox (which has a much better scrollbar, by the way.) but whenever I use a Chromium browser I instantly see that god-awful scrollbar and want it to die.
+
+Just make it an overlay scrollbar. Please. It's always better.
