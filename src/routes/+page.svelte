@@ -118,7 +118,7 @@
 
 			{#if !expandProjects}
 				<div
-					class="bg-gradient-to-b from-zinc-900/0 via-zinc-900 to-zinc-900 h-16 absolute bottom-0 w-full flex items-center justify-center"
+					class="bg-gradient-to-b from-zinc-900/0 via-zinc-900 to-zinc-900 h-32 absolute bottom-0 w-full flex items-center justify-center"
 				>
 					<button onclick={() => (expandProjects = true)}>
 						<ContainerLighting
@@ -138,12 +138,12 @@
 <style>
 	.glow-container {
 		position: absolute;
-		width: 48rem;
+		width: 100%;
 		height: 48rem;
+		max-width: 100%;
 		z-index: -1;
 		top: -10%;
-		left: -10%;
-		overflow: visible; /* Crucial to allow the glow to extend visibly */
+		overflow: hidden;
 	}
 
 	.glow {
@@ -152,6 +152,7 @@
 		height: 150%; /* Makes the .glow element 150% of its parent .glow-container */
 		top: -25%; /* Offsets the larger .glow element to center its effect relative to .glow-container */
 		left: -25%; /* Offsets the larger .glow element to center its effect relative to .glow-container */
+		overflow: hidden;
 	}
 
 	.glow::before {
