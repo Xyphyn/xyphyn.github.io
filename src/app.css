@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+@theme {
+	--animate-pop-in: pop-in 1.1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+
+	@keyframes pop-in {
+		from {
+			transform: translateY(16%);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0%);
+			opacity: 1;
+		}
+	}
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('/font/Inter.woff2') format('woff2');
+	font-display: swap;
+}
+
+html,
+body {
+	@apply bg-zinc-900 text-zinc-100;
+	font-family: 'Inter';
+}
