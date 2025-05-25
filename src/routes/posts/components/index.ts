@@ -1,0 +1,6 @@
+export { default as H1 } from './H1.svelte'
+export { default as H2 } from './H2.svelte'
+export { default as H3 } from './H3.svelte'
+export { default as Paragraph } from './Paragraph.svelte'
+export { default as Code } from './Code.svelte'
+export { default as Img } from './Image.svelte'

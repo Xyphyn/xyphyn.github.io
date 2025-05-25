@@ -16,7 +16,9 @@
 	<div class="sticky top-0 w-full p-4 pointer-events-none z-50">
 		<Navbar />
 	</div>
-	{@render children()}
+	<main class="z-0">
+		{@render children()}
+	</main>
 	<footer class="mt-auto flex flex-row px-8 w-full text-zinc-400 font-medium text-sm py-8 gap-4">
 		<div>xylight.dev</div>
 		<div class="flex-1"></div>
