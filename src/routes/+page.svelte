@@ -1,12 +1,10 @@
 <script lang="ts">
 	import ContainerLighting from '$lib/ContainerLighting.svelte'
 	import TextAnim from '$lib/TextAnim.svelte'
-
-	let expandProjects = $state(false)
 </script>
 
 <div class="relative z-0">
-	<div class="glow-container">
+	<div class="glow-container -z-10 pointer-events-none">
 		<div class="glow"></div>
 	</div>
 	<div class="p-8 xl:p-16 xl:px-32 space-y-8 text-xl max-w-7xl mx-auto">
@@ -38,7 +36,9 @@
 	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto" id="projects">
 		<h2 class="font-medium text-sm mb-2">What I've made</h2>
 		<div class="relative">
-			<div class={expandProjects ? '' : 'h-[32rem] p-px overflow-hidden'}>
+			<input type="checkbox" id="toggle-projects" class="hidden peer" />
+
+			<div class="max-h-[32rem] p-px overflow-hidden peer-checked:max-h-full transition-all">
 				<div class={['grid xl:grid-cols-2 gap-4 h-full']}>
 					<ContainerLighting
 						href="https://github.com/Xyphyn/photon"
@@ -78,7 +78,7 @@
 							<div class="hover:underline">github.com</div>
 						{/snippet}
 					</ContainerLighting>
-					<ContainerLighting size="lg" rounding="xl" class="w-full space-y-2">
+					<!-- <ContainerLighting size="lg" rounding="xl" class="w-full space-y-2">
 						{#snippet title()}Gemni{/snippet}
 						<p>I put an obnoxious AI into a Discord account and the results are terrible.</p>
 						<enhanced:img
@@ -89,7 +89,7 @@
 						{#snippet footer()}
 							<div class="hover:underline">v0.0.1</div>
 						{/snippet}
-					</ContainerLighting>
+					</ContainerLighting> -->
 					<ContainerLighting
 						href="https://github.com/Xyphyn/imagi"
 						size="lg"
@@ -116,21 +116,20 @@
 				</div>
 			</div>
 
-			{#if !expandProjects}
-				<div
-					class="bg-gradient-to-b from-zinc-900/0 via-zinc-900 to-zinc-900 h-32 absolute bottom-0 w-full flex items-center justify-center"
-				>
-					<button onclick={() => (expandProjects = true)}>
-						<ContainerLighting
-							size="sm"
-							rounding="full"
-							class="h-max font-medium text-sm hover:bg-zinc-700 duration-150"
-						>
-							View more
-						</ContainerLighting>
-					</button>
-				</div>
-			{/if}
+			<div
+				class="bg-gradient-to-b from-zinc-900/0 via-zinc-900 to-zinc-900 h-32
+				absolute bottom-0 w-full flex items-center justify-center peer-checked:hidden"
+			>
+				<label for="toggle-projects">
+					<ContainerLighting
+						size="sm"
+						rounding="full"
+						class="h-max font-medium text-sm hover:bg-zinc-700 duration-150"
+					>
+						View more
+					</ContainerLighting>
+				</label>
+			</div>
 		</div>
 	</section>
 </div>
@@ -148,17 +147,17 @@
 
 	.glow {
 		position: absolute;
-		width: 150%; /* Makes the .glow element 150% of its parent .glow-container */
-		height: 150%; /* Makes the .glow element 150% of its parent .glow-container */
-		top: -25%; /* Offsets the larger .glow element to center its effect relative to .glow-container */
-		left: -25%; /* Offsets the larger .glow element to center its effect relative to .glow-container */
+		width: 150%;
+		height: 150%;
+		top: -25%;
+		left: -25%;
 		overflow: hidden;
 	}
 
 	.glow::before {
 		content: '';
-		width: 150%; /* The pseudo-element fills its parent (.glow), which is already oversized */
-		height: 100%; /* The pseudo-element fills its parent (.glow), which is already oversized */
+		width: 150%;
+		height: 100%;
 		position: absolute;
 		background: radial-gradient(
 			ellipse 70% 70% at 25% 25%,

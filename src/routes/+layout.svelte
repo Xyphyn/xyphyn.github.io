@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css'
+	import Navbar from './nav/Navbar.svelte'
 
 	let { children } = $props()
 </script>
@@ -12,6 +13,9 @@
 </svelte:head>
 
 <div class="min-h-screen w-full flex flex-col">
+	<div class="sticky top-0 w-full p-4 pointer-events-none">
+		<Navbar />
+	</div>
 	{@render children()}
 	<footer class="mt-auto flex flex-row px-8 w-full text-zinc-400 font-medium text-sm py-8 gap-4">
 		<div>xylight.dev</div>
