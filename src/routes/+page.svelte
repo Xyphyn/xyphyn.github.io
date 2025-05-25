@@ -51,7 +51,7 @@
 							A beautiful web client for the fediverse written in Svelte designed for optimal UX.
 						</p>
 						<enhanced:img
-							src="./photon-dark.webp"
+							src="./photon-dark.webp?w=1280;640;400"
 							alt="A screenshot of the interface of Photon"
 							class="block h-auto rounded-2xl border border-zinc-700 aspect-video object-cover object-top"
 						/>
@@ -69,7 +69,7 @@
 						{#snippet title()}Setsync{/snippet}
 						<p>A simple timer, logging, and goal-setting web app for your workouts.</p>
 						<enhanced:img
-							src="./setsync.webp"
+							src="./setsync.webp?w=1280;640;400"
 							alt="A screenshot of the interface of Setsync"
 							class="block h-auto rounded-2xl border border-zinc-700 aspect-video object-cover object-top"
 						/>
@@ -82,7 +82,7 @@
 						{#snippet title()}Gemni{/snippet}
 						<p>I put an obnoxious AI into a Discord account and the results are terrible.</p>
 						<enhanced:img
-							src="./gemni.webp"
+							src="./gemni.webp?w=1280;640;400"
 							alt="A screenshot of Gemni's conversations"
 							class="block h-auto rounded-2xl border border-zinc-700 aspect-video object-cover object-top"
 						/>
@@ -104,7 +104,7 @@
 							</p>
 						</div>
 						<enhanced:img
-							src="./imagi.webp"
+							src="./imagi.webp?w=1280;640;400"
 							alt="A screenshot of the interface of Imagi"
 							class="block h-auto rounded-2xl border border-zinc-700 aspect-video object-cover object-top"
 						/>
