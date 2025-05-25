@@ -9,7 +9,14 @@
 	</div>
 	<div class="p-8 xl:p-16 xl:px-32 space-y-8 text-xl max-w-7xl mx-auto">
 		<header class="space-y-6">
-			<h1 class="font-semibold text-7xl tracking-tighter animate-pop-in">xylight.dev</h1>
+			<h1 class="font-semibold text-7xl tracking-tighter animate-pop-in flex">
+				xylight
+				<span
+					class="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text pr-0.5"
+				>
+					.dev
+				</span>
+			</h1>
 			<TextAnim text="Developer and designer, working across Linux and Android ecosystems." />
 		</header>
 		<div class="space-y-2">

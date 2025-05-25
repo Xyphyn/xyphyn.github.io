@@ -5,7 +5,7 @@
 	console.log(data)
 </script>
 
-<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-7xl mx-auto z-0">
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-7xl mx-auto z-0 px-8">
 	{#each data.posts as post}
 		<ContainerLighting size="lg" class="w-full" href={post.link}>
 			{#snippet title()}
