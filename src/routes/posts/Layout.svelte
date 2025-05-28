@@ -25,6 +25,11 @@
 	let { children, date, title, description }: Props = $props()
 </script>
 
+<svelte:head>
+	<title>{title}</title>
+	<meta name="description" content={description} />
+</svelte:head>
+
 <div class="relative z-0">
 	<div
 		class={[

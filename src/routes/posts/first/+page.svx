@@ -1,5 +1,5 @@
 ---
-link: /posts/data/first
+link: /posts/first
 date: 2025-5-25
 title: Gemni
 description: I put an obnoxious LLM into a Discord bot and the results are terrible

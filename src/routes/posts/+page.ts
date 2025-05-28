@@ -1,5 +1,5 @@
 export async function load() {
-	const postImports = import.meta.glob('./data/**/*.svx', {
+	const postImports = import.meta.glob('./**/*.svx', {
 		eager: true
 	})
 
