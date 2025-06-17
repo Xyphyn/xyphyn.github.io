@@ -6,7 +6,7 @@
 	<section class="max-w-7xl px-8 w-full">
 		<div class="xl:p-16 xl:px-32 text-xl max-w-7xl mx-auto space-y-4">
 			<header class="space-y-6 flex items-center gap-4 animate-pop-in">
-				<h1 class="font-semibold text-7xl tracking-tighter">About</h1>
+				<h1 class="font-medium text-7xl tracking-tight font-display">About</h1>
 			</header>
 		</div>
 	</section>
@@ -18,7 +18,7 @@
 	</div>
 </div>
 <section
-	class="max-w-6xl px-8 mt-8 xl:mt-0 xl:px-40 w-full text-lg leading-[1.5] text-zinc-200 typography space-y-4"
+	class="max-w-6xl px-8 mt-8 xl:mt-0 xl:px-40 w-full text-lg leading-[1.5] text-zinc-200 typography space-y-4 tracking-wide"
 >
 	<p>
 		I'm a developer from California who spends time on web design and learning about technology.

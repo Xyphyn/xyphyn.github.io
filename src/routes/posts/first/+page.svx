@@ -5,8 +5,6 @@ title: Gemni
 description: I put an obnoxious LLM into a Discord bot and the results are terrible
 ---
 
-![A screenshot of Gemni's conversation](./gemni.webp)
-
 In a Discord group chat of mine I noticed a new user, @Grok in the chat responding to messages.
 One of my friends made a Discord bot that responds to all messages like a normal user, and I decided to make one myself.
 

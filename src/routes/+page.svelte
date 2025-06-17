@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ContainerLighting from '$lib/ContainerLighting.svelte'
 	import TextAnim from '$lib/TextAnim.svelte'
+	import type { Snippet } from 'svelte'
 	import { AtSymbol, CodeBracket, Icon, Wrench } from 'svelte-hero-icons'
 </script>
 
@@ -8,21 +9,22 @@
 	<div class="glow-container -z-10 pointer-events-none">
 		<div class="glow"></div>
 	</div>
-	<div class="p-8 pb-0 xl:px-16 xl:px-32 space-y-8 text-xl max-w-7xl mx-auto">
+	<div class="p-8 pb-0 xl:px-32 space-y-8 text-xl max-w-7xl mx-auto">
 		<header class="space-y-6">
 			<h1
 				class="font-medium tracking-tight text-7xl animate-pop-in flex font-display
-				bg-gradient-to-r from-zinc-50 via-violet-400 to-pink-400 text-transparent bg-clip-text w-max leading-[1.3]"
+				leading-[1.3]"
 			>
-				xylight.dev
+				xylight
+				<span class="bg-gradient-to-r from-indigo-400 to-pink-400 text-transparent bg-clip-text">
+					.dev
+				</span>
 			</h1>
 			<TextAnim text="Developer and designer, working across Linux and Android ecosystems." />
 		</header>
 	</div>
 	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto" id="socials">
-		<h2
-			class="font-bold text-sm mb-2 font-display bg-gradient-to-r text-transparent bg-clip-text from-pink-400 to-zinc-50 w-max"
-		>
+		<h2 class="font-bold text-sm mb-2 font-display text-pink-400 w-max">
 			<Icon src={AtSymbol} micro size="14" class="inline -translate-y-0.5 text-pink-400" />
 			Where I am
 		</h2>
@@ -48,9 +50,7 @@
 	</section>
 	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto" id="tech">
 		<div class="space-y-2">
-			<div
-				class="text-sm font-bold font-display bg-gradient-to-r text-transparent bg-clip-text from-violet-400 to-zinc-50 w-max"
-			>
+			<div class="text-sm font-bold font-display bg-gradient-to-r text-violet-400 w-max">
 				<Icon src={Wrench} micro size="14" class="inline -translate-y-0.5 text-violet-400" />
 				What I use
 			</div>
@@ -74,90 +74,80 @@
 		</div>
 	</section>
 	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto mt-8" id="projects">
-		<h2
-			class="font-bold text-sm mb-2 font-display bg-gradient-to-r text-transparent bg-clip-text from-purple-400 to-zinc-50 w-max"
-		>
+		<h2 class="font-bold text-sm mb-2 font-display bg-gradient-to-r text-purple-400">
 			<Icon src={CodeBracket} micro size="14" class="inline -translate-y-0.5 text-purple-400" />
 			What I've made
 		</h2>
 		<div class="relative overflow-hidden">
 			<input type="checkbox" id="toggle-projects" class="hidden peer" />
 
+			{#snippet project(
+				titleCont: string,
+				body: string,
+				href: string,
+				version: string,
+				domain: string,
+				img: Snippet
+			)}
+				<ContainerLighting {href} size="lg" rounding="xl" class="w-full space-y-2">
+					{#snippet title()}{titleCont}{/snippet}
+					<p>{body}</p>
+					{@render img()}
+					{#snippet footer()}
+						<div>{version}</div>
+						<div class="hover:underline">{domain}</div>
+					{/snippet}
+				</ContainerLighting>
+			{/snippet}
+
 			<div class="max-h-[32rem] p-px overflow-hidden peer-checked:max-h-full transition-all">
 				<div class={['grid xl:grid-cols-2 gap-4 h-full']}>
-					<ContainerLighting
-						href="https://github.com/Xyphyn/photon"
-						size="lg"
-						rounding="xl"
-						class="w-full space-y-2"
-					>
-						{#snippet title()}Photon{/snippet}
-						<p>
-							A beautiful web client for the fediverse written in Svelte designed for optimal UX.
-						</p>
+					{#snippet photonImg()}
 						<enhanced:img
 							src="./photon-dark.webp?w=1280;640;400"
 							alt="A screenshot of the interface of Photon"
 							class="block h-auto rounded-2xl border border-zinc-700 aspect-video object-cover object-top"
 						/>
-						{#snippet footer()}
-							<div>v2.0.0</div>
-							<div class="hover:underline">github.com</div>
-						{/snippet}
-					</ContainerLighting>
-					<ContainerLighting
-						href="https://github.com/Xyphyn/setsync"
-						size="lg"
-						rounding="xl"
-						class="w-full space-y-2"
-					>
-						{#snippet title()}Setsync{/snippet}
-						<p>A simple timer, logging, and goal-setting web app for your workouts.</p>
+					{/snippet}
+					{@render project(
+						'Photon',
+						'A beautiful web client for the fediverse written in Svelte designed for optimal UX.',
+						'https://github.com/Xyphyn/photon',
+						'v2.0.0',
+						'github.com',
+						photonImg
+					)}
+
+					{#snippet setsyncImg()}
 						<enhanced:img
 							src="./setsync.webp?w=1280;640;400"
 							alt="A screenshot of the interface of Setsync"
 							class="block h-auto rounded-2xl border border-zinc-700 aspect-video object-cover object-top"
 						/>
-						{#snippet footer()}
-							<div>v0.1.0</div>
-							<div class="hover:underline">github.com</div>
-						{/snippet}
-					</ContainerLighting>
-					<!-- <ContainerLighting size="lg" rounding="xl" class="w-full space-y-2">
-						{#snippet title()}Gemni{/snippet}
-						<p>I put an obnoxious AI into a Discord account and the results are terrible.</p>
-						<enhanced:img
-							src="./gemni.webp?w=1280;640;400"
-							alt="A screenshot of Gemni's conversations"
-							class="block h-auto rounded-2xl border border-zinc-700 aspect-video object-cover object-top"
-						/>
-						{#snippet footer()}
-							<div class="hover:underline">v0.0.1</div>
-						{/snippet}
-					</ContainerLighting> -->
-					<ContainerLighting
-						href="https://github.com/Xyphyn/imagi"
-						size="lg"
-						rounding="xl"
-						class="w-full space-y-2"
-					>
-						{#snippet title()}Imagi{/snippet}
-						<div>
-							<span class="text-yellow-100 inline">(Archived)</span>
-							<p class="inline">
-								A real-time image sharing website made with Svelte and Pocketbase.
-							</p>
-						</div>
+					{/snippet}
+					{@render project(
+						'Setsync',
+						'A simple timer, logging, and goal-setting web app for your workouts.',
+						'https://github.com/Xyphyn/setsync',
+						'v0.1.0',
+						'github.com',
+						setsyncImg
+					)}
+					{#snippet imagiImg()}
 						<enhanced:img
 							src="./imagi.webp?w=1280;640;400"
 							alt="A screenshot of the interface of Imagi"
 							class="block h-auto rounded-2xl border border-zinc-700 aspect-video object-cover object-top"
 						/>
-						{#snippet footer()}
-							<div>v1.0.1</div>
-							<div class="hover:underline">github.com</div>
-						{/snippet}
-					</ContainerLighting>
+					{/snippet}
+					{@render project(
+						'Imagi',
+						'(Archived) A real-time image sharing website made with Svelte and Pocketbase.',
+						'https://github.com/Xyphyn/imagi',
+						'v1.0.1',
+						'github.com',
+						imagiImg
+					)}
 				</div>
 			</div>
 

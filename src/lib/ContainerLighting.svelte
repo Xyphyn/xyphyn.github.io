@@ -6,12 +6,14 @@
 		xs: 'px-3 py-1.5',
 		sm: 'px-3 py-2',
 		md: 'px-4 py-3',
-		lg: 'px-5 py-4'
+		lg: 'px-5 py-4',
+		xl: 'px-6 py-5 gap-1'
 	}
 
 	const containerRounding = {
 		full: 'rounded-full',
-		xl: 'rounded-3xl'
+		xl: 'rounded-3xl',
+		lg: 'rounded-2xl'
 	}
 
 	interface Props {

@@ -7,7 +7,7 @@
 >
 	<nav
 		class={[
-			'rounded-full  backdrop-blur-xl bg-zinc-800/50 px-0.5 py-0.5 z-10 flex flex-row gap-0.5 font-medium text-sm pointer-events-auto'
+			'rounded-full backdrop-blur-xl bg-zinc-850/50 px-0.5 py-0.5 z-10 flex flex-row gap-0.5 font-medium text-sm pointer-events-auto'
 		]}
 	>
 		<NavLink href="/">Home</NavLink>
