@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ContainerLighting from '$lib/ContainerLighting.svelte'
 	import TextAnim from '$lib/TextAnim.svelte'
+	import { AtSymbol, CodeBracket, Icon, Wrench } from 'svelte-hero-icons'
 </script>
 
 <div class="relative z-0">
@@ -20,7 +21,10 @@
 			<TextAnim text="Developer and designer, working across Linux and Android ecosystems." />
 		</header>
 		<div class="space-y-2">
-			<div class="text-sm font-medium">What I use</div>
+			<div class="text-sm font-medium">
+				<Icon src={Wrench} micro size="14" class="inline -translate-y-0.5 text-violet-400" />
+				What I use
+			</div>
 			<div class="flex flex-row gap-2 flex-wrap text-sm font-medium">
 				<ContainerLighting rounding="full" size="xs">
 					<span>TypeScript</span>
@@ -41,8 +45,11 @@
 		</div>
 	</div>
 	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto" id="projects">
-		<h2 class="font-medium text-sm mb-2">What I've made</h2>
-		<div class="relative">
+		<h2 class="font-medium text-sm mb-2">
+			<Icon src={CodeBracket} micro size="14" class="inline -translate-y-0.5 text-purple-400" />
+			What I've made
+		</h2>
+		<div class="relative overflow-hidden">
 			<input type="checkbox" id="toggle-projects" class="hidden peer" />
 
 			<div class="max-h-[32rem] p-px overflow-hidden peer-checked:max-h-full transition-all">
@@ -137,6 +144,28 @@
 					</ContainerLighting>
 				</label>
 			</div>
+		</div>
+	</section>
+	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto mt-8" id="projects">
+		<h2 class="font-medium text-sm mb-2">
+			<Icon src={AtSymbol} micro size="14" class="inline -translate-y-0.5 text-pink-400" />
+			Where I am
+		</h2>
+
+		<div class="flex flex-row gap-2 flex-wrap font-medium text-sm">
+			<ContainerLighting rounding="full" size="xs" href="https://github.com/Xyphyn">
+				<span>GitHub</span>
+			</ContainerLighting>
+			<ContainerLighting rounding="full" size="xs" href="https://lemdro.id/u/xylight">
+				<span>Lemmy</span>
+			</ContainerLighting>
+			<ContainerLighting
+				rounding="full"
+				size="xs"
+				href="https://matrix.to/#/@xylightsucks:matrix.org"
+			>
+				<span>Matrix</span>
+			</ContainerLighting>
 		</div>
 	</section>
 </div>

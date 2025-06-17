@@ -5,6 +5,7 @@
 	console.log(data)
 </script>
 
+<h1 class="max-w-7xl mx-auto px-8 text-7xl tracking-tight font-medium mb-8">Posts</h1>
 <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 max-w-7xl mx-auto z-0 px-8 gap-8">
 	{#each data.posts as post}
 		<ContainerLighting size="lg" class="w-full" href={post.link}>
