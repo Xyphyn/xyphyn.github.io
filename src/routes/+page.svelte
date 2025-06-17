@@ -4,24 +4,53 @@
 	import { AtSymbol, CodeBracket, Icon, Wrench } from 'svelte-hero-icons'
 </script>
 
-<div class="relative z-0">
+<div class="relative z-0 space-y-8">
 	<div class="glow-container -z-10 pointer-events-none">
 		<div class="glow"></div>
 	</div>
-	<div class="p-8 xl:p-16 xl:px-32 space-y-8 text-xl max-w-7xl mx-auto">
+	<div class="p-8 pb-0 xl:px-16 xl:px-32 space-y-8 text-xl max-w-7xl mx-auto">
 		<header class="space-y-6">
-			<h1 class="font-semibold text-7xl tracking-tighter animate-pop-in flex">
-				xylight
-				<span
-					class="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text pr-0.5"
-				>
-					.dev
-				</span>
+			<h1
+				class="font-medium tracking-tight text-7xl animate-pop-in flex font-display
+				bg-gradient-to-r from-zinc-50 via-violet-400 to-pink-400 text-transparent bg-clip-text w-max leading-[1.3]"
+			>
+				xylight.dev
 			</h1>
 			<TextAnim text="Developer and designer, working across Linux and Android ecosystems." />
 		</header>
+	</div>
+	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto" id="socials">
+		<h2
+			class="font-bold text-sm mb-2 font-display bg-gradient-to-r text-transparent bg-clip-text from-pink-400 to-zinc-50 w-max"
+		>
+			<Icon src={AtSymbol} micro size="14" class="inline -translate-y-0.5 text-pink-400" />
+			Where I am
+		</h2>
+
+		<div class="flex flex-row gap-2 flex-wrap font-medium text-sm">
+			<ContainerLighting rounding="full" size="xs" href="https://github.com/Xyphyn">
+				<span>GitHub</span>
+			</ContainerLighting>
+			<ContainerLighting rounding="full" size="xs" href="https://lemdro.id/u/xylight">
+				<span>Lemmy</span>
+			</ContainerLighting>
+			<ContainerLighting
+				rounding="full"
+				size="xs"
+				href="https://matrix.to/#/@xylightsucks:matrix.org"
+			>
+				<span>Matrix</span>
+			</ContainerLighting>
+			<ContainerLighting rounding="full" size="xs" href="https://mas.to/@xylight">
+				<span>Mastodon</span>
+			</ContainerLighting>
+		</div>
+	</section>
+	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto" id="tech">
 		<div class="space-y-2">
-			<div class="text-sm font-medium">
+			<div
+				class="text-sm font-bold font-display bg-gradient-to-r text-transparent bg-clip-text from-violet-400 to-zinc-50 w-max"
+			>
 				<Icon src={Wrench} micro size="14" class="inline -translate-y-0.5 text-violet-400" />
 				What I use
 			</div>
@@ -43,9 +72,11 @@
 				</ContainerLighting>
 			</div>
 		</div>
-	</div>
-	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto" id="projects">
-		<h2 class="font-medium text-sm mb-2">
+	</section>
+	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto mt-8" id="projects">
+		<h2
+			class="font-bold text-sm mb-2 font-display bg-gradient-to-r text-transparent bg-clip-text from-purple-400 to-zinc-50 w-max"
+		>
 			<Icon src={CodeBracket} micro size="14" class="inline -translate-y-0.5 text-purple-400" />
 			What I've made
 		</h2>
@@ -144,28 +175,6 @@
 					</ContainerLighting>
 				</label>
 			</div>
-		</div>
-	</section>
-	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto mt-8" id="projects">
-		<h2 class="font-medium text-sm mb-2">
-			<Icon src={AtSymbol} micro size="14" class="inline -translate-y-0.5 text-pink-400" />
-			Where I am
-		</h2>
-
-		<div class="flex flex-row gap-2 flex-wrap font-medium text-sm">
-			<ContainerLighting rounding="full" size="xs" href="https://github.com/Xyphyn">
-				<span>GitHub</span>
-			</ContainerLighting>
-			<ContainerLighting rounding="full" size="xs" href="https://lemdro.id/u/xylight">
-				<span>Lemmy</span>
-			</ContainerLighting>
-			<ContainerLighting
-				rounding="full"
-				size="xs"
-				href="https://matrix.to/#/@xylightsucks:matrix.org"
-			>
-				<span>Matrix</span>
-			</ContainerLighting>
 		</div>
 	</section>
 </div>

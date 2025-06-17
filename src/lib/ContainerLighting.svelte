@@ -44,13 +44,13 @@
 		containerSize[size],
 		containerRounding[rounding],
 		clickable && 'cursor-pointer',
-		'relative bg-zinc-800 transition-colors group',
+		'relative bg-zinc-850 transition-colors group',
 		'cc before:z-10 flex flex-col',
 		clazz
 	]}
 >
 	{#if title}
-		<div class="font-medium text-2xl tracking-tighter">{@render title()}</div>
+		<div class="font-bold text-2xl tracking-tight font-display">{@render title()}</div>
 	{/if}
 	{@render children?.()}
 	{#if footer}
@@ -83,9 +83,11 @@
 		z-index: -1;
 		background: linear-gradient(
 			var(--gradient-rotate),
-			color-mix(in oklab, var(--color-zinc-50) 20%, transparent),
-			color-mix(in oklab, var(--color-zinc-50) 0%, transparent),
-			color-mix(in oklab, var(--color-zinc-50) 20%, transparent)
+			color-mix(in oklab, var(--color-zinc-300) 20%, transparent) 0%,
+			color-mix(in oklab, var(--color-zinc-400) 20%, transparent) 20%,
+			color-mix(in oklab, var(--color-zinc-400) 0%, transparent) 50%,
+			color-mix(in oklab, var(--color-zinc-400) 20%, transparent) 80%,
+			color-mix(in oklab, var(--color-zinc-300) 20%, transparent) 100%
 		);
 	}
 </style>
