@@ -63,24 +63,11 @@
 				<a
 					aria-label="Mastodon"
 					class="rounded-full w-8 h-8 p-2 bg-gradient-to-br from-violet-500 to-indigo-600 grid place-items-center"
-					href="https://matrix.to/#/@xylightsucks:matrix.org"
+					href="https://mas.to/@xylight"
 				>
 					<img src={Mastodon} alt="Mastodon logo" class="w-full h-full" />
 				</a>
 			</ContainerLighting>
-			<!--<ContainerLighting rounding="full" size="xs" href="https://lemdro.id/u/xylight">
-				<span>Lemmy</span>
-			</ContainerLighting>
-			<ContainerLighting
-				rounding="full"
-				size="xs"
-				href=""
-			>
-				<span>Matrix</span>
-			</ContainerLighting>
-			<ContainerLighting rounding="full" size="xs" href="https://mas.to/@xylight">
-				<span>Mastodon</span>
-			</ContainerLighting> -->
 		</div>
 	</section>
 	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto" id="tech">
