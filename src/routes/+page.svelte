@@ -3,6 +3,10 @@
 	import TextAnim from '$lib/TextAnim.svelte'
 	import type { Snippet } from 'svelte'
 	import { AtSymbol, CodeBracket, Icon, Wrench } from 'svelte-hero-icons'
+	import Lemmy from './lemmy.svg'
+	import GitHub from './github.svg'
+	import Matrix from './matrix.svg'
+	import Mastodon from './mastodon.svg'
 </script>
 
 <div class="relative z-0 space-y-8">
@@ -16,9 +20,7 @@
 				leading-[1.3]"
 			>
 				xylight
-				<span class="bg-gradient-to-r from-indigo-400 to-pink-400 text-transparent bg-clip-text">
-					.dev
-				</span>
+				<span class="text-indigo-400">.dev</span>
 			</h1>
 			<TextAnim text="Developer and designer, working across Linux and Android ecosystems." />
 		</header>
@@ -30,22 +32,55 @@
 		</h2>
 
 		<div class="flex flex-row gap-2 flex-wrap font-medium text-sm">
-			<ContainerLighting rounding="full" size="xs" href="https://github.com/Xyphyn">
-				<span>GitHub</span>
+			<ContainerLighting size="none">
+				<a
+					aria-label="GitHub"
+					class="rounded-full w-8 h-8 p-1 bg-gradient-to-br from-gray-800 to-gray-900"
+					href="https://github.com/xyphyn"
+				>
+					<img src={GitHub} alt="GitHub logo" class="w-full h-full" />
+				</a>
 			</ContainerLighting>
-			<ContainerLighting rounding="full" size="xs" href="https://lemdro.id/u/xylight">
+			<ContainerLighting size="none">
+				<a
+					aria-label="GitHub"
+					class="rounded-full w-8 h-8 p-1 bg-gradient-to-br from-zinc-800 to-zinc-900 grid place-items-center"
+					href="https://lemdro.id/u/Xylight"
+				>
+					<img src={Lemmy} alt="Lemmy logo" class="w-full h-full" />
+				</a>
+			</ContainerLighting>
+			<ContainerLighting size="none">
+				<a
+					aria-label="Lemmy"
+					class="rounded-full w-8 h-8 p-2 bg-gradient-to-br from-zinc-800 to-zinc-900 grid place-items-center"
+					href="https://matrix.to/#/@xylightsucks:matrix.org"
+				>
+					<img src={Matrix} alt="Matrix logo" class="w-full h-full" />
+				</a>
+			</ContainerLighting>
+			<ContainerLighting size="none">
+				<a
+					aria-label="Mastodon"
+					class="rounded-full w-8 h-8 p-2 bg-gradient-to-br from-violet-500 to-indigo-600 grid place-items-center"
+					href="https://matrix.to/#/@xylightsucks:matrix.org"
+				>
+					<img src={Mastodon} alt="Mastodon logo" class="w-full h-full" />
+				</a>
+			</ContainerLighting>
+			<!--<ContainerLighting rounding="full" size="xs" href="https://lemdro.id/u/xylight">
 				<span>Lemmy</span>
 			</ContainerLighting>
 			<ContainerLighting
 				rounding="full"
 				size="xs"
-				href="https://matrix.to/#/@xylightsucks:matrix.org"
+				href=""
 			>
 				<span>Matrix</span>
 			</ContainerLighting>
 			<ContainerLighting rounding="full" size="xs" href="https://mas.to/@xylight">
 				<span>Mastodon</span>
-			</ContainerLighting>
+			</ContainerLighting> -->
 		</div>
 	</section>
 	<section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto" id="tech">

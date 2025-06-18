@@ -7,7 +7,8 @@
 		sm: 'px-3 py-2',
 		md: 'px-4 py-3',
 		lg: 'px-5 py-4',
-		xl: 'px-6 py-5 gap-1'
+		xl: 'px-6 py-5 gap-1',
+		none: ''
 	}
 
 	const containerRounding = {
