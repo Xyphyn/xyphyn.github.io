@@ -14,7 +14,7 @@
 
 <div class="min-h-screen w-full flex flex-col">
 	<div class="sticky top-0 w-full p-4 pointer-events-none z-40">
-		<Navbar />
+		<!-- <Navbar /> -->
 	</div>
 	<main class="z-0">
 		{@render children()}
