@@ -14,14 +14,9 @@
 <a
 	{...rest}
 	class={[
-		'rounded-full font-medium tracking-wide hover:bg-zinc-700/50 cursor-pointer px-4 py-1.5',
-		'transition-colors duration-75 relative'
+		'rounded-full font-medium cursor-pointer',
+		'transition-colors duration-75 relative hover:underline'
 	]}
 >
 	{@render children?.()}
-	{#if selected}
-		<div
-			class="absolute bottom-0 left-2/3 w-2/3 -translate-x-3/4 h-px bg-gradient-to-r from-zinc-50/0 via-zinc-50/50 to-zinc-50/0 rounded-full"
-		></div>
-	{/if}
 </a>

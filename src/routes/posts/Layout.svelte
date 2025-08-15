@@ -12,7 +12,6 @@
 </script>
 
 <script lang="ts">
-	import ContainerLighting from '$lib/ContainerLighting.svelte'
 	import type { Snippet } from 'svelte'
 
 	interface Props {

@@ -1,97 +1,170 @@
 <script lang="ts">
-	import ContainerLighting from '$lib/ContainerLighting.svelte'
 	import TextAnim from '$lib/TextAnim.svelte'
 	import type { Snippet } from 'svelte'
-	import { AtSymbol, CodeBracket, Icon, Wrench } from 'svelte-hero-icons'
-	import Lemmy from './lemmy.svg'
-	import GitHub from './github.svg'
-	import Matrix from './matrix.svg'
-	import Mastodon from './mastodon.svg'
 </script>
 
-<div class="relative z-0 space-y-8 flex flex-col justify-center items-center">
+<div class=" z-0 space-y-8 flex flex-col justify-center items-center">
 	<div class="glow-container -z-10 pointer-events-none">
-		<div class="glow"></div>
-	</div>
-	<div class="p-8 pb-0 xl:px-32 space-y-8 text-xl max-w-7xl mx-auto text-center">
-		<header class="space-y-6">
-			<h1
-				class="font-medium tracking-tight text-6xl sm:text-7xl xl:text-8xl animate-pop-in flex font-display
-				leading-[1.3] w-max mx-auto"
-			>
-				xylight
-				<span class="text-indigo-400">.dev</span>
-			</h1>
-			<TextAnim text="Developer and designer." />
-		</header>
-	</div>
-	<!-- <hr class="border-zinc-800" /> -->
-	<!-- <section class="px-8 xl:px-32 space-y-8 max-w-7xl mx-auto mt-8" id="projects">
-		<header class="w-full text-center space-y-2">
-			<div class="flex flex-row items-center justify-center space-x-2">
-				<svg width="4rem" height="4rem" viewBox="15 15 70 70" xmlns="http://www.w3.org/2000/svg">
-					<defs>
-						<linearGradient id="gradStroke" x1="0%" y1="0%" x2="0%" y2="100%">
-							<stop offset="0%" stop-color="oklch(0.7 0.1776 289.59)" />
-							<stop offset="100%" stop-color="oklch(0.7 0.2837 324.53)" />
-						</linearGradient>
-						<linearGradient id="gradFill" x1="0%" y1="0%" x2="100%" y2="110%">
-							<stop offset="0%" stop-color="var(--color-zinc-50)" />
-							<stop offset="100%" stop-color="var(--color-zinc-50)" />
-						</linearGradient>
-					</defs>
-					<path
-						fill="url(#gradFill)"
-						stroke-width="1.5"
-						d="M45 20.8868C48.094 19.1004 51.906 19.1004 55 20.8868L72.7128 31.1132C75.8068 32.8996 77.7128 36.2008 77.7128 39.7735V60.2265C77.7128 63.7992 75.8068 67.1004 72.7128 68.8867L55 79.1133C51.906 80.8996 48.094 80.8996 45 79.1133L27.2872 68.8867C24.1932 67.1004 22.2872 63.7992 22.2872 60.2265V39.7735C22.2872 36.2008 24.1932 32.8996 27.2872 31.1132L45 20.8868Z"
-					/>
-				</svg>
-				<h1
-					class="h-10 font-inter font-semibold text-5xl bg-gradient-to-br from-indigo-400 to-pink-400 text-transparent bg-clip-text"
+		<!--stolen from fly.io because i'm shameless-->
+		<svg
+			class="pointer-events-none top-0 w-full min-w-[80rem] h-auto opacity-50 dark:opacity-10"
+			width="1000"
+			height="250"
+			viewBox="0 0 1171 241"
+			fill="none"
+		>
+			<g filter="url(#filter0_f)">
+				<path
+					d="M731.735 -179.55C596.571 -157.762 516.36 -74.1815 552.576 7.13199C588.793 88.4455 727.724 136.701 862.887 114.913C998.051 93.1247 1078.26 9.54454 1042.05 -71.769C1005.83 -153.082 866.898 -201.337 731.735 -179.55Z"
+					fill="url(#paint0_linear)"
+				></path>
+				<path
+					d="M378 114.106C520.489 114.106 636 45.8883 636 -38.2623C636 -122.413 520.489 -190.63 378 -190.63C235.511 -190.63 120 -122.413 120 -38.2623C120 45.8883 235.511 114.106 378 114.106Z"
+					fill="url(#paint1_linear)"
+				></path>
+			</g>
+			<defs>
+				<filter
+					id="filter0_f"
+					x="0"
+					y="-310.63"
+					width="1170.74"
+					height="550.775"
+					filterUnits="userSpaceOnUse"
+					color-interpolation-filters="sRGB"
 				>
-					Photon
-				</h1>
+					<feBlend
+						mode="normal"
+						in="SourceGraphic"
+						in2="BackgroundImageFix"
+						result="shape"
+					></feBlend>
+					<feGaussianBlur stdDeviation="60" result="effect1_foregroundBlur"></feGaussianBlur>
+				</filter>
+				<linearGradient
+					id="paint0_linear"
+					x1="567.5"
+					y1="1.03997"
+					x2="1029.02"
+					y2="64.6468"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop stop-color="oklch(0.4676 0.3157 264.18)"></stop>
+					<stop offset="1" stop-color="oklch(0.8433 0.2121 170.47)"></stop>
+				</linearGradient>
+				<linearGradient
+					id="paint1_linear"
+					x1="155"
+					y1="-11.0234"
+					x2="511.855"
+					y2="-162.127"
+					gradientUnits="userSpaceOnUse"
+				>
+					<stop stop-color="oklch(0.8267 0.1598 73.06)"></stop>
+					<stop offset="0.504191" stop-color="oklch(0.6382 0.2861 359.35)"></stop>
+					<stop offset="1" stop-color="oklch(0.5088 0.3009 283.7475)"></stop>
+				</linearGradient>
+			</defs>
+		</svg>
+	</div>
+	<div class="p-8 pb-0 xl:px-32 py-16 xl:py-24 space-y-8 text-xl w-full text-center sm:text-left">
+		<header class="space-y-6 max-w-xl">
+			<h1 class="font-medium tracking-tight text-6xl sm:text-7xl font-display leading-[1.3]">
+				xylight.dev
+			</h1>
+			<div class="text-slate-700 dark:text-zinc-300">
+				<p>I am a hobbyist software engineer and designer, discovering the technology around us.</p>
 			</div>
-			<p class="text-lg">Making the fediverse more accessible.</p>
 		</header>
-	</section> -->
+	</div>
+
+	<section
+		class="px-8 xl:px-32 space-y-8 w-full border-t border-slate-200 dark:border-zinc-800 pt-24"
+	>
+		<header class="text-left">
+			<h2 class="text-xl text-slate-600 dark:text-zinc-400 font-medium">What I do</h2>
+		</header>
+		<div class="flex flex-row gap-2 flex-wrap">
+			{#snippet technology(name: string, hue: number)}
+				<div
+					style="filter: hue-rotate({hue}deg);"
+					class="rounded-full cursor-pointer bg-red-50 border-red-100 dark:border-red-400/20 border text-red-500 dark:text-red-300 dark:bg-red-400/10 font-bold px-2.5 py-1 text-sm"
+				>
+					{name}
+				</div>
+			{/snippet}
+
+			{@render technology('Svelte', 0)}
+			{@render technology('JavaScript', 40)}
+			{@render technology('Kotlin', 300)}
+			{@render technology('Linux', 200)}
+			{@render technology('Sysadmin', 20)}
+			{@render technology('Docker', 220)}
+			{@render technology('Networking', 180)}
+			{@render technology('Git', 220)}
+			{@render technology('ML', 80)}
+		</div>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-8">
+			{#snippet project(name: string, description: string, url?: string, img?: Snippet)}
+				<svelte:element
+					this={url ? 'a' : 'article'}
+					href={url}
+					class={[
+						'space-y-3 rounded-2xl p-6 relative overflow-hidden first:row-span-2 cursor-pointer',
+						'first:bg-indigo-50 first:dark:bg-indigo-900/20 bg-slate-50 dark:bg-zinc-900',
+						'transition-all h-full',
+						'border first:border-indigo-100 first:dark:border-indigo-500/20 border-slate-200 dark:border-zinc-800 hover:border-indigo-200 hover:dark:border-zinc-700'
+					]}
+				>
+					{#if img}
+						<div class="h-48 overflow-hidden mask-b-from-0 rounded-t-xl">
+							{@render img()}
+						</div>
+					{/if}
+					<h3 class="font-display text-2xl">{name}</h3>
+					<p>
+						{description}
+					</p>
+				</svelte:element>
+			{/snippet}
+
+			{#snippet photonImg()}
+				<enhanced:img
+					src="./photon.png"
+					alt="A screenshot of the interface of Photon"
+					class="object-cover object-top w-full h-full"
+				/>
+			{/snippet}
+			{@render project(
+				'Photon',
+				`A fully-featured, beautiful, and mature Svelte based web client for the fediverse.`,
+				'https://use.phtn.app',
+				photonImg
+			)}
+			{@render project(
+				'Software development',
+				'I study & enjoy learning about the design and architecture of software, especially in low level languages. I personally develop software in higher level languages like TypeScript, Kotlin, or Rust.'
+			)}
+			{@render project(
+				'System administration',
+				`I enjoy managing my home server as a hobby, hosting services that help me and others. I also enjoy studying how network stacks work and managing them.`
+			)}
+			{@render project(
+				'Fediverse',
+				'I frequently observe and interact in the development of fediverse platforms, helping build them with more accessible interfaces like Photon.'
+			)}
+		</div>
+	</section>
 </div>
 
 <style>
 	.glow-container {
 		position: absolute;
 		width: 100%;
+		top: 0;
 		height: 48rem;
 		max-width: 100%;
 		z-index: -1;
-		top: -50%;
 		overflow: hidden;
-	}
-
-	.glow {
-		position: absolute;
-		width: 150%;
-		height: 150%;
-		top: -25%;
-		left: -25%;
-		overflow: hidden;
-	}
-
-	.glow::before {
-		content: '';
-		width: 150%;
-		height: 100%;
-		position: absolute;
-		background: radial-gradient(
-			ellipse 70% 70% at 25% 25%,
-			rgba(255, 255, 255, 0.1) 0%,
-			rgba(255, 255, 255, 0.07) 25%,
-			rgba(255, 255, 255, 0.02) 50%,
-			rgba(255, 255, 255, 0) 75%,
-			transparent 100%
-		);
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
-		background-position: -50% -50%;
 	}
 </style>

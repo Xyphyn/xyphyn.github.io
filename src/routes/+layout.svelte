@@ -13,13 +13,15 @@
 </svelte:head>
 
 <div class="min-h-screen w-full flex flex-col">
-	<div class="sticky top-0 w-full p-4 pointer-events-none z-40">
+	<div class="w-full p-4 pointer-events-none z-40">
 		<!-- <Navbar /> -->
 	</div>
 	<main class="z-0">
 		{@render children()}
 	</main>
-	<footer class=" flex flex-row px-8 w-full text-zinc-400 font-medium text-sm py-8 gap-4 mt-auto">
+	<footer
+		class=" flex flex-row px-8 w-full text-slate-600 dark:text-zinc-400 font-medium text-sm py-8 gap-4 mt-auto"
+	>
 		<div>xylight.dev</div>
 		<div class="flex-1"></div>
 		<div class="flex flex-row flex-wrap gap-4">

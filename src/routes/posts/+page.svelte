@@ -1,8 +1,5 @@
 <script lang="ts">
-	import ContainerLighting from '$lib/ContainerLighting.svelte'
-
 	let { data } = $props()
-	console.log(data)
 </script>
 
 <h1 class="max-w-7xl mx-auto px-8 text-7xl tracking-tight font-medium mb-8 font-display">Posts</h1>

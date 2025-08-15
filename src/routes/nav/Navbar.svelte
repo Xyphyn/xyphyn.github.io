@@ -2,16 +2,13 @@
 	import NavLink from './NavLink.svelte'
 </script>
 
-<div
-	class="relative backdrop-blur-2xl w-max mx-auto rounded-full p-[1px] bg-gradient-to-br from-white/20 via-white/0 to-white/20 pointer-events-none"
->
+<div class="relative backdrop-blur-2xl w-max rounded-full pointer-events-none">
 	<nav
 		class={[
-			'rounded-full backdrop-blur-xl bg-zinc-850/50 px-0.5 py-0.5 z-10 flex flex-row gap-0.5 font-medium text-sm pointer-events-auto'
+			'rounded-full bg-zinc-850/50 z-10 flex flex-row gap-4 text-base font-medium pointer-events-auto'
 		]}
 	>
 		<NavLink href="/">Home</NavLink>
-		<NavLink href="/about">About</NavLink>
 		<NavLink href="/posts">Posts</NavLink>
 	</nav>
 </div>
