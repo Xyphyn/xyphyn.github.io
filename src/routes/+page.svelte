@@ -1,5 +1,4 @@
 <script lang="ts">
-	import TextAnim from '$lib/TextAnim.svelte'
 	import type { Snippet } from 'svelte'
 </script>
 
@@ -67,7 +66,7 @@
 			</defs>
 		</svg>
 	</div>
-	<div class="p-8 pb-0 xl:px-32 py-16 xl:py-24 space-y-8 text-xl w-full text-center sm:text-left">
+	<div class="p-8 pb-0 xl:px-32 py-16 xl:py-16 space-y-8 text-xl w-full text-center sm:text-left">
 		<header class="space-y-6 max-w-xl">
 			<h1 class="font-medium tracking-tight text-6xl sm:text-7xl font-display leading-[1.3]">
 				xylight.dev
@@ -75,11 +74,23 @@
 			<div class="text-slate-700 dark:text-zinc-300">
 				<p>I am a hobbyist software engineer and designer, discovering the technology around us.</p>
 			</div>
+			{#snippet link(href: string, label: string)}
+				<a {href} class="text-base text-indigo-600 dark:text-indigo-400 hover:underline">
+					{label}
+				</a>
+			{/snippet}
+
+			<div class="flex flex-row gap-4 flex-wrap">
+				{@render link('/posts', 'Posts')}
+				{@render link('https://github.com/Xyphyn', 'GitHub')}
+				{@render link('https://matrix.to/#/@xylight:chat.phtn.app', 'Matrix')}
+				{@render link('https://lemdro.id/u/Xylight', 'Lemmy')}
+			</div>
 		</header>
 	</div>
 
 	<section
-		class="px-8 xl:px-32 space-y-8 w-full border-t border-slate-200 dark:border-zinc-800 pt-24"
+		class="px-8 xl:px-32 space-y-8 w-full border-t border-slate-200 dark:border-zinc-800 pt-12"
 	>
 		<header class="text-left">
 			<h2 class="text-xl text-slate-600 dark:text-zinc-400 font-medium">What I do</h2>
