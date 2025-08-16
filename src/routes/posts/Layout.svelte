@@ -57,19 +57,93 @@
 			{description}
 		</p>
 	</header>
-	<div class={['max-w-3xl w-full mx-auto px-8', 'border-zinc-700 space-y-8']}>
-		<div
-			class={[
-				'prose prose-lg prose-zinc dark:prose-invert',
-				'prose-headings:font-display prose-headings:mt-12',
-				'prose-pre:rounded-2xl prose-pre:border prose-pre:border-zinc-800',
-				'prose-li:my-0 prose-img:rounded-2xl prose-img:border prose-img:border-zinc-700',
-				'prose-a:text-indigo-500 prose-a:no-underline prose-a:hover:underline',
-				'prose-pre:max-h-[32rem] prose-pre:overflow-y-auto prose-pre:max-w-full prose-pre:overflow-x-wrap',
-				'prose-img:mx-auto'
-			]}
-		>
+	<div class={['max-w-3xl w-full mx-auto px-8']}>
+		<article class="post">
 			{@render children()}
-		</div>
+		</article>
 	</div>
 </div>
+
+<style>
+	article.post {
+		:global {
+			& > * {
+				margin-top: 1.3333rem;
+				margin-bottom: 1.3333rem;
+				max-width: 65ch;
+				line-height: 1.8;
+			}
+
+			h1,
+			h2,
+			h3 {
+				font-family: var(--font-display);
+				font-weight: var(--font-weight-bold);
+				margin-top: 3rem;
+			}
+
+			h1 {
+				font-size: var(--text-4xl);
+			}
+			h2 {
+				font-size: 1.75rem;
+			}
+			h3 {
+				font-size: var(--text-2xl);
+			}
+
+			p {
+				font-size: 1.125rem;
+				color: var(--color-slate-700);
+				@media (prefers-color-scheme: dark) {
+					color: var(--color-zinc-300);
+				}
+			}
+
+			a {
+				color: var(--color-indigo-500);
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+
+			code {
+				background-color: var(--color-slate-100);
+				padding: 0.1rem 0.25rem;
+				font-size: var(--text-base);
+				border-radius: var(--radius-sm);
+			}
+
+			blockquote {
+				border-left: 0.25rem solid var(--color-slate-200);
+				padding-left: 2rem;
+				font-style: italic;
+			}
+
+			ul,
+			ol {
+				padding-left: 3rem;
+			}
+
+			ul > li,
+			ol > li {
+				padding-left: 1rem;
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+			}
+
+			ol {
+				list-style-type: decimal;
+			}
+
+			ul {
+				list-style: circle;
+			}
+
+			li::marker {
+				font-size: var(--text-lg);
+				color: var(--color-slate-500);
+			}
+		}
+	}
+</style>

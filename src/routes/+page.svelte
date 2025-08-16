@@ -2,68 +2,43 @@
 	import type { Snippet } from 'svelte'
 </script>
 
-<div class=" z-0 space-y-8 flex flex-col justify-center items-center">
+<div class="z-0 space-y-8 flex flex-col justify-center items-center">
 	<div class="glow-container -z-10 pointer-events-none">
-		<!--stolen from fly.io because i'm shameless-->
 		<svg
-			class="pointer-events-none top-0 w-full min-w-[80rem] h-auto opacity-50 dark:opacity-10"
+			class="pointer-events-none top-0 w-full h-auto opacity-50 dark:opacity-10"
 			width="1000"
 			height="250"
 			viewBox="0 0 1171 241"
 			fill="none"
 		>
-			<g filter="url(#filter0_f)">
-				<path
-					d="M731.735 -179.55C596.571 -157.762 516.36 -74.1815 552.576 7.13199C588.793 88.4455 727.724 136.701 862.887 114.913C998.051 93.1247 1078.26 9.54454 1042.05 -71.769C1005.83 -153.082 866.898 -201.337 731.735 -179.55Z"
-					fill="url(#paint0_linear)"
-				></path>
-				<path
-					d="M378 114.106C520.489 114.106 636 45.8883 636 -38.2623C636 -122.413 520.489 -190.63 378 -190.63C235.511 -190.63 120 -122.413 120 -38.2623C120 45.8883 235.511 114.106 378 114.106Z"
-					fill="url(#paint1_linear)"
-				></path>
-			</g>
 			<defs>
-				<filter
-					id="filter0_f"
-					x="0"
-					y="-310.63"
-					width="1170.74"
-					height="550.775"
-					filterUnits="userSpaceOnUse"
-					color-interpolation-filters="sRGB"
-				>
-					<feBlend
-						mode="normal"
-						in="SourceGraphic"
-						in2="BackgroundImageFix"
-						result="shape"
-					></feBlend>
-					<feGaussianBlur stdDeviation="60" result="effect1_foregroundBlur"></feGaussianBlur>
+				<filter id="blur" x="0" y="-311" width="1170" height="550" filterUnits="userSpaceOnUse">
+					<feGaussianBlur stdDeviation="60" />
 				</filter>
-				<linearGradient
-					id="paint0_linear"
-					x1="567.5"
-					y1="1.03997"
-					x2="1029.02"
-					y2="64.6468"
-					gradientUnits="userSpaceOnUse"
-				>
-					<stop stop-color="oklch(0.4676 0.3157 264.18)"></stop>
-					<stop offset="1" stop-color="oklch(0.8433 0.2121 170.47)"></stop>
+				<linearGradient id="grad1" x1="568" y1="1" x2="1029" y2="65" gradientUnits="userSpaceOnUse">
+					<stop stop-color="oklch(0.47 0.32 264)" />
+					<stop offset="1" stop-color="oklch(0.84 0.21 170)" />
 				</linearGradient>
 				<linearGradient
-					id="paint1_linear"
+					id="grad2"
 					x1="155"
-					y1="-11.0234"
-					x2="511.855"
-					y2="-162.127"
+					y1="-11"
+					x2="512"
+					y2="-162"
 					gradientUnits="userSpaceOnUse"
 				>
-					<stop stop-color="oklch(0.8267 0.1598 73.06)"></stop>
-					<stop offset="0.504191" stop-color="oklch(0.6382 0.2861 359.35)"></stop>
-					<stop offset="1" stop-color="oklch(0.5088 0.3009 283.7475)"></stop>
+					<stop stop-color="oklch(0.83 0.16 73)" />
+					<stop offset="0.5" stop-color="oklch(0.64 0.29 359)" />
+					<stop offset="1" stop-color="oklch(0.51 0.30 284)" />
 				</linearGradient>
 			</defs>
+			<g filter="url(#blur)">
+				<path
+					d="M732-180C597-158 516-74 553 7s175 130 310 108 246-105 210-186-139-49-274-27z"
+					fill="url(#grad1)"
+				/>
+				<ellipse cx="378" cy="-38" rx="258" ry="76" fill="url(#grad2)" />
+			</g>
 		</svg>
 	</div>
 	<div class="p-8 pb-0 xl:px-32 py-16 xl:py-16 space-y-8 text-xl w-full text-center sm:text-left">
@@ -99,7 +74,7 @@
 			{#snippet technology(name: string, hue: number)}
 				<div
 					style="filter: hue-rotate({hue}deg);"
-					class="rounded-full cursor-pointer bg-red-50 border-red-100 dark:border-red-400/20 border text-red-500 dark:text-red-300 dark:bg-red-400/10 font-bold px-2.5 py-1 text-sm"
+					class="rounded-full cursor-pointer bg-red-50 border-red-100 dark:border-red-400/20 border text-red-700 dark:text-red-300 dark:bg-red-400/10 font-bold px-2.5 py-1 text-sm"
 				>
 					{name}
 				</div>
@@ -145,6 +120,7 @@
 					sizes="(min-width:1280px) 320px, (min-width:720px) 320px"
 					alt="A screenshot of the interface of Photon"
 					class="object-cover object-top w-full h-full"
+					fetchpriority="high"
 				/>
 			{/snippet}
 			{@render project(
