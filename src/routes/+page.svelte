@@ -148,7 +148,7 @@
 			{/snippet}
 			{@render project(
 				'Photon',
-				`A fully-featured, beautiful, and mature Svelte based web client for the fediverse.`,
+				`A fully-featured, well designed, and mature Svelte based web client for the fediverse.`,
 				'https://use.phtn.app',
 				photonImg
 			)}

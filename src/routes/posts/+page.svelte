@@ -19,7 +19,7 @@
 		</h1>
 	</header>
 </div>
-<section class="px-8 xl:px-32 space-y-8 w-full pt-12">
+<section class="px-4 sm:px-8 xl:px-32 space-y-8 w-full pt-12">
 	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 z-0 px-8">
 		{#each data.posts as post}
 			<a
