@@ -141,7 +141,8 @@
 
 			{#snippet photonImg()}
 				<enhanced:img
-					src="./photon.png"
+					src="./photon.png?w=320;480"
+					sizes="(min-width:1280px) 320px, (min-width:720px) 320px"
 					alt="A screenshot of the interface of Photon"
 					class="object-cover object-top w-full h-full"
 				/>
