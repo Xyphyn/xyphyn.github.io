@@ -1,0 +1,18 @@
+---
+title: Switching away from Ollama
+description: If you'd like to switch from Ollama to llama.cpp, this is the guide for you.
+published: 2025-08-15
+link: /posts/ollama-to-llama-cpp
+---
+
+# Context
+
+I've been experimenting with the usage of local AI models, as I find the technology quite fascinating. I don't have much of a use for them for the things I do, but it's still fun to mess around and burn my GPU.
+
+I discovered that this was easily possible while I was browsing [Flathub](https://flathub.org) and found an app called [Alpaca](https://flathub.org/apps/com.jeffser.Alpaca).
+
+It uses [Ollama](https://ollama.com) behind the scenes and I started to experiment with the software on its own, downloading and trying models.
+
+# Problems with Ollama
+
+While Ollama is convenient, it lacks certain advanced features such as choosing the quantity of layers to offload to the GPU, manual KV cache, etc.

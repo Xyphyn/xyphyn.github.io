@@ -10,6 +10,7 @@
 	<meta name="keywords" content="developer, portfolio, xylight" />
 	<meta name="author" content="Xylight" />
 	<meta name="description" content="Xylight's portfolio" />
+	<meta name="robots" content="index, follow" />
 </svelte:head>
 
 <div class="min-h-screen w-full flex flex-col">
