@@ -9,7 +9,7 @@
 
 	@keyframes pop-in {
 		from {
-			transform: translateY(16%);
+			transform: translateY(16px);
 			opacity: 0;
 		}
 		to {

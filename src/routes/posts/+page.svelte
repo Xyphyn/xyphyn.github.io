@@ -5,7 +5,7 @@
 	let { data } = $props()
 </script>
 
-<div class="p-8 pb-0 xl:px-32 py-16 xl:py-24 space-y-8 text-xl w-full text-center sm:text-left">
+<div class="p-8 pb-0 xl:px-32 py-16 xl:py-16 space-y-8 text-xl w-full text-center sm:text-left">
 	<header class="space-y-6 max-w-xl">
 		<a
 			href="/"
@@ -21,13 +21,14 @@
 </div>
 <section class="px-4 sm:px-8 xl:px-32 space-y-8 w-full pt-12">
 	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 z-0 px-8">
-		{#each data.posts as post (post.title)}
+		{#each data.posts as post, index (post.title)}
 			<a
 				href={post.link}
 				class={[
 					'flex flex-col gap-1 border rounded-3xl border-slate-200 dark:border-zinc-800 p-6',
-					'hover:bg-slate-100 hover:dark:bg-zinc-800 transition-colors group'
+					'hover:bg-slate-100 hover:dark:bg-zinc-800 transition-colors group animate-pop-in'
 				]}
+				style="animation-delay: {index * 50}ms; opacity: 0;"
 			>
 				<div
 					class="h-48 overflow-hidden grid place-items-center rounded-2xl *:scale-150 -mt-3 -mx-3 mb-3"

@@ -38,7 +38,9 @@
 </svelte:head>
 
 <div class="relative z-0 -mt-20">
-	<header class="z-20 px-8 md:px-16 xl:px-24 space-y-6 pt-40 w-4xl mx-auto pb-8 max-w-full">
+	<header
+		class="z-20 px-8 md:px-16 xl:px-24 space-y-6 pt-40 w-4xl mx-auto pb-8 max-w-full animate-pop-in"
+	>
 		<a
 			href="/posts"
 			class="hover:underline dark:text-indigo-400 text-indigo-600 my-2 px-6 flex flex-row items-center gap-1"
@@ -59,7 +61,10 @@
 			{description}
 		</p>
 	</header>
-	<div class={['max-w-3xl w-full mx-auto px-8']}>
+	<div
+		class={['max-w-3xl w-full mx-auto px-8  animate-pop-in']}
+		style="animation-delay: 100ms; opacity: 0;"
+	>
 		<article class="post">
 			{@render children()}
 		</article>

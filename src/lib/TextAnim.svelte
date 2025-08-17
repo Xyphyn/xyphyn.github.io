@@ -4,9 +4,9 @@
 	let words = $derived(text.split(' '))
 </script>
 
-<div class="animate space-x-1.5">
+<div class="animate">
 	{#each words as word, index}
-		<span class="animate-word" style="--index: {index * 75}ms">{`${word}`}</span>
+		<span class="animate-word" style="--index: {index * 50}ms">{`${word} `}</span>
 	{/each}
 </div>
 
