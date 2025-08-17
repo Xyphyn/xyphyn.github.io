@@ -51,9 +51,13 @@
 			</svg>
 		</div>
 	</div>
-	<div class="p-8 pb-0 xl:px-32 py-16 xl:py-16 space-y-8 text-xl w-full text-center sm:text-left">
+	<div
+		class="p-8 pb-0 xl:px-32 py-16 xl:py-16 space-y-8 text-xl w-full text-center justify-center sm:text-left sm:justify-start"
+	>
 		<header class="space-y-6 max-w-xl">
-			<h1 class="font-medium tracking-tight text-6xl sm:text-7xl font-display leading-[1.3] flex">
+			<h1
+				class="font-medium tracking-tight text-6xl sm:text-7xl font-display leading-[1.3] flex justify-center sm:justify-start"
+			>
 				<span class="animate-pop-in inline-block">xylight</span>
 				<span class="animate-pop-in inline-block" style="animation-delay: 100ms; opacity: 0;">
 					.dev
