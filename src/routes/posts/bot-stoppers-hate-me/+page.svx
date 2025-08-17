@@ -3,6 +3,7 @@ title: "\"Bot stoppers\" absolutely despise me"
 description: Recaptcha, hCaptcha, Turnstile, Anubis all hate me.
 date: 2025-8-16
 link: /posts/bot-stoppers-hate-me
+keywords: server, hosting, story, CAPTCHA
 ---
 
 <script>

@@ -6,10 +6,8 @@
 </script>
 
 <svelte:head>
-	<title>xylight.dev</title>
 	<meta name="keywords" content="developer, portfolio, xylight" />
 	<meta name="author" content="Xylight" />
-	<meta name="description" content="Xylight's portfolio" />
 	<meta name="robots" content="index, follow" />
 </svelte:head>
 

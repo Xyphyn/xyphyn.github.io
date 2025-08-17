@@ -4,6 +4,11 @@
 	import { CodeBracket, Icon, ServerStack, Share, type IconSource } from 'svelte-hero-icons'
 </script>
 
+<svelte:head>
+	<title>xylight.dev</title>
+	<meta name="description" content="Xylight's portfolio" />
+</svelte:head>
+
 <div class="z-0 space-y-8 flex flex-col justify-center items-center">
 	<div class="absolute top-0 w-full -z-10" role="presentation">
 		<!--Hack because blur is broken on Firefox-->

@@ -5,6 +5,11 @@
 	let { data } = $props()
 </script>
 
+<svelte:head>
+	<title>Posts | xylight.dev</title>
+	<meta name="description" content="Xylight's posts" />
+</svelte:head>
+
 <div class="p-8 pb-0 xl:px-32 py-16 xl:py-16 space-y-8 text-xl w-full text-center sm:text-left">
 	<header class="space-y-6 max-w-xl">
 		<a

@@ -3,6 +3,7 @@ title: Xfinity port forwarding
 description: Is the most infuriating thing I have ever experienced.
 date: 2025-8-15
 link: /posts/comcast-crashout
+keywords: network, router, internet, port forward
 ---
 
 # the beginning

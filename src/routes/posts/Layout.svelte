@@ -23,14 +23,16 @@
 		description: string
 		date: string
 		link: string
+		keywords: string
 		children: Snippet
 	}
 
-	let { children, date, title, description, link }: Props = $props()
+	let { children, date, title, description, keywords, link }: Props = $props()
 </script>
 
 <svelte:head>
 	<title>{title}</title>
+	<meta name="keywords" content={keywords} />
 	<meta name="description" content={description} />
 	<meta name="date" content={new Date().toLocaleDateString()} />
 	<meta name="og:title" content={title} />
