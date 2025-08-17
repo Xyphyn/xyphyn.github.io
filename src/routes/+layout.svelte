@@ -30,7 +30,6 @@
 			{/snippet}
 			{@render link('Home', '/')}
 			{@render link('Posts', '/posts')}
-			{@render link('About', '/about')}
 		</nav>
 	</div>
 	<main class="z-0">
