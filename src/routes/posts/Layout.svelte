@@ -41,7 +41,7 @@
 
 <div class="relative z-0 -mt-20">
 	<header
-		class="z-20 px-8 md:px-16 xl:px-24 space-y-6 pt-40 w-4xl mx-auto pb-8 max-w-full animate-pop-in"
+		class="z-20 px-4 sm:px-8 md:px-16 space-y-6 pt-40 w-4xl mx-auto pb-8 max-w-full animate-pop-in"
 	>
 		<a
 			href="/posts"
@@ -55,7 +55,9 @@
 				{new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date(date))}
 			</div>
 		{/if}
-		<div class="w-full h-full rounded-2xl overflow-hidden grid place-items-center">
+		<div
+			class="w-full h-full rounded-2xl overflow-hidden grid place-items-center border border-slate-200 dark:border-zinc-800"
+		>
 			<Placeholder seed={title} />
 		</div>
 		<h1 class="font-display text-4xl md:text-5xl px-6">{title}</h1>
@@ -64,7 +66,7 @@
 		</p>
 	</header>
 	<div
-		class={['max-w-3xl w-full mx-auto px-8  animate-pop-in']}
+		class={['max-w-3xl w-full mx-auto px-5 sm:px-8 animate-pop-in']}
 		style="animation-delay: 100ms; opacity: 0;"
 	>
 		<article class="post">
