@@ -5,7 +5,7 @@
 </script>
 
 <div class="z-0 space-y-8 flex flex-col justify-center items-center">
-	<div class="absolute top-0 w-full -z-10">
+	<div class="absolute top-0 w-full -z-10" role="presentation">
 		<!--Hack because blur is broken on Firefox-->
 		<div class="w-full h-[48rem] -z-10 backdrop-blur-3xl"></div>
 		<div class="glow-container pointer-events-none opacity-50 dark:opacity-10">
@@ -41,7 +41,7 @@
 						<stop offset="1" stop-color="oklch(0.51 0.30 284)" />
 					</linearGradient>
 				</defs>
-				<g filter="url(#blur)">
+				<g>
 					<path
 						d="M732-180C597-158 516-74 553 7s175 130 310 108 246-105 210-186-139-49-274-27z"
 						fill="url(#grad1)"
@@ -78,11 +78,11 @@
 				</a>
 			{/snippet}
 
-			<div class="flex flex-row gap-5 flex-wrap">
+			<nav class="flex flex-row gap-5 flex-wrap">
 				{@render link('https://github.com/Xyphyn', 'GitHub', 0)}
 				{@render link('https://matrix.to/#/@xylight:chat.phtn.app', 'Matrix', 1)}
 				{@render link('https://lemdro.id/u/Xylight', 'Lemmy', 2)}
-			</div>
+			</nav>
 		</header>
 	</div>
 

@@ -22,14 +22,20 @@
 <section class="px-4 sm:px-8 xl:px-32 space-y-8 w-full pt-12">
 	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 z-0 px-8">
 		{#each data.posts as post, index (post.title)}
-			<a
-				href={post.link}
+			<article
 				class={[
 					'flex flex-col gap-1 border rounded-3xl border-slate-200 dark:border-zinc-800 p-6',
 					'hover:bg-slate-100 hover:dark:bg-zinc-800 transition-colors group animate-pop-in'
 				]}
 				style="animation-delay: {index * 50}ms; opacity: 0;"
 			>
+				<a
+					href={post.link}
+					class="absolute inset-0 z-10 rounded-[inherit]"
+					aria-label="Read article: {post.title}"
+				>
+					<span class="sr-only">Read article: {post.title}</span>
+				</a>
 				<div
 					class="h-48 overflow-hidden grid place-items-center rounded-2xl *:scale-150 -mt-3 -mx-3 mb-3"
 				>
@@ -40,16 +46,14 @@
 						{new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date(post.date))}
 					</div>
 				{/if}
-				<div class="font-display text-2xl">{post.title}</div>
+				<h2 class="font-display text-2xl group-hover:underline">{post.title}</h2>
 				<p class="max-w-md">
 					{post.description}
 				</p>
-				<div
-					class="text-indigo-500 font-medium flex flex-row gap-1 items-center group-hover:underline text-lg mt-auto"
-				>
+				<div class="text-indigo-500 font-medium flex flex-row gap-1 items-center text-lg mt-auto">
 					Read <Icon src={ArrowRight} micro size="16" />
 				</div>
-			</a>
+			</article>
 		{/each}
 	</div>
 </section>
