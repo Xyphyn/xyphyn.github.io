@@ -2,4 +2,4 @@
 	let { children, ...rest } = $props()
 </script>
 
-<code {...rest}>{@render children?.()}</code>
+<code {...rest}>aa {@render children?.()}</code>

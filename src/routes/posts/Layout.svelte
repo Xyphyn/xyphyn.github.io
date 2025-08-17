@@ -7,14 +7,16 @@
 		H3 as h3,
 		Paragraph as p,
 		Code as code,
-		Img as img
+		Img as img,
+		Pre as pre
 	} from './components/index'
 
-	export { h1, h2, h3, p, code, img }
+	export { h1, h2, h3, p, code }
 </script>
 
 <script lang="ts">
 	import type { Snippet } from 'svelte'
+	import './highlight.css'
 
 	interface Props {
 		title: string
@@ -107,7 +109,7 @@
 				}
 			}
 
-			code {
+			:not(pre) code {
 				background-color: var(--color-slate-100);
 				padding: 0.1rem 0.25rem;
 				font-size: var(--text-base);
@@ -130,6 +132,7 @@
 				padding-left: 1rem;
 				margin-top: 1rem;
 				margin-bottom: 1rem;
+				font-size: var(--text-lg);
 			}
 
 			ol {
@@ -142,7 +145,32 @@
 
 			li::marker {
 				font-size: var(--text-lg);
-				color: var(--color-slate-500);
+				color: var(--color-slate-400);
+				@media (prefers-color-scheme: dark) {
+					color: var(--color-zinc-600);
+				}
+			}
+
+			div {
+				margin-top: 3rem;
+				margin-bottom: 3rem;
+			}
+
+			pre {
+				background-color: var(--color-slate-100);
+				@media (prefers-color-scheme: dark) {
+					background-color: var(--color-zinc-800);
+				}
+				width: 100%;
+				display: block;
+				white-space: pre-wrap;
+				word-break: normal;
+				overflow-wrap: break-word;
+				overflow-x: auto;
+				padding: 1rem;
+				max-width: 100%;
+				border-radius: var(--radius-xl);
+				font-size: var(--text-sm);
 			}
 		}
 	}

@@ -1,0 +1,125 @@
+---
+title: "\"Bot stoppers\" absolutely despise me"
+description: Recaptcha, hCaptcha, Turnstile, Anubis all hate me.
+date: 2025-8-16
+link: /posts/bot-stoppers-hate-me
+---
+
+<script>
+import { Img } from '../components'
+</script>
+
+*This is another rant/storytelling.*
+
+# Are you a bot?
+
+We all know and love(?) the Captcha prompts that site owners put to ward off bots. Even though modern technology makes it easier for bots to defeat captchas, the complexity of doing so for a bot trying to scrape or spam mostly deters them.
+
+The problem is that it delays the actions users want to complete, and in some cases makes it a difficult quiz. Have you ever debated with yourself whether that corner of a bicycle is counted?
+
+<Img src="./recaptcha.webp" alt="A recaptcha prompt, instructing the user to 'Select all squares with fire hydrants'. The fire hydrant is contained within the rightmost squares, except for a few pixels of it which extend leftward." title="Do I click the slivers on the left?" />
+
+Despite this, most people tend to pass them fine *eventually*.
+
+However, *something* about me, these prompts despise. It takes me ***multiple minutes*** to get through these. I get prompt denials, endless loading screens, etc. Half the time, I just end up quitting entirely.
+
+# I swear *I'm* not a bot
+
+I'm not a bot, as far as I'm aware. Hopefully these posts have enough soul that it's obvious.
+
+## reCAPTCHA
+
+This is Google's captcha system. These actually aren't nearly as common as they used to be, because you need to pay, versus Cloudflare's Turnstile which is free.
+
+I hate these so much. Especially the ones where you click and wait for a new one to fade in.
+
+They also gaslight you. Even if you get it 100% correct, sometimes it will tell you to try again. This is pretty likely because *it is primarily a tool to train Google's AI.*
+
+## Cloudflare
+
+Ever seen a page like this?
+
+<Img src="./cloudflare.webp" alt="A cloudflare connection security prompt, informing the user that 'the security of your connection must be reviewed before proceeding'." />
+
+This is Cloudflare's "Under Attack Mode" for websites, which I find that too many site owners enable when it's unnecessary. There's not much documentation on this, so it's difficult to understand what it's actually doing.
+
+But I get blocked by these frequently. This challenge will stop you if:
+
+- You are using a user-agent switcher.
+  - It took me too long to learn that you'll get stuck in an infinite loop with this.
+- Your browser has anti-fingerprinting protections.
+  - It's quite literally impossible to pass one of these on the Cromite browser!
+- Your connection isn't fast enough.
+  - The test can timeout before it reloads which will restart the test and, unless your connection improves, make it impossible to pass.
+
+Cloudflare also provides the **Turnstile** service which is similar to a reCAPTCHA--you click a button and pray that the gods of the internet that your IP address is "normal". Same blocks as above.
+
+## hCaptcha
+
+These are my *least favorite* CAPTCHA. These are the ones with the strange tests with the psychedelic backgrounds.
+
+<Img src="./hcaptcha.webp" alt="An hCAPTCHA prompt, containing a black illustration of a truck, with the top right part being distorted. An instruction on the top reads: 'Click the incorrect part of the image.'" />
+
+Even worse
+
+The tests themselves aren't bad, at least for me. Look at what heppened to this poor guy:
+
+<Img src="./discord-hcaptcha.webp" alt="A Reddit post, titled 'I genuinely can't do this captcha'. Attached is an image of an hCAPTCHA prompt, with instruction that reads: 'Please click on ALL objects similar to the given picture.' There are 3 trees at the top, and a collection of photos of forest animals including butterflies, squirrels, koalas, and birds." />
+
+My problem with them is that ***they never load for me***, making whatever resource I'm trying to access impossible.
+
+## Anubis
+
+Anubis is a proxy software that presents a proof-of-work challenge to the client, intending to make it expensive for scrapers but negligible for normal users. I have my own separate problems with it (I prefer to call it CPU-destroyer) but that's irrelevant for now.
+
+<Img src="./anubis.webp" alt="An Anubis prompt, the page titled 'Making sure you're not a bot!'. Below are stats under text 'Calculating' and a progress bar, 0% full." />
+
+This test isn't necessarily a CAPTCHA, as any bot can make it through eventually *(though it does deter in the same way as very basic CAPTCHAs--it's complicated to run JavaScript for scraping)*
+
+The test consists of generating hashes based on metadata until one is calculated that has a certain amount of leading 0s. A pseudo code example is:
+
+```js
+let hash = ''
+
+let iteration = 0;
+
+// while the hash doesn't start with <difficulty> 0s
+while (hash.slice(difficulty) != '0'.repeat(difficulty)) {
+  hash = sha256(`${challengeMetadata}${iteration}`)
+}
+
+// found one
+const accessToken = await fetch(`https://server.com/challenge_complete?iteration=${iteration}`)
+```
+
+then, on the server:
+
+```js
+const difficulty = 4
+
+let challenges = { ... }
+
+// ...
+
+server.addUrlHandler('/challenge_complete', ({ url, client }) => {
+  const iteration = url.searchParams.get(iteration)
+
+  const hash = sha256(`${challenges.get(calculateMetadata(client))}${iteration}`)
+
+  if (hash.slice(difficulty) == '0'.repeat(difficulty)) {
+    return makeAccessToken(client)
+  } else {
+    return { status: 403, message: 'Invalid challenge response' }
+  }
+})
+```
+
+I believe I have been cursed by the gods of RNG. Something about my metadata makes it so that any website proxied via Anubis will take me minutes to go to, even at 40 KH/s at difficulty 4. If Mr. John Math.Random() is reading this, please shoot me an email at helpme@xylight.dev and tell me what I did to deserve this.
+
+If you'd like to experience what it's like to have this curse for yourself, [go here!](https://iloveanubis.phtn.app)
+
+## Conclusion
+
+Too many site owners use absolute mega maximum premium $56/mo ultra protection for their blogs with 2 monthly users (like this one) which makes the experience worse for regular users. The high amount of data downloaded also can make it *even* slower for those without a fast internet connection.
+
+There is absolutely no meaningful conclusion to be made from this post. This is yet another waste of time. Drink some water or something.

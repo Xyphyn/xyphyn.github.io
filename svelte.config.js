@@ -6,11 +6,19 @@ import relativeImages from 'mdsvex-relative-images'
 
 const config = {
 	preprocess: [
-		vitePreprocess(),
 		mdsvex({
 			layout: { _: path.resolve('src/routes/posts/Layout.svelte') },
-			remarkPlugins: [relativeImages]
-		})
+			remarkPlugins: [
+				relativeImages,
+				{
+					defaults: {
+						Wrapper: '/srv/routes/posts/components/Pre.svelte'
+					}
+				}
+			],
+			smartypants: true
+		}),
+		vitePreprocess()
 	],
 	kit: {
 		adapter: adapter({

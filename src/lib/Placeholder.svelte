@@ -15,26 +15,21 @@
 			return Math.abs(hash)
 		}
 
-		function createSeededRandom(seed: string) {
-			let state = hashString(seed)
-			return function () {
-				state = (state * 1664525 + 1013904223) % Math.pow(2, 32)
-				return state / Math.pow(2, 32)
-			}
+		function seededRandom(seed: string) {
+			return ((hashString(seed) * 1664525 + 1013904223) % Math.pow(2, 32)) / Math.pow(2, 32)
 		}
 
-		const random = createSeededRandom(seed)
+		const random = (seed: string, i: number) => seededRandom(i + seed)
 		const colors = []
-		random()
 
 		for (let i = 0; i < count; i++) {
-			const lightness = 0.3 + random() * 0.6
-			const chroma = 0.05 + random() * 0.2
+			const lightness = 0.3 + random(seed, i) * 0.6
+			const chroma = 0.05 + random(seed, i) * 0.2
 
-			const hue = 90 * (random() * 4)
+			const hue = 90 * (random(seed, i) * 4)
 
 			const oklchColor = `oklch(${lightness.toFixed(3)} ${chroma.toFixed(3)} ${hue.toFixed(1)})`
-			colors.push({ str: oklchColor, pos: random() * 1000 })
+			colors.push({ str: oklchColor, pos: random(seed, i) * 1000 })
 		}
 
 		return colors
