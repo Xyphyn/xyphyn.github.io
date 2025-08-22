@@ -13,7 +13,7 @@
 	<div class="absolute top-0 w-full -z-10" role="presentation">
 		<!--Hack because blur is broken on Firefox-->
 		<div class="w-full h-[48rem] -z-10 backdrop-blur-3xl"></div>
-		<div class="glow-container pointer-events-none opacity-50 dark:opacity-10">
+		<div class="glow-container pointer-events-none opacity-50 dark:opacity-10 -z-10">
 			<svg
 				class="pointer-events-none top-0 w-full h-auto"
 				width="1000"
@@ -45,13 +45,25 @@
 						<stop offset="0.5" stop-color="oklch(0.64 0.29 359)" />
 						<stop offset="1" stop-color="oklch(0.51 0.30 284)" />
 					</linearGradient>
+					<linearGradient
+						id="grad3"
+						x1="155"
+						y1="-11"
+						x2="512"
+						y2="-162"
+						gradientUnits="userSpaceOnUse"
+					>
+						<stop stop-color="oklch(0.7 0.2462 348.14)" />
+						<stop offset="0.5" stop-color="oklch(0.7729 0.1771 322.73)" />
+						<stop offset="1" stop-color="oklch(0.7729 0.1278 286.73)" />
+					</linearGradient>
 				</defs>
 				<g>
 					<path
 						d="M732-180C597-158 516-74 553 7s175 130 310 108 246-105 210-186-139-49-274-27z"
 						fill="url(#grad1)"
 					/>
-					<ellipse cx="378" cy="-38" rx="258" ry="76" fill="url(#grad2)" />
+					<ellipse cx="300" cy="-38" rx="258" ry="120" fill="url(#grad2)" />
 				</g>
 			</svg>
 		</div>
@@ -69,9 +81,7 @@
 				</span>
 			</h1>
 			<div class="text-slate-700 dark:text-zinc-300">
-				<TextAnim
-					text="I am a hobbyist software engineer and designer, discovering the technology around us."
-				/>
+				<TextAnim text="I am a hobbyist software engineer and designer." />
 			</div>
 			{#snippet link(href: string, label: string, index: number = 0)}
 				<a
@@ -97,26 +107,6 @@
 		<header class="text-left">
 			<h2 class="text-xl text-slate-600 dark:text-zinc-400 font-medium">What I do</h2>
 		</header>
-		<div class="flex flex-row gap-2 flex-wrap">
-			{#snippet technology(name: string, hue: number)}
-				<div
-					style="filter: hue-rotate({hue}deg);"
-					class="rounded-full cursor-pointer bg-red-50 border-red-100 dark:border-red-400/20 border text-red-700 dark:text-red-300 dark:bg-red-400/10 font-bold px-2.5 py-1 text-sm"
-				>
-					{name}
-				</div>
-			{/snippet}
-
-			{@render technology('Svelte', 0)}
-			{@render technology('JavaScript', 40)}
-			{@render technology('Kotlin', 300)}
-			{@render technology('Linux', 200)}
-			{@render technology('Sysadmin', 20)}
-			{@render technology('Docker', 220)}
-			{@render technology('Networking', 180)}
-			{@render technology('Git', 220)}
-			{@render technology('ML', 80)}
-		</div>
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-8">
 			{#snippet project(
 				name: string,
