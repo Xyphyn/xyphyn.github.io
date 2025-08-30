@@ -4,7 +4,7 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import path from 'path'
 import relativeImages from 'mdsvex-relative-images'
 import rehypeSlug from 'rehype-slug'
-import { extractHeadings } from './src/lib/md/headings-plugin.js'
+import { visit } from 'unist-util-visit'
 
 const config = {
 	preprocess: [
@@ -17,7 +17,28 @@ const config = {
 						Wrapper: '/srv/routes/posts/components/Pre.svelte'
 					}
 				},
-				extractHeadings
+				() => (tree, file) => {
+					const headings = []
+
+					visit(tree, 'heading', (node) => {
+						const text = node.children
+							.filter((child) => child.type === 'text')
+							.map((child) => child.value)
+							.join('')
+
+						headings.push({
+							depth: node.depth,
+							text: text,
+							id: text
+								.toLowerCase()
+								.replace(/\s+/g, '-')
+								.replace(/[^\w-]/g, '')
+						})
+					})
+
+					file.data.fm = file.data.fm || {}
+					file.data.fm.headings = headings
+				}
 			],
 			rehypePlugins: [rehypeSlug],
 			smartypants: true

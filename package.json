@@ -2,7 +2,6 @@
 	"name": "new-site",
 	"version": "0.0.1",
 	"devDependencies": {
-		"@svelte-put/toc": "^6.0.2",
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@sveltejs/enhanced-img": "^0.6.0",
 		"@sveltejs/kit": "^2.16.0",
