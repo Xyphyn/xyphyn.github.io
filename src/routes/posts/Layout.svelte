@@ -31,8 +31,6 @@
 	}
 
 	let { children, date, title, description, keywords, link, ...rest }: Props = $props()
-
-	console.log(rest)
 </script>
 
 <svelte:head>
