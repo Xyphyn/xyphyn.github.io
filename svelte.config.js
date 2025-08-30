@@ -3,6 +3,8 @@ import adapter from '@sveltejs/adapter-static'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import path from 'path'
 import relativeImages from 'mdsvex-relative-images'
+import rehypeSlug from 'rehype-slug'
+import { extractHeadings } from './src/lib/md/headings-plugin.js'
 
 const config = {
 	preprocess: [
@@ -14,8 +16,10 @@ const config = {
 					defaults: {
 						Wrapper: '/srv/routes/posts/components/Pre.svelte'
 					}
-				}
+				},
+				extractHeadings
 			],
+			rehypePlugins: [rehypeSlug],
 			smartypants: true
 		}),
 		vitePreprocess()

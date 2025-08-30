@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import Placeholder from '$lib/Placeholder.svelte'
-	import { ArrowLeft, Icon } from 'svelte-hero-icons'
+	import { ArrowLeft, Home, Icon, type IconSource } from 'svelte-hero-icons'
 	import {
 		H1 as h1,
 		H2 as h2,
@@ -15,11 +15,8 @@
 </script>
 
 <script lang="ts">
-	import type { Snippet } from 'svelte'
+	import { type Snippet } from 'svelte'
 	import './highlight.css'
-	import { Toc } from '@svelte-put/toc'
-
-	const toc = new Toc({})
 
 	interface Props {
 		title: string
@@ -28,64 +25,94 @@
 		link: string
 		keywords: string
 		children: Snippet
+		headings: { depth: number; text: string; id: string }[]
 	}
 
-	let { children, date, title, description, keywords, link, ...rest }: Props = $props()
+	let { children, date, title, description, keywords, link, headings, ...rest }: Props = $props()
 </script>
 
 <svelte:head>
+	<meta name="description" content={description} />
 	<title>{title}</title>
 	<meta name="keywords" content={keywords} />
-	<meta name="description" content={description} />
 	<meta name="date" content={new Date().toLocaleDateString()} />
 	<meta name="og:title" content={title} />
 	<meta name="og:description" content={description} />
 </svelte:head>
 
+{#snippet links(href: string, label: string, clazz?: string, icon?: IconSource)}
+	<a
+		{href}
+		class={[
+			'hover:underline dark:text-indigo-400 text-indigo-600 my-2 flex flex-row items-center gap-1',
+			clazz
+		]}
+	>
+		<Icon src={icon} mini size="20" />
+		{label}
+	</a>
+{/snippet}
+
 <div class="relative z-0 -mt-20">
 	<header
-		class="z-20 px-4 sm:px-8 md:px-16 space-y-6 pt-40 w-4xl mx-auto pb-8 max-w-full animate-pop-in"
+		class="z-20 px-4 sm:px-8 md:px-16 space-y-6 pt-40 mx-auto pb-8 max-w-full animate-pop-in w-5xl"
 	>
-		<a
-			href="/posts"
-			class="hover:underline dark:text-indigo-400 text-indigo-600 my-2 px-6 flex flex-row items-center gap-1"
-		>
-			<Icon src={ArrowLeft} micro size="16" />
-			Back
-		</a>
+		{@render links('/posts', 'Back', '', ArrowLeft)}
 		{#if date}
-			<div class="text-sm md:text-base text-slate-500 dark:text-zinc-300 px-6">
+			<date class="block text-sm md:text-base text-slate-500 dark:text-zinc-300">
 				{new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date(date))}
-			</div>
+			</date>
 		{/if}
+		<ul aria-label="Tags" class="flex flex-row flex-wrap gap-5">
+			{#each keywords.split(', ').slice(0, 3) as keyword}
+				<li class="font-bold text-sm uppercase text-indigo-400 dark:text-indigo-500">{keyword}</li>
+			{/each}
+		</ul>
+		<h1 class="font-display text-4xl md:text-5xl">{title}</h1>
+		<p class="text-base sm:text-lg md:text-xl max-w-2xl w-full text-balance">
+			{description}
+		</p>
 		<div
 			class="w-full h-full rounded-2xl overflow-hidden grid place-items-center border border-slate-200 dark:border-zinc-800"
 		>
-			<Placeholder seed={title} />
+			<div class="xl:scale-150 w-full h-full object-cover">
+				<Placeholder seed={title} />
+			</div>
 		</div>
-		<h1 class="font-display text-4xl md:text-5xl px-6">{title}</h1>
-		<p class="text-base md:text-lg px-6">
-			{description}
-		</p>
 	</header>
 	<div
 		class={['animate-pop-in main-grid mx-auto lg:space-x-8']}
 		style="animation-delay: 100ms; opacity: 0;"
 	>
-		<!-- <nav class="flex flex-col gap-2 lg:sticky top-12 self-start">
-			{#each toc.items.values() as item}
+		<nav class="flex flex-col gap-2 lg:sticky top-12 self-start">
+			<h3 class="font-display text-lg">Table of Contents</h3>
+			{#each headings as item}
 				<a
-					class="text-lg font-display text-slate-500 dark:text-zinc-400 focus:text-indigo-500"
+					class="text-base text-slate-500 dark:text-zinc-400 hover:text-slate-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
 					href="#{item.id}"
 				>
 					{item.text}
 				</a>
 			{/each}
-		</nav> -->
-		<article use:toc.actions.root class="post">
+		</nav>
+		<article class="post">
 			{@render children?.()}
 		</article>
-		<!-- <aside>aaaaaaaaaa</aside> -->
+		<aside class="flex flex-col gap-2 lg:sticky top-12 self-start">
+			<h3 class="font-display text-lg">Links</h3>
+			<a
+				class="text-base text-slate-500 dark:text-zinc-400 hover:text-slate-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
+				href="/"
+			>
+				Home
+			</a>
+			<a
+				class="text-base text-slate-500 dark:text-zinc-400 hover:text-slate-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
+				href="/posts"
+			>
+				Posts
+			</a>
+		</aside>
 	</div>
 </div>
 
@@ -106,7 +133,7 @@
 		}
 	}
 
-	.main-grid > aside:first-child {
+	.main-grid > nav {
 		grid-area: toc;
 	}
 	.main-grid > article {

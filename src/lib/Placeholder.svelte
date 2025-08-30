@@ -26,7 +26,7 @@
 			const lightness = 0.3 + random(seed, i) * 0.6
 			const chroma = 0.05 + random(seed, i) * 0.2
 
-			const hue = 90 * (random(seed, i) * 4)
+			const hue = 90 * (random(seed, i) * 100)
 
 			const oklchColor = `oklch(${lightness.toFixed(3)} ${chroma.toFixed(3)} ${hue.toFixed(1)})`
 			colors.push({ str: oklchColor, pos: random(seed, i) * 1000 })

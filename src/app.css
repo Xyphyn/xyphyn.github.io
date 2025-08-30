@@ -3,7 +3,7 @@
 @theme {
 	--animate-pop-in: pop-in 1.1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 
-	--font-display: 'Lora', sans-serif;
+	--font-display: 'Lora', serif;
 	--color-zinc-850: color-mix(in oklab, var(--color-zinc-800), var(--color-zinc-900));
 
 	@keyframes pop-in {
