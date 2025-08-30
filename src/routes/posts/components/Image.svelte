@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class="block mx-auto max-h-[30rem] h-[30rem] max-w-full w-full border border-slate-200 dark:border-zinc-800 rounded-2xl p-2 my-8"
+	class="block mx-auto max-w-full w-full border border-slate-200 dark:border-zinc-800 rounded-2xl p-2 my-8"
 >
 	<img {src} {...rest} class="rounded-xl block h-full object-contain mx-auto max-w-full" />
 	<p class="mx-auto italic w-max m-2">{title}</p>

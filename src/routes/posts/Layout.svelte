@@ -17,6 +17,9 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte'
 	import './highlight.css'
+	import { Toc } from '@svelte-put/toc'
+
+	const toc = new Toc({})
 
 	interface Props {
 		title: string
@@ -27,7 +30,9 @@
 		children: Snippet
 	}
 
-	let { children, date, title, description, keywords, link }: Props = $props()
+	let { children, date, title, description, keywords, link, ...rest }: Props = $props()
+
+	console.log(rest)
 </script>
 
 <svelte:head>
@@ -66,16 +71,53 @@
 		</p>
 	</header>
 	<div
-		class={['max-w-3xl w-full mx-auto px-5 sm:px-8 animate-pop-in']}
+		class={['animate-pop-in main-grid mx-auto lg:space-x-8']}
 		style="animation-delay: 100ms; opacity: 0;"
 	>
-		<article class="post">
-			{@render children()}
+		<!-- <nav class="flex flex-col gap-2 lg:sticky top-12 self-start">
+			{#each toc.items.values() as item}
+				<a
+					class="text-lg font-display text-slate-500 dark:text-zinc-400 focus:text-indigo-500"
+					href="#{item.id}"
+				>
+					{item.text}
+				</a>
+			{/each}
+		</nav> -->
+		<article use:toc.actions.root class="post">
+			{@render children?.()}
 		</article>
+		<!-- <aside>aaaaaaaaaa</aside> -->
 	</div>
 </div>
 
 <style>
+	.main-grid {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		padding: 1rem;
+	}
+	@media screen and (min-width: 1024px) {
+		.main-grid {
+			max-width: 80rem;
+			width: 100%;
+			display: grid;
+			grid-template-columns: 20% 60% 20%;
+			grid-template-areas: 'toc article other';
+		}
+	}
+
+	.main-grid > aside:first-child {
+		grid-area: toc;
+	}
+	.main-grid > article {
+		grid-area: article;
+	}
+	.main-grid > aside:last-child {
+		grid-area: other;
+	}
+
 	article.post {
 		:global {
 			& > * {
@@ -95,9 +137,15 @@
 
 			h1 {
 				font-size: var(--text-4xl);
+				@media screen and (min-width: 768px) {
+					font-size: var(--text-5xl);
+				}
 			}
 			h2 {
 				font-size: 1.75rem;
+				@media screen and (min-width: 768px) {
+					font-size: 2rem;
+				}
 			}
 			h3 {
 				font-size: var(--text-2xl);

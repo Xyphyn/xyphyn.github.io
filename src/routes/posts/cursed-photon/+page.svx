@@ -1,0 +1,7 @@
+---
+title: The Cursed Parts of Photon
+description: I learned how to design while making this, and there are questionable decisions still lingering in the source code.
+date: 2025-8-29
+link: /posts/cursed-photon
+keywords: web dev, development, coding, design, lemmy, photon
+---

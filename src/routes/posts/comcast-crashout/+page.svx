@@ -1,6 +1,6 @@
 ---
-title: Xfinity port forwarding
-description: Is the most infuriating thing I have ever experienced.
+title: Xfinity's Port Forwarding
+description: I have never before seen a more infuriating network management experience.
 date: 2025-8-15
 link: /posts/comcast-crashout
 keywords: network, router, internet, port forward

@@ -73,12 +73,26 @@
 	>
 		<header class="space-y-6 max-w-xl">
 			<h1
-				class="font-medium tracking-tight text-6xl sm:text-7xl font-display leading-[1.3] flex justify-center sm:justify-start"
+				class="font-medium tracking-tight text-6xl sm:text-7xl font-display flex justify-center sm:justify-start"
 			>
 				<span class="animate-pop-in inline-block">xylight</span>
 				<span class="animate-pop-in inline-block" style="animation-delay: 100ms; opacity: 0;">
 					.dev
 				</span>
+				<svg
+					class="text-indigo-600 dark:text-indigo-400 inline-block self-center mt-3 ml-2 animate-pop-in"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="currentColor"
+					width="24"
+					height="24"
+					viewBox="15 15 70 70"
+					style="animation-delay: 200ms; opacity: 0;"
+				>
+					<path
+						d="M45 20.8868C48.094 19.1004 51.906 19.1004 55 20.8868L72.7128 31.1132C75.8068 32.8996 77.7128 36.2008 77.7128 39.7735V60.2265C77.7128 63.7992 75.8068 67.1004 72.7128 68.8867L55 79.1133C51.906 80.8996 48.094 80.8996 45 79.1133L27.2872 68.8867C24.1932 67.1004 22.2872 63.7992 22.2872 60.2265V39.7735C22.2872 36.2008 24.1932 32.8996 27.2872 31.1132L45 20.8868Z"
+					/>
+				</svg>
+				<span class=" "></span>
 			</h1>
 			<div class="text-slate-700 dark:text-zinc-300">
 				<TextAnim text="I am a hobbyist software engineer and designer." />
@@ -107,8 +121,9 @@
 		<header class="text-left">
 			<h2 class="text-xl text-slate-600 dark:text-zinc-400 font-medium">What I do</h2>
 		</header>
-		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-2 gap-8">
+		<div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-2 gap-8 w-full max-w-7xl mx-auto">
 			{#snippet project(
+				number: number,
 				name: string,
 				description: string,
 				icon?: IconSource,
@@ -119,28 +134,53 @@
 					this={url ? 'a' : 'article'}
 					href={url}
 					class={[
-						'space-y-3 rounded-2xl p-6 relative overflow-hidden first:row-span-2 cursor-pointer',
-						'first:bg-indigo-50 first:dark:bg-indigo-900/20 bg-slate-50 dark:bg-zinc-900',
-						'transition-all h-full',
-						'border first:border-indigo-100 first:dark:border-indigo-500/20 border-slate-200 dark:border-zinc-800 hover:border-indigo-200 hover:dark:border-zinc-700'
+						'space-y-3 rounded-2xl p-2 relative overflow-hidden first:row-span-3 first:col-span-3 col-span-2 cursor-pointer group'
 					]}
 				>
 					{#if img}
-						<div class="h-48 overflow-hidden mask-b-from-0 rounded-t-xl">
-							{@render img()}
+						<div
+							class="h-64 overflow-hidden mask-b-from-0 rounded-t-3xl border p-3 border-slate-200 dark:border-zinc-700 -mb-6"
+						>
+							<div class="rounded-2xl overflow-hidden">
+								{@render img()}
+							</div>
 						</div>
 					{/if}
-					<div class="flex items-start gap-2">
-						<h3 class="font-display text-2xl w-full">
-							{name}
-						</h3>
-						{#if icon}
-							<Icon src={icon} size="24" micro class="text-indigo-500" />
+					<div class="group-first:mx-6">
+						{#if number != 0}
+							<div
+								class={[
+									'bg-slate-200 dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 rounded-full',
+									'w-7 h-7 grid place-items-center font-bold font-display z-10'
+								]}
+							>
+								{number}
+							</div>
 						{/if}
 					</div>
-					<p>
+					<div class="flex items-start gap-2">
+						<h3
+							class={[
+								'font-display group-first:text-4xl text-3xl w-full group-first:px-6',
+								'group-hover:underline decoration-indigo-500 ',
+								img && '-mt-2'
+							]}
+						>
+							{name}
+							<span
+								class="inline-block w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400 -ml-1"
+							></span>
+						</h3>
+					</div>
+					<p class="group-first:text-xl text-lg group-first:px-6">
 						{description}
 					</p>
+					{#if url}
+						<div
+							class="text-indigo-600 dark:text-indigo-400 group-hover:underline"
+							aria-hidden="true"
+						></div>
+					{/if}
 				</svelte:element>
 			{/snippet}
 
@@ -154,6 +194,7 @@
 				/>
 			{/snippet}
 			{@render project(
+				0,
 				'Photon',
 				`A fully-featured, well designed, and mature Svelte based web client for the fediverse.`,
 				undefined,
@@ -161,16 +202,19 @@
 				photonImg
 			)}
 			{@render project(
+				1,
 				'Software development',
 				'I study & enjoy learning about the design and architecture of software, especially in low level languages. I personally develop software in higher level languages like TypeScript, Kotlin, or Rust.',
 				CodeBracket
 			)}
 			{@render project(
+				2,
 				'System administration',
 				`I enjoy managing my home server as a hobby, hosting services that help me and others. I also enjoy studying how network stacks work and managing them.`,
 				ServerStack
 			)}
 			{@render project(
+				3,
 				'Fediverse',
 				'I frequently observe and interact in the development of fediverse platforms, helping build them with more accessible interfaces like Photon.',
 				Share
