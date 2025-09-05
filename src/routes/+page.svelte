@@ -117,9 +117,6 @@
 	<section
 		class="px-8 xl:px-32 space-y-8 w-full border-t border-zinc-200 dark:border-zinc-800 pt-12 animate-pop-in"
 	>
-		<header class="text-left">
-			<h2 class="text-xl text-zinc-600 dark:text-zinc-400 font-medium">What I do</h2>
-		</header>
 		<div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-2 gap-8 w-full max-w-7xl mx-auto">
 			{#snippet project(
 				number: number,
@@ -160,9 +157,9 @@
 					<div class="flex items-start gap-2">
 						<h3
 							class={[
-								'font-display group-first:text-4xl text-3xl w-full group-first:px-6',
+								'font-display group-first:text-5xl text-3xl w-full group-first:px-10',
 								'group-hover:underline decoration-indigo-500 ',
-								img && '-mt-2'
+								img && '-mt-5'
 							]}
 						>
 							{name}
@@ -171,7 +168,7 @@
 							></span>
 						</h3>
 					</div>
-					<p class="group-first:text-xl text-lg group-first:px-6">
+					<p class="group-first:text-xl text-lg group-first:px-10">
 						{description}
 					</p>
 					{#if url}

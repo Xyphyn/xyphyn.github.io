@@ -1,0 +1,19 @@
+---
+title: Random web design things I've learned
+description: Hopefully at least one of these is helpful to you.
+date: 2025-9-4
+link: /posts/web-design-tips
+keywords: design, web dev, tip
+---
+
+I am the developer of [Photon](https://use.phtn.app), a web client for the Fediverse with a (in my opinion) pretty nice design.
+
+It is the project where I learned the majority of my web design "skills", and I've picked up several little useful tips along the way.
+
+Hopefully one of these is useful!
+
+## Color/shape can really improve clarity
+
+One of the most annoying things I see in a lot of sites is an endless list of options with few ways to distinguish between them, or identify "landmarks" as I call it.
+
+There are a few

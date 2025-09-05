@@ -54,9 +54,7 @@
 {/snippet}
 
 <div class="relative z-0 -mt-20">
-	<header
-		class="z-20 px-4 sm:px-8 md:px-16 space-y-6 pt-40 mx-auto pb-8 max-w-full animate-pop-in w-5xl"
-	>
+	<header class="z-20 px-4 sm:px-8 md:px-16 space-y-6 pt-40 mx-auto pb-8 max-w-full w-5xl">
 		{@render links('/posts', 'Back', '', ArrowLeft)}
 		{#if date}
 			<date class="block text-sm md:text-base text-zinc-500 dark:text-zinc-300">
@@ -80,10 +78,7 @@
 			</div>
 		</div>
 	</header>
-	<div
-		class={['animate-pop-in main-grid mx-auto lg:space-x-8']}
-		style="animation-delay: 100ms; opacity: 0;"
-	>
+	<div class={['main-grid mx-auto lg:space-x-8']} style="animation-delay: 100ms;">
 		<nav class="flex flex-col gap-2 lg:sticky top-12 self-start">
 			<h3 class="font-display text-lg">Table of Contents</h3>
 			{#each headings as item}
@@ -196,12 +191,18 @@
 				padding: 0.1rem 0.25rem;
 				font-size: var(--text-base);
 				border-radius: var(--radius-sm);
+				@media (prefers-color-scheme: dark) {
+					background-color: var(--color-zinc-800);
+				}
 			}
 
 			blockquote {
 				border-left: 0.25rem solid var(--color-zinc-200);
 				padding-left: 2rem;
 				font-style: italic;
+				@media (prefers-color-scheme: dark) {
+					border-left: 0.25rem solid var(--color-zinc-700);
+				}
 			}
 
 			ul,

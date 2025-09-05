@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Placeholder from '$lib/Placeholder.svelte'
-	import { ArrowLeft, ArrowRight, Icon } from 'svelte-hero-icons'
+	import { ArrowLeft, ArrowRight, Icon, Rss } from 'svelte-hero-icons'
 
 	let { data } = $props()
 </script>
@@ -21,6 +21,13 @@
 		</a>
 		<h1 class="font-medium tracking-tight text-6xl sm:text-7xl font-display leading-[1.3]">
 			Posts
+			<a
+				href="/posts/feed.xml"
+				class="text-xl text-indigo-600 dark:text-indigo-400 hover:underline inline-block align-top mt-4"
+				aria-label="RSS Feed"
+			>
+				<Icon src={Rss} size="24" />
+			</a>
 		</h1>
 	</header>
 </div>
@@ -30,7 +37,7 @@
 			<article
 				class={[
 					'flex flex-col gap-1 border rounded-3xl border-zinc-200 dark:border-zinc-800 p-6',
-					'hover:bg-zinc-100 hover:dark:bg-zinc-800 transition-colors group animate-pop-in'
+					'hover:bg-zinc-100 hover:dark:bg-zinc-800 hover:dark:border-zinc-700 transition-colors group animate-pop-in'
 				]}
 				style="animation-delay: {index * 50}ms; opacity: 0;"
 			>
