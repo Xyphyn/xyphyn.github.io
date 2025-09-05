@@ -252,5 +252,3 @@ const [posts, comments] = await client.getPersonDetails({
 ```
 
 Oops.
-
-_Will add more as I remember..._

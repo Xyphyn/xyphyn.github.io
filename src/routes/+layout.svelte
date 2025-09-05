@@ -19,8 +19,8 @@
 				<a
 					{href}
 					class={[
-						selected ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-500 dark:text-zinc-500',
-						'px-3 py-1 rounded-full font-bold text-sm hover:text-slate-900 hover:dark:text-zinc-50'
+						selected ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-500 dark:text-zinc-500',
+						'px-3 py-1 rounded-full font-bold text-sm hover:text-zinc-900 hover:dark:text-zinc-50'
 					]}
 				>
 					{label}
@@ -34,7 +34,7 @@
 		{@render children()}
 	</main>
 	<footer
-		class=" flex flex-row px-8 w-full text-slate-600 dark:text-zinc-400 font-medium text-sm py-6 gap-4 mt-auto"
+		class=" flex flex-row px-8 w-full text-zinc-600 dark:text-zinc-400 font-medium text-sm py-6 gap-4 mt-auto"
 	>
 		<div>xylight.dev</div>
 		<div class="flex-1"></div>

@@ -93,7 +93,7 @@
 					/>
 				</svg>
 			</h1>
-			<div class="text-slate-700 dark:text-zinc-300">
+			<div class="text-zinc-700 dark:text-zinc-300">
 				<TextAnim text="I am a hobbyist software engineer and designer." />
 			</div>
 			{#snippet link(href: string, label: string, index: number = 0)}
@@ -115,10 +115,10 @@
 	</div>
 
 	<section
-		class="px-8 xl:px-32 space-y-8 w-full border-t border-slate-200 dark:border-zinc-800 pt-12 animate-pop-in"
+		class="px-8 xl:px-32 space-y-8 w-full border-t border-zinc-200 dark:border-zinc-800 pt-12 animate-pop-in"
 	>
 		<header class="text-left">
-			<h2 class="text-xl text-slate-600 dark:text-zinc-400 font-medium">What I do</h2>
+			<h2 class="text-xl text-zinc-600 dark:text-zinc-400 font-medium">What I do</h2>
 		</header>
 		<div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-2 gap-8 w-full max-w-7xl mx-auto">
 			{#snippet project(
@@ -138,7 +138,7 @@
 				>
 					{#if img}
 						<div
-							class="h-64 overflow-hidden mask-b-from-0 rounded-t-3xl border p-3 border-slate-200 dark:border-zinc-700 -mb-6"
+							class="h-64 overflow-hidden mask-b-from-0 rounded-t-3xl border p-3 border-zinc-200 dark:border-zinc-700 -mb-6"
 						>
 							<div class="rounded-2xl overflow-hidden">
 								{@render img()}
@@ -149,7 +149,7 @@
 						{#if number != 0}
 							<div
 								class={[
-									'bg-slate-200 dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 rounded-full',
+									'bg-zinc-200 dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 rounded-full',
 									'w-7 h-7 grid place-items-center font-bold font-display z-10'
 								]}
 							>

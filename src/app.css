@@ -32,6 +32,6 @@
 
 html,
 body {
-	@apply bg-slate-50 text-slate-800 dark:bg-zinc-900 dark:text-zinc-100;
+	@apply bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100;
 	font-family: 'Nata';
 }

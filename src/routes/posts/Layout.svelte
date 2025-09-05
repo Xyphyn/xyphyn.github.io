@@ -59,7 +59,7 @@
 	>
 		{@render links('/posts', 'Back', '', ArrowLeft)}
 		{#if date}
-			<date class="block text-sm md:text-base text-slate-500 dark:text-zinc-300">
+			<date class="block text-sm md:text-base text-zinc-500 dark:text-zinc-300">
 				{new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date(date))}
 			</date>
 		{/if}
@@ -73,7 +73,7 @@
 			{description}
 		</p>
 		<div
-			class="w-full h-full rounded-2xl overflow-hidden grid place-items-center border border-slate-200 dark:border-zinc-800"
+			class="w-full h-full rounded-2xl overflow-hidden grid place-items-center border border-zinc-200 dark:border-zinc-800"
 		>
 			<div class="xl:scale-150 w-full h-full object-cover">
 				<Placeholder seed={title} />
@@ -88,7 +88,7 @@
 			<h3 class="font-display text-lg">Table of Contents</h3>
 			{#each headings as item}
 				<a
-					class="text-base text-slate-500 dark:text-zinc-400 hover:text-slate-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
+					class="text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
 					href="#{item.id}"
 				>
 					{item.text}
@@ -101,13 +101,13 @@
 		<aside class="flex flex-col gap-2 lg:sticky top-12 self-start">
 			<h3 class="font-display text-lg">Links</h3>
 			<a
-				class="text-base text-slate-500 dark:text-zinc-400 hover:text-slate-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
+				class="text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
 				href="/"
 			>
 				Home
 			</a>
 			<a
-				class="text-base text-slate-500 dark:text-zinc-400 hover:text-slate-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
+				class="text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
 				href="/posts"
 			>
 				Posts
@@ -178,7 +178,7 @@
 
 			p {
 				font-size: 1.125rem;
-				color: var(--color-slate-700);
+				color: var(--color-zinc-700);
 				@media (prefers-color-scheme: dark) {
 					color: var(--color-zinc-300);
 				}
@@ -192,14 +192,14 @@
 			}
 
 			:not(pre) code {
-				background-color: var(--color-slate-100);
+				background-color: var(--color-zinc-100);
 				padding: 0.1rem 0.25rem;
 				font-size: var(--text-base);
 				border-radius: var(--radius-sm);
 			}
 
 			blockquote {
-				border-left: 0.25rem solid var(--color-slate-200);
+				border-left: 0.25rem solid var(--color-zinc-200);
 				padding-left: 2rem;
 				font-style: italic;
 			}
@@ -227,7 +227,7 @@
 
 			li::marker {
 				font-size: var(--text-lg);
-				color: var(--color-slate-400);
+				color: var(--color-zinc-400);
 				@media (prefers-color-scheme: dark) {
 					color: var(--color-zinc-600);
 				}
@@ -239,7 +239,7 @@
 			}
 
 			pre {
-				background-color: var(--color-slate-100);
+				background-color: var(--color-zinc-100);
 				@media (prefers-color-scheme: dark) {
 					background-color: var(--color-zinc-800);
 				}
