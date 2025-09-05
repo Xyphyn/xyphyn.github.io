@@ -22,6 +22,12 @@
 		<h1 class="font-medium tracking-tight text-6xl sm:text-7xl font-display leading-[1.3]">
 			Posts
 		</h1>
+		<a
+			href="/posts/feed.xml"
+			class="text-xl text-indigo-600 dark:text-indigo-400 hover:underline inline-block"
+		>
+			RSS
+		</a>
 	</header>
 </div>
 <section class="px-4 sm:px-8 xl:px-32 space-y-8 w-full pt-4">

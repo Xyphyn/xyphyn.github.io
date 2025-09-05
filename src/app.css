@@ -32,6 +32,10 @@
 
 html,
 body {
-	@apply bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100;
+	@apply bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 accent-indigo-600 dark:accent-indigo-400;
 	font-family: 'Nata';
+}
+
+::selection {
+	@apply bg-indigo-600/80 text-white dark:bg-indigo-400/80;
 }
