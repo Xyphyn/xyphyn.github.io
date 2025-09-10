@@ -36,8 +36,12 @@
 	<title>{title}</title>
 	<meta name="keywords" content={keywords} />
 	<meta name="date" content={new Date().toLocaleDateString()} />
+	<meta name="published" content={new Date().toLocaleDateString()} />
+	<meta name="og:published" content={new Date().toLocaleDateString()} />
 	<meta name="og:title" content={title} />
 	<meta name="og:description" content={description} />
+	<meta name="theme-color" content="#4f39f6" />
+	<meta name="og:author" content="Xylight" />
 </svelte:head>
 
 {#snippet links(href: string, label: string, clazz?: string, icon?: IconSource)}
