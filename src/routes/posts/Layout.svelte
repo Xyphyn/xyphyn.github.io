@@ -255,6 +255,14 @@
 				border-radius: var(--radius-xl);
 				font-size: var(--text-sm);
 			}
+
+			hr {
+				width: 20rem;
+				border-color: var(--color-zinc-300);
+				@media (prefers-color-scheme: dark) {
+					border-color: var(--color-zinc-700);
+				}
+			}
 		}
 	}
 </style>
