@@ -1,3 +1,5 @@
+export const prerender = true
+
 export async function GET() {
 	const postImports = import.meta.glob('../**/*.svx', {
 		eager: true

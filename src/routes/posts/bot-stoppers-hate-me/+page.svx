@@ -1,6 +1,6 @@
 ---
-title: "\"Bot stoppers\" absolutely despise me"
-description: Recaptcha, hCaptcha, Turnstile, Anubis all hate me.
+title: '"Bot stoppers" absolutely despise me'
+description: Recaptcha, hCaptcha, Turnstile, Anubis, etc all think I'm a bot.
 date: 2025-8-16
 link: /posts/bot-stoppers-hate-me
 keywords: server, hosting, story, CAPTCHA
@@ -10,7 +10,7 @@ keywords: server, hosting, story, CAPTCHA
 import { Img } from '../components'
 </script>
 
-*This is another rant/storytelling.*
+_This is another rant/storytelling._
 
 # Are you a bot?
 
@@ -20,13 +20,9 @@ The problem is that it delays the actions users want to complete, and in some ca
 
 <Img src="./recaptcha.webp" alt="A recaptcha prompt, instructing the user to 'Select all squares with fire hydrants'. The fire hydrant is contained within the rightmost squares, except for a few pixels of it which extend leftward." title="Do I click the slivers on the left?" />
 
-Despite this, most people tend to pass them fine *eventually*.
+Despite this, most people tend to pass them fine _eventually_.
 
-However, *something* about me, these prompts despise. It takes me ***multiple minutes*** to get through these. I get prompt denials, endless loading screens, etc. Half the time, I just end up quitting entirely.
-
-# I swear *I'm* not a bot
-
-I'm not a bot, as far as I'm aware. Hopefully these posts have enough soul that it's obvious.
+However, _something_ about me, these prompts despise. It takes me **_multiple minutes_** to get through these. I get prompt denials, endless loading screens, etc. Half the time, I just end up quitting entirely.
 
 ## reCAPTCHA
 
@@ -34,7 +30,7 @@ This is Google's captcha system. These actually aren't nearly as common as they 
 
 I hate these so much. Especially the ones where you click and wait for a new one to fade in.
 
-They also gaslight you. Even if you get it 100% correct, sometimes it will tell you to try again. This is pretty likely because *it is primarily a tool to train Google's AI.*
+They also gaslight you. Even if you get it 100% correct, sometimes it will tell you to try again. This is pretty likely because _it is primarily a tool to train Google's AI._
 
 ## Cloudflare
 
@@ -57,7 +53,7 @@ Cloudflare also provides the **Turnstile** service which is similar to a reCAPTC
 
 ## hCaptcha
 
-These are my *least favorite* CAPTCHA. These are the ones with the strange tests with the psychedelic backgrounds.
+These are my _least favorite_ CAPTCHA. These are the ones with the strange tests with the psychedelic backgrounds.
 
 <Img src="./hcaptcha.webp" alt="An hCAPTCHA prompt, containing a black illustration of a truck, with the top right part being distorted. An instruction on the top reads: 'Click the incorrect part of the image.'" />
 
@@ -67,7 +63,7 @@ The tests themselves aren't bad, at least for me. Look at what heppened to this 
 
 <Img src="./discord-hcaptcha.webp" alt="A Reddit post, titled 'I genuinely can't do this captcha'. Attached is an image of an hCAPTCHA prompt, with instruction that reads: 'Please click on ALL objects similar to the given picture.' There are 3 trees at the top, and a collection of photos of forest animals including butterflies, squirrels, koalas, and birds." />
 
-My problem with them is that ***they never load for me***, making whatever resource I'm trying to access impossible.
+My problem with them is that **_they never load for me_**, making whatever resource I'm trying to access impossible.
 
 ## Anubis
 
@@ -75,18 +71,18 @@ Anubis is a proxy software that presents a proof-of-work challenge to the client
 
 <Img src="./anubis.webp" alt="An Anubis prompt, the page titled 'Making sure you're not a bot!'. Below are stats under text 'Calculating' and a progress bar, 0% full." />
 
-This test isn't necessarily a CAPTCHA, as any bot can make it through eventually *(though it does deter in the same way as very basic CAPTCHAs--it's complicated to run JavaScript for scraping)*
+This test isn't necessarily a CAPTCHA, as any bot can make it through eventually _(though it does deter in the same way as very basic CAPTCHAs--it's complicated to run JavaScript for scraping)_
 
 The test consists of generating hashes based on metadata until one is calculated that has a certain amount of leading 0s. A pseudo code example is:
 
 ```js
 let hash = ''
 
-let iteration = 0;
+let iteration = 0
 
 // while the hash doesn't start with <difficulty> 0s
 while (hash.slice(difficulty) != '0'.repeat(difficulty)) {
-  hash = sha256(`${challengeMetadata}${iteration}`)
+	hash = sha256(`${challengeMetadata}${iteration}`)
 }
 
 // found one
@@ -121,6 +117,6 @@ If you'd like to experience what it's like to have this curse for yourself, [go 
 
 ## Conclusion
 
-Too many site owners use absolute mega maximum premium $56/mo ultra protection for their blogs with 2 monthly users (like this one) which makes the experience worse for regular users. The high amount of data downloaded also can make it *even* slower for those without a fast internet connection.
+Too many site owners use absolute mega maximum premium $56/mo ultra protection for their blogs with 2 monthly users (like this one) which makes the experience worse for regular users. The high amount of data downloaded also can make it _even_ slower for those without a fast internet connection.
 
 There is absolutely no meaningful conclusion to be made from this post. This is yet another waste of time. Drink some water or something.
