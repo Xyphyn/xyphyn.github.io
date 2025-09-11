@@ -4,6 +4,7 @@
     "": {
       "name": "new-site",
       "devDependencies": {
+        "@lzinga/mdsvex-enhanced-images": "^1.0.3",
         "@sveltejs/adapter-static": "^3.0.8",
         "@sveltejs/enhanced-img": "^0.6.0",
         "@sveltejs/kit": "^2.16.0",
@@ -134,6 +135,8 @@
     "@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.5.0", "", {}, "sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ=="],
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.25", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ=="],
+
+    "@lzinga/mdsvex-enhanced-images": ["@lzinga/mdsvex-enhanced-images@1.0.3", "", { "dependencies": { "unist-util-visit": "^5.0.0" }, "peerDependencies": { "@sveltejs/enhanced-img": "^0.4.4", "mdsvex": "^0.12.3" } }, "sha512-TUzMR7pBtbqwP7PgFmhw5ekaTogsqkENYdkBny8VET09hWA7jVYqufxz6j/z2YBVKl/IjZebNjhOVBUDAZ/WZA=="],
 
     "@nodelib/fs.scandir": ["@nodelib/fs.scandir@2.1.5", "", { "dependencies": { "@nodelib/fs.stat": "2.0.5", "run-parallel": "^1.1.9" } }, "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="],
 

@@ -166,13 +166,16 @@
 				}
 			}
 			h2 {
+				font-size: 2rem;
+				@media screen and (min-width: 768px) {
+					font-size: 2.25rem;
+				}
+			}
+			h3 {
 				font-size: 1.75rem;
 				@media screen and (min-width: 768px) {
 					font-size: 2rem;
 				}
-			}
-			h3 {
-				font-size: var(--text-2xl);
 			}
 
 			p {
@@ -184,7 +187,10 @@
 			}
 
 			a {
-				color: var(--color-indigo-500);
+				color: var(--color-indigo-600);
+				@media (prefers-color-scheme: dark) {
+					color: var(--color-indigo-400);
+				}
 				&:hover {
 					text-decoration: underline;
 				}
@@ -231,6 +237,7 @@
 			}
 
 			li::marker {
+				content: '•';
 				font-size: var(--text-lg);
 				color: var(--color-zinc-400);
 				@media (prefers-color-scheme: dark) {

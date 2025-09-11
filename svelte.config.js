@@ -3,6 +3,7 @@ import adapter from '@sveltejs/adapter-static'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import path from 'path'
 import relativeImages from 'mdsvex-relative-images'
+import enhancedImage from '@lzinga/mdsvex-enhanced-images'
 import rehypeSlug from 'rehype-slug'
 import { visit } from 'unist-util-visit'
 
@@ -11,7 +12,7 @@ const config = {
 		mdsvex({
 			layout: { _: path.resolve('src/routes/posts/Layout.svelte') },
 			remarkPlugins: [
-				relativeImages,
+				// relativeImages,
 				{
 					defaults: {
 						Wrapper: '/srv/routes/posts/components/Pre.svelte'
@@ -38,7 +39,9 @@ const config = {
 
 					file.data.fm = file.data.fm || {}
 					file.data.fm.headings = headings
-				}
+				},
+				enhancedImage,
+				relativeImages
 			],
 			rehypePlugins: [rehypeSlug],
 			smartypants: true

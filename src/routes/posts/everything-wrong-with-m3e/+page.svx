@@ -12,7 +12,9 @@ keywords: android, design, google
 
 ## Context
 
-<Img src="./m3e-header.webp" source="https://design.google/library/expressive-material-design-google-research" alt="" width="3840" height="1920" />
+<Img source="https://design.google/library/expressive-material-design-google-research" alt="">
+  <enhanced:img loading="lazy" src="./m3e-header.webp">
+</Img>
 
 The Material Design team at Google unveiled [Material 3 Expressive](https://design.google/library/expressive-material-design-google-research) a few months ago, which they claimed to be _"Better, Easier, Emotional UX"_. It came along with a pretty cool<sup>1</sup> looking trailer showing off redesigns for commonplace apps with crazy new designs.
 
@@ -22,7 +24,7 @@ It's been many months, and the "bold" new design has rolled out to **Android** a
 
 So, how does it hold up?
 
-## Not very different (but that's okay)
+## Not very different
 
 The main places updated with the new design language are:
 
@@ -36,9 +38,11 @@ It's not quite an insane overhaul, but there are a few big differences:
 - A few components are animated more
 - In apps, most items in lists are now containerized
 
-<Img src="./android-system-ui.webp" title="Ehhhh" alt="" width="1080" height="2400" class="w-3xs" />
+<Img title="Ehhhh" alt="" class="w-3xs">
+  <enhanced:img loading="lazy" src="./android-system-ui.webp">
+</Img>
 
-## Questionable choices
+## Questionable designs
 
 After a while of using the system with this new design, I started to notice a few things that seem out of place or straight up look bad.
 
@@ -48,19 +52,15 @@ Then I started noticing major inconsistencies between apps. The phone & contacts
 
 I have decided to compile every tiny little thing I've noticed into a list.
 
-## Legend for differences
-
-- <span class="dark:text-red-400 text-red-500">Red</span> is an inconsistency between apps.
-- <span class="dark:text-blue-400 text-blue-500">Blue</span> is a bad/inconsistent design in itself, such as two different material colors beind used for items of the same elevation.
-- Circles involve a color error.
-- Lines involve a spacing/size error.
-- Squiggly lines mean the error it originates from is continued among all lined elements.
-
-## Phone & contacts
+### Phone & contacts
 
 <div class="flex flex-wrap flex-row justify-between mx-auto">
-  <Img src="./phone-main-diff.webp" width="1080" height="2400" class="w-3xs" />
-  <Img src="./contacts-main-diff.webp" width="1080" height="2400" class="w-3xs" />
+  <Img class="w-3xs">
+    <enhanced:img loading="lazy" src="./phone-main-diff.webp" />
+  </Img>
+  <Img class="w-3xs">
+    <enhanced:img loading="lazy" src="./contacts-main-diff.webp" />
+  </Img>
 </div>
 
 You don't even need to pixel peep to see the amount of inconsistency! That's a lot of differences for two apps that are linked very closely.
@@ -74,13 +74,15 @@ You don't even need to pixel peep to see the amount of inconsistency! That's a l
 
 Did I mention that the animation between pages for the phone app uses a lateral transition, [against Google's own guidelines?](https://m3.material.io/styles/motion/transitions/applying-transitions#98deff91-7469-4647-abdc-2f6562b98d93)
 
-## Calculator
+### Calculator
 
 I'm not comparing this one to anything. The update is crazy in of itself. Here's what the calculator used to look like **_before the update_**:
 
-<Img src="./calculator-old.webp" width="1080" height="2400" class="w-3xs" />
+<Img class="w-3xs">
+  <enhanced:img loading="lazy" src="./calculator-old.webp" />
+</Img>
 
-I honestly conisdered this great use of the Material 3 design system beforehand. It used lot of colors, separated buttons nicely with padding, and distinguished the text entry field.
+I honestly considered this great use of the Material 3 design system beforehand. It used the lot of the available color palette, the buttons were padded and separated nicely, the number entry field was distinguished well, and there were nice subtle animations.
 
 Here is it now, with the ultra mega super expressive expressed feeling emotional new UX:
 
@@ -88,7 +90,9 @@ Here is it now, with the ultra mega super expressive expressed feeling emotional
 
 Actually, wait. First I have to talk about the typo in their release notes.
 
-<Img src="./calculator-typo.webp" width="855" height="805" />
+<Img>
+  <enhanced:img loading="lazy" src="./calculator-typo.webp" />
+</Img>
 
 Oops. Anyway,
 
@@ -96,22 +100,26 @@ Oops. Anyway,
 
 They changed the calculator to look like this.
 
-<Img src="./calculator-garbage.webp" width="1080" height="2400" class="w-3xs" />
+<Img class="w-3xs">
+  <enhanced:img loading="lazy" src="./calculator-garbage.webp" />
+</Img>
 
 <p class="animate-bounce block">What?</p>
 
-In summary: the "expressive" update to the Calculator has brought:
+In summary: the _"expressive"_ update to the calculator has brought:
 
 - Less padding
 - Incorrect shapes
 - Removal of `sqrt`, Pi, exponents, factorial, etc without expanding
 - Less distinction between the number input
 
-That isn't the worst. Let me show you this:
+That isn't the worst. Let me show you an abhorrence you will never unsee.
 
-<Img src="./calculator-animation.webp" width="1080" height="2400" class="w-3xs" />
+<Img class="w-3xs">
+  <img loading="lazy" src="./calculator-animation.webp" />
+</Img>
 
-The buttons shift when you press invert? Not even consistently?
+So, somehow, the buttons were made in such a way that they are not automatically aligned or sized correctly. They shift when you press "invert", and not even in a consistent way.
 
 - `sqrt` becomes a slightly wider 𝑥<sup>2</sup>
 - Pi through the degrees/radians toggle are fine
@@ -120,27 +128,48 @@ The buttons shift when you press invert? Not even consistently?
 
 <p class="animate-bounce block">How does this even happen?</p>
 
-## Clock
+### Clock
 
 Okay, we're starting off not nearly as bad as the calculator. It at least looks like there was an attempt.
 
-<Img src="./clock.webp" width="1080" height="2400" class="w-3xs" />
+<Img class="w-3xs">
+  <img loading="lazy" src="./clock.webp" />
+</Img>
 
 The padding of the locations is not the same for the top and bottom, and the font of the navbar isn't correct--or is it? I don't even know what the correct boldness and font are anymore.
 
 Oh and fun fact, the stopwatch is scrollable even though it shouldn't need to be. They allocated way too much space for the duration. (Also, all animations were removed here.)
 
-<Img src="./clock-scroll-stopwatch.webp" width="1080" height="2400" class="w-3xs" />
+<Img class="w-3xs">
+  <img loading="lazy" src="./clock-scroll-stopwatch.webp" />
+</Img>
 
 Every one of these apps has to have some weird layout bug though. The clock is no exception here.
 
 In the "World Clock" view, the layout shifts every second.
 
-<Img src="./clock-animation.webp" width="1080" height="2400" class="w-3xs" />
+<Img class="w-3xs">
+  <img loading="lazy" src="./clock-animation.webp">
+</Img>
+
+It seems that even though the stopwatch was assigned a fixed height (too much), it was not done for the world clock. As the font dynamically resizes (for some reason), every other element in the page moves. This is painfully easy to spot.
 
 ## Conclusion
 
-I'll add more to the list as I find more.
+<div class="flex flex-wrap flex-row justify-between mx-auto items-center gap-2">
+  <Img class="w-64 max-sm:w-full" title="Expectation">
+    <enhanced:img src="./expectation.jpg" />
+  </Img>
+  <Img class="w-3xs" title="Versus reality">
+    <enhanced:img src="./reality.png" />
+  </Img>
+</div>
+
+I'll add to this list as I find more major problems.
+
+So, Material 3 Expressive was supposed to be unique in that apps would look all different and unique while still following a "design system", compared to Material 3 which encouraged identical looking apps.
+
+I think for the native apps, they made them unique in the wrong ways.
 
 I feel like this minor design system update was way overhyped, people going as far to say it will "kill" Apple's liquid glass _(they aren't really competing...most consumers don't care what "design system" their phone uses)_.
 
