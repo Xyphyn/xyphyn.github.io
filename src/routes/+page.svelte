@@ -189,7 +189,7 @@
 					/>
 				</div>
 			{/snippet}
-			<div class="col-span-2 mx-auto">
+			<div class="lg:col-span-2 mx-auto">
 				{@render project(
 					0,
 					'Photon',
