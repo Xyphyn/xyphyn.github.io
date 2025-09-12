@@ -1,5 +1,5 @@
 ---
-title: Everything Wrong in Material 3 Expressive
+title: Everything Wrong with Material 3 Expressive
 description: It's like if you took Material 3 and made it less expressive.
 date: 2025-9-9
 link: /posts/everything-wrong-with-m3e

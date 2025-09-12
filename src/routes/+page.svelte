@@ -1,7 +1,14 @@
 <script lang="ts">
 	import TextAnim from '$lib/TextAnim.svelte'
 	import type { Snippet } from 'svelte'
-	import { CodeBracket, Icon, ServerStack, Share, type IconSource } from 'svelte-hero-icons'
+	import {
+		ArrowTopRightOnSquare,
+		CodeBracket,
+		Icon,
+		ServerStack,
+		Share,
+		type IconSource
+	} from 'svelte-hero-icons'
 </script>
 
 <svelte:head>
@@ -79,19 +86,6 @@
 				<span class="animate-pop-in inline-block" style="animation-delay: 100ms; opacity: 0;">
 					.dev
 				</span>
-				<svg
-					class="text-indigo-600 dark:text-indigo-400 inline-block self-center mt-3 ml-2 animate-pop-in"
-					xmlns="http://www.w3.org/2000/svg"
-					fill="currentColor"
-					width="24"
-					height="24"
-					viewBox="15 15 70 70"
-					style="animation-delay: 200ms; opacity: 0;"
-				>
-					<path
-						d="M45 20.8868C48.094 19.1004 51.906 19.1004 55 20.8868L72.7128 31.1132C75.8068 32.8996 77.7128 36.2008 77.7128 39.7735V60.2265C77.7128 63.7992 75.8068 67.1004 72.7128 68.8867L55 79.1133C51.906 80.8996 48.094 80.8996 45 79.1133L27.2872 68.8867C24.1932 67.1004 22.2872 63.7992 22.2872 60.2265V39.7735C22.2872 36.2008 24.1932 32.8996 27.2872 31.1132L45 20.8868Z"
-					/>
-				</svg>
 			</h1>
 			<div class="text-zinc-700 dark:text-zinc-300">
 				<TextAnim text="I am a hobbyist software engineer and designer." />
@@ -114,10 +108,8 @@
 		</header>
 	</div>
 
-	<section
-		class="px-8 xl:px-32 space-y-8 w-full border-t border-zinc-200 dark:border-zinc-800 pt-12 animate-pop-in"
-	>
-		<div class="grid grid-cols-1 lg:grid-cols-5 grid-rows-2 gap-8 w-full max-w-7xl mx-auto">
+	<section class="px-8 xl:px-32 space-y-8 w-full pt-12 animate-pop-in">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-7xl mx-auto">
 			{#snippet project(
 				number: number,
 				name: string,
@@ -130,73 +122,83 @@
 					this={url ? 'a' : 'article'}
 					href={url}
 					class={[
-						'space-y-3 rounded-2xl p-2 relative overflow-hidden first:row-span-3 first:col-span-3 col-span-2 cursor-pointer group'
+						'flex flex-col gap-1 border rounded-3xl border-zinc-200 dark:border-zinc-800 p-8',
+						'hover:bg-indigo-500/2 transition-colors group relative overflow-hidden'
 					]}
 				>
 					{#if img}
-						<div
-							class="h-64 overflow-hidden mask-b-from-0 rounded-t-3xl border p-3 border-zinc-200 dark:border-zinc-700 -mb-6"
-						>
-							<div class="rounded-2xl overflow-hidden">
-								{@render img()}
-							</div>
+						<div class="h-64 mask-b-from-0 rounded-2xl overflow-hidden -mx-5 -mt-5">
+							{@render img()}
 						</div>
 					{/if}
-					<div class="group-first:mx-6">
-						{#if number != 0}
-							<div
-								class={[
-									'bg-zinc-200 dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 rounded-full',
-									'w-7 h-7 grid place-items-center font-bold font-display z-10'
-								]}
-							>
-								{number}
-							</div>
-						{/if}
-					</div>
-					<div class="flex items-start gap-2">
-						<h3
+					<div
+						class={[
+							'bg-radial from-indigo-500/20 via-70% via-indigo-500/0',
+							'w-4xl aspect-square h-auto absolute -top-[33rem] -right-[33rem]',
+							'opacity-0 group-hover:opacity-100 transition-opacity -z-10'
+						]}
+					></div>
+					{#if number != 0}
+						<div
 							class={[
-								'font-display group-first:text-5xl text-3xl w-full group-first:px-10',
-								'group-hover:underline decoration-indigo-500 ',
-								img && '-mt-5'
+								'bg-zinc-100 dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 rounded-full',
+								'w-7 h-7 grid place-items-center font-bold font-display z-10'
 							]}
 						>
+							{number}
+						</div>
+					{/if}
+					<div class={[img && 'flex-1']}></div>
+					<div class={['flex items-start gap-2']}>
+						<h3 class={['font-display text-3xl w-full']}>
 							{name}
-							<span
-								class="inline-block w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400 -ml-1"
-							></span>
 						</h3>
 					</div>
-					<p class="group-first:text-xl text-lg group-first:px-10">
+					<p class="text-lg text-zinc-700 dark:text-zinc-300">
 						{description}
 					</p>
 					{#if url}
 						<div
-							class="text-indigo-600 dark:text-indigo-400 group-hover:underline"
+							class="text-indigo-600 dark:text-indigo-400 flex flex-row gap-1 items-center"
 							aria-hidden="true"
-						></div>
+						>
+							<Icon src={ArrowTopRightOnSquare} size="16" micro />
+							<div>{new URL(url).hostname}</div>
+						</div>
 					{/if}
 				</svelte:element>
 			{/snippet}
 
 			{#snippet photonImg()}
-				<enhanced:img
-					src="./photon.png?w=320;480"
-					sizes="(min-width:1280px) 320px, (min-width:720px) 320px"
-					alt="A screenshot of the interface of Photon"
-					class="object-cover object-top w-full h-full"
-					fetchpriority="high"
-				/>
+				<div class="contents dark:hidden">
+					<enhanced:img
+						src="./photon.png?w=320;480"
+						sizes="(min-width:1280px) 320px, (min-width:720px) 320px"
+						alt="A screenshot of the interface of Photon"
+						class="object-cover object-top w-full h-full"
+						fetchpriority="high"
+					/>
+				</div>
+				<div class="hidden dark:contents">
+					<enhanced:img
+						src="./photon-dark.png?w=660;480;320"
+						sizes="(min-width:1280px) 320px, (min-width:720px) 320px"
+						alt="A screenshot of the interface of Photon"
+						class="object-cover object-top w-full h-full"
+						fetchpriority="high"
+					/>
+				</div>
 			{/snippet}
-			{@render project(
-				0,
-				'Photon',
-				`A fully-featured, well designed, and mature Svelte based web client for the fediverse.`,
-				undefined,
-				'https://use.phtn.app',
-				photonImg
-			)}
+			<div class="col-span-2 mx-auto">
+				{@render project(
+					0,
+					'Photon',
+					`A fully-featured, well designed, and mature Svelte based web client for the fediverse.`,
+					undefined,
+					'https://use.phtn.app',
+					photonImg
+				)}
+			</div>
 			{@render project(
 				1,
 				'Software development',
@@ -215,6 +217,7 @@
 				'I frequently observe and interact in the development of fediverse platforms, helping build them with more accessible interfaces like Photon.',
 				Share
 			)}
+			{@render project(4, '', '...')}
 		</div>
 	</section>
 </div>

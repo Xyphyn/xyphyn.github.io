@@ -57,62 +57,56 @@
 	</a>
 {/snippet}
 
-<div class="relative z-0 -mt-20">
-	<header class="z-20 px-4 sm:px-8 md:px-16 space-y-6 pt-40 mx-auto pb-8 max-w-full w-5xl">
-		{@render links('/posts', 'Back', '', ArrowLeft)}
-		{#if date}
-			<date class="block text-sm md:text-base text-zinc-500 dark:text-zinc-300">
-				{new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date(date))}
-			</date>
-		{/if}
-		<ul aria-label="Tags" class="flex flex-row flex-wrap gap-5">
-			{#each keywords.split(', ').slice(0, 3) as keyword}
-				<li class="font-bold text-sm uppercase text-indigo-400 dark:text-indigo-500">{keyword}</li>
-			{/each}
-		</ul>
-		<h1 class="font-display text-4xl md:text-5xl">{title}</h1>
-		<p class="text-base sm:text-lg md:text-xl max-w-2xl w-full text-balance">
-			{description}
-		</p>
-		<div
-			class="w-full h-full rounded-2xl overflow-hidden grid place-items-center border border-zinc-200 dark:border-zinc-800"
-		>
-			<div class="xl:scale-150 w-full h-full object-cover">
-				<Placeholder seed={title} />
-			</div>
-		</div>
-	</header>
-	<div class={['main-grid mx-auto lg:space-x-8']} style="animation-delay: 100ms;">
-		<nav class="flex flex-col gap-2 lg:sticky top-12 self-start">
-			<h3 class="font-display text-lg">Table of Contents</h3>
-			{#each headings as item}
-				<a
-					class="text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
-					href="#{item.id}"
-				>
-					{item.text}
-				</a>
-			{/each}
-		</nav>
+<div class={['main-grid mx-auto lg:space-x-24']} style="animation-delay: 100ms;">
+	<nav class="flex flex-col gap-2 lg:sticky top-12 self-start">
+		<h3 class="font-display text-lg">Table of Contents</h3>
+		{#each headings as item}
+			<a
+				class="text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
+				href="#{item.id}"
+			>
+				{item.text}
+			</a>
+		{/each}
+	</nav>
+	<div>
+		<header class="z-20 space-y-6 mx-auto pb-8 max-w-full w-5xl">
+			{#if date}
+				<date class="block text-sm md:text-base text-zinc-500 dark:text-zinc-300">
+					{new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date(date))}
+				</date>
+			{/if}
+			<ul aria-label="Tags" class="flex flex-row flex-wrap gap-5">
+				{#each keywords.split(', ').slice(0, 3) as keyword}
+					<li class="font-bold text-sm uppercase text-indigo-400 dark:text-indigo-500">
+						{keyword}
+					</li>
+				{/each}
+			</ul>
+			<h1 class="font-display text-4xl md:text-5xl">{title}</h1>
+			<p class="text-base sm:text-lg md:text-xl max-w-2xl w-full">
+				{description}
+			</p>
+		</header>
 		<article class="post">
 			{@render children?.()}
 		</article>
-		<aside class="flex flex-col gap-2 lg:sticky top-12 self-start">
-			<h3 class="font-display text-lg">Links</h3>
-			<a
-				class="text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
-				href="/"
-			>
-				Home
-			</a>
-			<a
-				class="text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
-				href="/posts"
-			>
-				Posts
-			</a>
-		</aside>
 	</div>
+	<aside class="flex flex-col gap-2 lg:sticky top-12 self-start">
+		<h3 class="font-display text-lg">Links</h3>
+		<a
+			class="text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
+			href="/"
+		>
+			Home
+		</a>
+		<a
+			class="text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"
+			href="/posts"
+		>
+			Posts
+		</a>
+	</aside>
 </div>
 
 <style>
@@ -124,22 +118,12 @@
 	}
 	@media screen and (min-width: 1024px) {
 		.main-grid {
-			max-width: 80rem;
+			max-width: 90rem;
 			width: 100%;
 			display: grid;
 			grid-template-columns: 20% 60% 20%;
 			grid-template-areas: 'toc article other';
 		}
-	}
-
-	.main-grid > nav {
-		grid-area: toc;
-	}
-	.main-grid > article {
-		grid-area: article;
-	}
-	.main-grid > aside:last-child {
-		grid-area: other;
 	}
 
 	article.post {
