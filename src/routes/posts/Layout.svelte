@@ -28,7 +28,8 @@
 		headings: { depth: number; text: string; id: string }[]
 	}
 
-	let { children, date, title, description, keywords, link, headings, ...rest }: Props = $props()
+	let { children, date, title, description, keywords, link, headings, updated, ...rest }: Props =
+		$props()
 </script>
 
 <svelte:head>
@@ -72,13 +73,24 @@
 	<div>
 		<header class="z-20 space-y-6 mx-auto pb-8 max-w-full w-5xl">
 			{#if date}
-				<date class="block text-sm md:text-base text-zinc-500 dark:text-zinc-300">
-					{new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date(date))}
-				</date>
+				<div class="flex items-center gap-6">
+					{#if updated}
+						<date class="text-indigo-600 dark:text-indigo-400" datetime={new Date(updated)}>
+							Updated
+							{new Intl.RelativeTimeFormat('en', {}).format(
+								Math.floor((Date.parse(updated) - Date.now()) / 1000 / 60 / 60 / 24),
+								'day'
+							)}
+						</date>
+					{/if}
+					<date class="block text-sm md:text-base text-zinc-500 dark:text-zinc-300">
+						{new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date(date))}
+					</date>
+				</div>
 			{/if}
 			<ul aria-label="Tags" class="flex flex-row flex-wrap gap-5">
 				{#each keywords.split(', ').slice(0, 3) as keyword}
-					<li class="font-bold text-sm uppercase text-indigo-400 dark:text-indigo-500">
+					<li class="font-bold text-sm uppercase text-indigo-600 dark:text-indigo-400">
 						{keyword}
 					</li>
 				{/each}

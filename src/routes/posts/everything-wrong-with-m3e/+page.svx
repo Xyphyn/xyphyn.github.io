@@ -2,6 +2,7 @@
 title: Everything Wrong with Material 3 Expressive
 description: It's like if you took Material 3 and made it less expressive.
 date: 2025-9-9
+updated: 2025-9-17
 link: /posts/everything-wrong-with-m3e
 keywords: android, design, google
 ---
@@ -153,6 +154,66 @@ In the "World Clock" view, the layout shifts every second.
 </Img>
 
 It seems that even though the stopwatch was assigned a fixed height (too much), it was not done for the world clock. As the font dynamically resizes (for some reason), every other element in the page moves. This is painfully easy to spot.
+
+## Things I think Look Like Buns™
+
+This section will be all subjective rather than "objective" design mistakes. Things that I think look terrible.
+
+### The quick settings
+
+<Img alt="" class="w-3xs">
+  <enhanced:img loading="lazy" src="./android-system-ui.webp">
+</Img>
+
+This image from before is what the quick setting/notification panel looks like.
+
+- I actually _really like_ the animations and bounciness of the notifications. It's probably the best part of this entire redesign. Now, here's what I don't like.
+- What is going on with the quick settings buttons? The icons are massive. It doesn't look good when the active items are squared.
+- The designers _still_ insist on a separate color for the notifications panel and the quick settings. Please just give up on it. This tinted, not frosted, weirdly small blur radius looks amateur. At the very least bump up the blur radius, please.
+- What are these new icons? They're iOS-esque, which isn't bad, per se, but I liked the old ones more.
+
+### The app drawer
+
+I changed wallpapers before I switched to this, that's why the colors are different.
+
+<Img alt="" class="w-3xs">
+  <enhanced:img loading="lazy" src="./app-drawer.png">
+</Img>
+
+I have similar problems with this as the quick settings.
+
+- The blur radius is too small. This looks quite amateur, like a new CSS designer just discovered `backdrop-filter: blur(16px);`.
+- Why is this panel a sheet? The quick settings aren't a sheet. Before, this panel would fade in and only move slightly as you swiped up. Now, it goes all the way from the bottom of the screen, which is a quite unconventional move for most of the UI.
+- The animation after swiping horizontally between personal/work isn't bouncy. This is inconsistent with the file picker.
+
+### Dropdown menus
+
+These are in my top 5 for worst material components. Why do these look so janky? They got worse in material 3 expressive when they decided to shift around padding and mess with icons.
+
+_The many popovers of Android_
+
+<div class="flex flex-row gap-2 flex-wrap justify-items-center items-center mx-auto *:*:max-w-64">
+  <Img alt="">
+    <enhanced:img loading="lazy" src="./selects/select-menus1.png">
+  </Img>
+  <Img alt="">
+    <enhanced:img loading="lazy" src="./selects/select-menus2.png">
+  </Img>
+  <Img alt="">
+    <enhanced:img loading="lazy" src="./selects/select-menus3.png">
+  </Img>
+  <Img alt="">
+    <enhanced:img loading="lazy" src="./selects/select-menus4.png">
+  </Img>
+  <Img alt="">
+    <enhanced:img loading="lazy" src="./selects/select-menus5.png">
+  </Img>
+  <Img alt="">
+    <enhanced:img loading="lazy" src="./selects/select-menus6.png">
+  </Img>
+</div>
+
+This is insanity.
 
 ## Conclusion
 
