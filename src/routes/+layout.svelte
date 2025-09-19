@@ -12,7 +12,7 @@
 </svelte:head>
 
 <div class="min-h-screen w-full flex flex-col">
-	<div class="pointer-events-none z-50 p-4">
+	<!-- <div class="pointer-events-none z-50 p-4">
 		<nav class="p-1 w-max h-full flex items-center gap-0.5 pointer-events-auto">
 			{#snippet link(label: string, href: string)}
 				{@const selected = page.url.pathname == href}
@@ -29,7 +29,7 @@
 			{@render link('Home', '/')}
 			{@render link('Posts', '/posts')}
 		</nav>
-	</div>
+	</div> -->
 	<main class="z-0">
 		{@render children()}
 	</main>

@@ -26,6 +26,7 @@
 		keywords: string
 		children: Snippet
 		headings: { depth: number; text: string; id: string }[]
+		updated?: string
 	}
 
 	let { children, date, title, description, keywords, link, headings, updated, ...rest }: Props =
@@ -175,11 +176,12 @@
 			}
 
 			p {
-				font-size: 1.125rem;
+				font-size: 1.25rem;
 				color: var(--color-zinc-700);
 				@media (prefers-color-scheme: dark) {
 					color: var(--color-zinc-300);
 				}
+				font-weight: 450;
 			}
 
 			a {
@@ -221,7 +223,7 @@
 				padding-left: 1rem;
 				margin-top: 1rem;
 				margin-bottom: 1rem;
-				font-size: var(--text-lg);
+				font-size: 1.25rem;
 			}
 
 			ol {
@@ -269,6 +271,11 @@
 				@media (prefers-color-scheme: dark) {
 					border-color: var(--color-zinc-700);
 				}
+			}
+
+			strong,
+			em {
+				font-weight: 550;
 			}
 		}
 	}

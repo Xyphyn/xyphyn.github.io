@@ -1,0 +1,15 @@
+<script lang="ts">
+	import type { Snippet } from 'svelte'
+
+	interface Props {
+		children: Snippet
+	}
+
+	let { children } = $props()
+</script>
+
+<section
+	class="px-4 sm:px-8 xl:px-32 space-y-8 w-full pt-12 animate-pop-in mb-48 text-center sm:text-left"
+>
+	{@render children?.()}
+</section>

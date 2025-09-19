@@ -1,9 +1,12 @@
 <script lang="ts">
+	import Section from '$lib/root/Section.svelte'
 	import TextAnim from '$lib/TextAnim.svelte'
 	import type { Snippet } from 'svelte'
 	import {
+		ArrowRight,
 		ArrowTopRightOnSquare,
 		CodeBracket,
+		Hashtag,
 		Icon,
 		ServerStack,
 		Share,
@@ -17,99 +20,77 @@
 </svelte:head>
 
 <div class="z-0 space-y-8 flex flex-col justify-center items-center">
-	<div class="absolute top-0 w-full -z-10" role="presentation">
-		<!--Hack because blur is broken on Firefox-->
-		<div class="w-full h-[48rem] -z-10 backdrop-blur-3xl"></div>
-		<div class="glow-container pointer-events-none opacity-50 dark:opacity-10 -z-10">
-			<svg
-				class="pointer-events-none top-0 w-full h-auto"
-				width="1000"
-				height="250"
-				viewBox="0 0 1171 241"
-				fill="none"
-			>
-				<defs>
-					<linearGradient
-						id="grad1"
-						x1="568"
-						y1="1"
-						x2="1029"
-						y2="65"
-						gradientUnits="userSpaceOnUse"
-					>
-						<stop stop-color="oklch(0.47 0.32 264)" />
-						<stop offset="1" stop-color="oklch(0.84 0.21 170)" />
-					</linearGradient>
-					<linearGradient
-						id="grad2"
-						x1="155"
-						y1="-11"
-						x2="512"
-						y2="-162"
-						gradientUnits="userSpaceOnUse"
-					>
-						<stop stop-color="oklch(0.83 0.16 73)" />
-						<stop offset="0.5" stop-color="oklch(0.64 0.29 359)" />
-						<stop offset="1" stop-color="oklch(0.51 0.30 284)" />
-					</linearGradient>
-					<linearGradient
-						id="grad3"
-						x1="155"
-						y1="-11"
-						x2="512"
-						y2="-162"
-						gradientUnits="userSpaceOnUse"
-					>
-						<stop stop-color="oklch(0.7 0.2462 348.14)" />
-						<stop offset="0.5" stop-color="oklch(0.7729 0.1771 322.73)" />
-						<stop offset="1" stop-color="oklch(0.7729 0.1278 286.73)" />
-					</linearGradient>
-				</defs>
-				<g>
-					<path
-						d="M732-180C597-158 516-74 553 7s175 130 310 108 246-105 210-186-139-49-274-27z"
-						fill="url(#grad1)"
-					/>
-					<ellipse cx="300" cy="-38" rx="258" ry="120" fill="url(#grad2)" />
-				</g>
-			</svg>
-		</div>
-	</div>
-	<div
-		class="p-8 pb-0 xl:px-32 py-16 xl:py-16 space-y-8 text-xl w-full text-center justify-center sm:text-left sm:justify-start"
+	<div class="absolute top-0 w-full -z-10 glow" role="presentation"></div>
+	<section
+		class="p-8 pb-0 xl:px-32 py-16 xl:py-16 space-y-8 text-xl w-full text-left justify-start"
 	>
 		<header class="space-y-6 max-w-xl">
-			<h1
-				class="font-medium tracking-tight text-6xl sm:text-7xl font-display flex justify-center sm:justify-start"
-			>
-				<span class="animate-pop-in inline-block">xylight</span>
-				<span class="animate-pop-in inline-block" style="animation-delay: 100ms; opacity: 0;">
-					.dev
-				</span>
-			</h1>
-			<div class="text-zinc-700 dark:text-zinc-300">
-				<TextAnim text="I am a hobbyist software engineer and designer." />
-			</div>
 			{#snippet link(href: string, label: string, index: number = 0)}
 				<a
 					{href}
-					class="text-base text-indigo-600 dark:text-indigo-400 hover:underline animate-pop-in"
-					style="animation-delay: {index * 100}ms; opacity: 0;"
+					class={[
+						'font-display font-bold text-zinc-500 dark:text-zinc-400',
+						'hover:bg-zinc-900 hover:dark:bg-zinc-50 hover:text-zinc-50 hover:dark:text-zinc-900',
+						'px-4 py-3 transition-colors inline-flex flex-row items-center gap-2'
+					]}
 				>
+					{label}
+					<Icon src={href.startsWith('#') ? Hashtag : ArrowRight} size="20" mini />
+				</a>
+			{/snippet}
+
+			{@render link('#about', 'About me')}
+			{@render link('#projects', 'Projects')}
+			{@render link('/posts', 'Posts')}
+			<h1
+				class={[
+					'font-medium tracking-tighter text-6xl sm:text-7xl lg:text-9xl lg:mb-24 lg:mt-12 font-display px-4'
+				]}
+			>
+				xylight.dev
+			</h1>
+		</header>
+	</section>
+	<Section>
+		<heading class="space-y-4">
+			<h2 id="about" class="font-display text-2xl">About me</h2>
+
+			{#snippet social(href: string, label: string)}
+				<a {href} class="inline text-indigo-600 dark:text-indigo-400 hover:underline decoration-2">
 					{label}
 				</a>
 			{/snippet}
 
-			<nav class="flex flex-row gap-5 flex-wrap">
-				{@render link('https://github.com/Xyphyn', 'GitHub', 0)}
-				{@render link('https://matrix.to/#/@xylight:chat.phtn.app', 'Matrix', 1)}
-				{@render link('https://lemdro.id/u/Xylight', 'Lemmy', 2)}
-			</nav>
-		</header>
-	</div>
-
-	<section class="px-8 xl:px-32 space-y-8 w-full pt-12 animate-pop-in">
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-7xl mx-auto">
+			<div
+				class="text-3xl text-zinc-500 dark:text-zinc-400 max-w-3xl leading-[1.5] space-y-6 text-left"
+			>
+				<p>
+					<span class="text-zinc-900 dark:text-zinc-50">I am a developer and designer.</span>
+					I create applications to be helpful and convenient. I explore computing systems in the desktop
+					and server.
+				</p>
+				<p>I write posts about my experiences regarding these topics.</p>
+				<p>
+					My socials are at {@render social(
+						'https://matrix.to/#/@xylight:chat.phtn.app',
+						'Matrix'
+					)}, {@render social('https://github.com/Xyphyn', 'GitHub')},
+					{@render social('https://lemdro.id/u/Xylight', 'Lemmy')}, and {@render social(
+						'https://mas.to/@Xylight',
+						'Mastodon'
+					)}.
+				</p>
+			</div>
+		</heading>
+	</Section>
+	<Section>
+		<h2
+			id="projects"
+			class="font-display text-5xl sm:text-6xl lg:text-7xl tracking-tight text-center mt-12 mb-24"
+		>
+			My projects
+		</h2>
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-7xl mx-auto text-left">
 			{#snippet project(
 				number: number,
 				name: string,
@@ -201,29 +182,29 @@
 			</div>
 			{@render project(
 				1,
-				'Software development',
-				'I study & enjoy learning about the design and architecture of software, especially in low level languages. I personally develop software in higher level languages like TypeScript, Kotlin, or Rust.',
-				CodeBracket
+				'Websites like this',
+				`I develop sites in SvelteKit and often TailwindCSS.`,
+				undefined,
+				'https://github.com/Xyphyn/xyphyn.github.io'
 			)}
 			{@render project(
 				2,
-				'System administration',
-				`I enjoy managing my home server as a hobby, hosting services that help me and others. I also enjoy studying how network stacks work and managing them.`,
-				ServerStack
+				'More',
+				`Other projects of mine are on my GitHub profile.`,
+				undefined,
+				'https://github.com/Xyphyn'
 			)}
-			{@render project(
-				3,
-				'Fediverse',
-				'I frequently observe and interact in the development of fediverse platforms, helping build them with more accessible interfaces like Photon.',
-				Share
-			)}
-			{@render project(4, '', '...')}
 		</div>
-	</section>
+	</Section>
 </div>
 
 <style>
-	.glow-container {
+	.glow {
+		--max-opacity: 0.4;
+		@media (prefers-color-scheme: dark) {
+			--max-opacity: 0.2;
+		}
+
 		position: absolute;
 		width: 100%;
 		top: 0;
@@ -231,5 +212,15 @@
 		max-width: 100%;
 		z-index: -1;
 		overflow: hidden;
+		background: radial-gradient(
+			ellipse at top center in oklch,
+			oklch(75% 0.083 55.934 / var(--max-opacity)),
+			oklch(65.6% 0.141 354.308 / 0.2),
+			oklch(67.3% 0.182 276.935 / 0) 70%,
+			transparent
+		);
+		background-position: 50% -40%;
+		background-size: 125rem 32rem;
+		background-repeat: no-repeat;
 	}
 </style>

@@ -57,7 +57,7 @@
 					</div>
 				{/if}
 				<h2 class="font-display text-2xl group-hover:underline">{post.title}</h2>
-				<p class="max-w-md">
+				<p class="max-w-md text-lg text-zinc-500 dark:text-zinc-400">
 					{post.description}
 				</p>
 				<div class="text-indigo-500 font-medium flex flex-row gap-1 items-center text-lg mt-auto">
