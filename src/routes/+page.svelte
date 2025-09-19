@@ -86,7 +86,7 @@
 	<Section>
 		<h2
 			id="projects"
-			class="font-display text-5xl sm:text-6xl lg:text-7xl tracking-tight text-center mt-12 mb-24"
+			class="font-display text-5xl sm:text-6xl lg:text-7xl tracking-tight lg:mt-12 lg:mb-24"
 		>
 			My projects
 		</h2>
