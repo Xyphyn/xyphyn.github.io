@@ -4,7 +4,7 @@
 	--animate-pop-in: pop-in 1.1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 
 	--font-display: 'Lora', serif;
-	--font-sans: 'General Sans', sans-serif;
+	--font-sans: 'Nata', sans-serif;
 	--color-zinc-850: color-mix(in oklab, var(--color-zinc-800), var(--color-zinc-900));
 	--text-lg: 1.25rem;
 
@@ -21,10 +21,9 @@
 }
 
 @font-face {
-	font-family: 'General Sans';
-	src: url('/font/generalsans.woff2') format('woff2');
+	font-family: 'Nata';
+	src: url('/font/nata.woff2') format('woff2');
 	font-display: swap;
-	font-weight: 450;
 }
 
 @font-face {

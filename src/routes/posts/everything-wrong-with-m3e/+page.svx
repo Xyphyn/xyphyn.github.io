@@ -114,7 +114,7 @@ In summary: the _"expressive"_ update to the calculator has brought:
 - Removal of `sqrt`, Pi, exponents, factorial, etc without expanding
 - Less distinction between the number input
 
-That isn't the worst. Let me show you an abhorrence you will never unsee.
+That isn't even the worst part of this! Look at how the buttons shift when you press "invert":
 
 <Img class="w-3xs">
   <img loading="lazy" src="./calculator-animation.webp" />

@@ -31,7 +31,7 @@
 					class={[
 						'font-display font-bold text-zinc-500 dark:text-zinc-400',
 						'hover:bg-zinc-900 hover:dark:bg-zinc-50 hover:text-zinc-50 hover:dark:text-zinc-900',
-						'px-4 py-3 transition-colors inline-flex flex-row items-center gap-2'
+						'px-3 lg:px-4 py-3 transition-colors inline-flex flex-row items-center gap-2'
 					]}
 				>
 					{label}
@@ -39,9 +39,10 @@
 				</a>
 			{/snippet}
 
-			{@render link('#about', 'About me')}
-			{@render link('#projects', 'Projects')}
-			{@render link('/posts', 'Posts')}
+			<nav class="-mx-4 sm:mx-0 flex items-center flex-wrap justify-center sm:justify-start">
+				{@render link('#projects', 'Projects')}
+				{@render link('/posts', 'Posts')}
+			</nav>
 			<h1
 				class={[
 					'font-medium tracking-tighter text-6xl sm:text-7xl lg:text-9xl lg:mb-24 lg:mt-12 font-display px-4'
@@ -62,7 +63,7 @@
 			{/snippet}
 
 			<div
-				class="text-3xl text-zinc-500 dark:text-zinc-400 max-w-3xl leading-[1.5] space-y-6 text-left"
+				class="text-2xl sm:text-2xl lg:text-3xl text-zinc-500 dark:text-zinc-400 max-w-3xl leading-[1.5] space-y-6 text-left"
 			>
 				<p>
 					<span class="text-zinc-900 dark:text-zinc-50">I am a developer and designer.</span>
