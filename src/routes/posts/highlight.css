@@ -102,4 +102,8 @@
 	.token.namespace {
 		color: #f9e2af;
 	}
+
+	.token.variable {
+		color: rgb(169, 173, 213);
+	}
 }

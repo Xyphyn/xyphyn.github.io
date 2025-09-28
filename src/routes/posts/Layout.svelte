@@ -1,17 +1,8 @@
 <script lang="ts" module>
-	import Placeholder from '$lib/Placeholder.svelte'
-	import { ArrowLeft, Home, Icon, type IconSource } from 'svelte-hero-icons'
-	import {
-		H1 as h1,
-		H2 as h2,
-		H3 as h3,
-		Paragraph as p,
-		Code as code,
-		Img as img,
-		Pre as pre
-	} from './components/index'
+	import { Icon, type IconSource } from 'svelte-hero-icons'
+	import { Code as code, H1 as h1, H2 as h2, H3 as h3, Paragraph as p } from './components/index'
 
-	export { h1, h2, h3, p, code }
+	export { code, h1, h2, h3, p }
 </script>
 
 <script lang="ts">
@@ -169,9 +160,9 @@
 				}
 			}
 			h3 {
-				font-size: 1.75rem;
+				font-size: 1.5rem;
 				@media screen and (min-width: 768px) {
-					font-size: 2rem;
+					font-size: 1.6rem;
 				}
 			}
 
@@ -271,11 +262,6 @@
 				@media (prefers-color-scheme: dark) {
 					border-color: var(--color-zinc-700);
 				}
-			}
-
-			strong,
-			em {
-				font-weight: 550;
 			}
 		}
 	}

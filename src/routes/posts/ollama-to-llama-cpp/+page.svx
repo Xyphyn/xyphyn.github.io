@@ -1,0 +1,138 @@
+---
+title: How to use llama.cpp (for ex-ollama users)
+description: Here's a relatively simple guide for people who know a bit about LLMs.
+date: 2025-09-27
+link: /posts/ollama-to-llama-cpp
+keywords: llm, gpu compute, llama.cpp
+---
+
+<script>
+  import Img from '../components/Image.svelte'
+</script>
+
+# Get started
+
+For simplicity, I will describe how to build llama.cpp from source for your system. Your distro may provide some prebuilt package for your hardware, but it may not be optimized for your system.
+
+To get started, first clone the repository from (GitHub)[https://github.com/ggml-org/llama.cpp].
+
+```bash
+git clone https://github.com/ggml-org/llama.cpp.git
+cd llama.cpp
+```
+
+The next steps will depend on whether you have an AMD or NVIDIA GPU, or if you will be doing purely CPU inference.
+
+## AMD (HIP/ROCm)
+
+**If your GPU is RDNA 1 or newer** _(RX 5000 series and up)_, you'll likely want to use **HIP/ROCm**. This is AMD's version of CUDA, a way to run compute on your GPU.
+
+Figure out how to install ROCm and HIP on your system. On Arch Linux, you'll need to install the following packages:
+
+```bash
+sudo pacman -S \
+  # ROCm packages
+  rocm-llvm rocm-hip-runtime rocm-core rocm-language-runtime rocminfo hip-runtime-amd comgr hsa-rocr rocm-device-libs rocm-cmake \
+  # For building
+  cmake
+```
+
+First, configure the build directory with `cmake`.
+
+You will need to determine your GPU's gfx version. For more details, go [here](https://llvm.org/docs/AMDGPUUsage.html#processors). Here's a summary:
+
+```yml
+RX 6000: gfx1030
+RX 7000: gfx1100
+RX 9000: gfx1200
+```
+
+### Configure for RX 7000 and newer
+
+**If your GPU is an RX 7000 series or newer, you can enable the rocWMMA library for enhanced performance.** Skip this step if your GPU is older than RX 7000.
+
+```bash
+sudo pacman -S rocwmma
+```
+
+```bash
+HIPCXX="$(hipconfig -l)/clang" HIP_PATH="$(hipconfig -R)" \
+cmake -S . -B build -DGGML_HIP=ON -DAMDGPU_TARGETS=\[GFX VERSION\] -DCMAKE_BUILD_TYPE=Release -DGGML_HIP_ROCWMMA_FATTN=ON
+```
+
+### Configure for RX 6000 and older
+
+```bash
+HIPCXX="$(hipconfig -l)/clang" HIP_PATH="$(hipconfig -R)" \
+cmake -S . -B build -DGGML_HIP=ON -DAMDGPU_TARGETS=\[GFX VERSION\] -DCMAKE_BUILD_TYPE=Release
+```
+
+## Vulkan
+
+Vulkan is a good option if you are having issues with ROCm, or your GPU is not supported by it. It has pretty similar performance to ROCm for AMD users, and has much simpler usage and building.
+
+### Configure
+
+```bash
+cmake -S . -B build -DGGML_VULKAN=ON -DCMAKE_BUILD_TYPE=Release
+```
+
+That's it!
+
+## Build
+
+Next, build the program.
+
+```bash
+cmake --build build --config Release -- -j \[CPU THREADS\]
+```
+
+Once built, run:
+
+```bash
+cmake --install build # you may need to use sudo
+```
+
+# Usage
+
+Congrats! You have installed the tools of `llama.cpp`. Now, let's run an LLM.
+
+## Common terms with llama.cpp
+
+When using `llama.cpp`, you'll want to find versions of LLMs that are **_GGUF_**. GGUF is a special format for efficient inference.
+
+<Img>
+  <enhanced:img loading="lazy" src="./gguf.png" />
+</Img>
+
+For example, here's a [Qwen3 4B GGUF on Hugging Face.](https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF)
+
+On the right, you'll see various **_quantizations_**. In general, you'll want to stick with `Q4_K_M`. This provides a nice balance between speed and size.
+
+> The more quantized your model, the lower quality the output, but it will run faster and use less VRAM.
+
+## Running a model
+
+Let's run a GGUF we found on HuggingFace, in this case, [Qwen3 4B](https://huggingface.co/unsloth/Qwen3-4B-Instruct-2507-GGUF).
+
+Here's how to run it:
+
+```bash
+llama-server -hf unsloth/Qwen3-4B-Instruct-2507-GGUF:Q4_K_M --port 10000 -ngl 99
+```
+
+> **NOTE**
+>
+> If you're running this via ROCm, you may need to add an environment variable to override the "gfx version".
+>
+> Otherwise, you may get "Invalid device function" errors or other crashes.
+>
+> To do this, prepend `HSA_OVERRIDE_GFX_VERSION=\[gfx version\] before these commands.
+
+`-ngl [x]` is the **_number of model layers_** to offload to your GPU. **You generally want this as high as you can go**, because any non-offloaded layers will be run on the slower CPU. If you're getting `device out of memory` errors, decrease this value.
+
+Once the model has downloaded, you can go to `http://localhost:10000` in your browser to see the web UI! You can now chat with a model!
+
+## llama-swap
+
+You can use [llama-swap](https://github.com/mostlygeek/llama-swap) if you'd like a proxy that can swap between models for you.
