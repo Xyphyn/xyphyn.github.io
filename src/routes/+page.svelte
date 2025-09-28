@@ -1,17 +1,7 @@
 <script lang="ts">
 	import Section from '$lib/root/Section.svelte'
-	import TextAnim from '$lib/TextAnim.svelte'
 	import type { Snippet } from 'svelte'
-	import {
-		ArrowRight,
-		ArrowTopRightOnSquare,
-		CodeBracket,
-		Hashtag,
-		Icon,
-		ServerStack,
-		Share,
-		type IconSource
-	} from 'svelte-hero-icons'
+	import { ArrowTopRightOnSquare, Icon, type IconSource } from 'svelte-hero-icons'
 </script>
 
 <svelte:head>
@@ -21,37 +11,15 @@
 
 <div class="z-0 space-y-8 flex flex-col justify-center items-center">
 	<div class="absolute top-0 w-full -z-10 glow" role="presentation"></div>
-	<section
-		class="p-8 pb-0 xl:px-32 py-16 xl:py-16 space-y-8 text-xl w-full text-left justify-start"
-	>
-		<header class="space-y-6 max-w-xl">
-			{#snippet link(href: string, label: string, index: number = 0)}
-				<a
-					{href}
-					class={[
-						'font-display font-bold text-zinc-500 dark:text-zinc-400',
-						'hover:bg-zinc-900 hover:dark:bg-zinc-50 hover:text-zinc-50 hover:dark:text-zinc-900',
-						'px-3 lg:px-4 py-3 transition-colors inline-flex flex-row items-center gap-2'
-					]}
-				>
-					{label}
-					<Icon src={href.startsWith('#') ? Hashtag : ArrowRight} size="20" mini />
-				</a>
-			{/snippet}
-
-			<nav class="-mx-4 sm:mx-0 flex items-center flex-wrap justify-center sm:justify-start">
-				{@render link('#projects', 'Projects')}
-				{@render link('/posts', 'Posts')}
-			</nav>
-			<h1
-				class={[
-					'font-medium tracking-tighter text-6xl sm:text-7xl lg:text-9xl lg:mb-24 lg:mt-12 font-display px-4'
-				]}
-			>
-				xylight.dev
-			</h1>
-		</header>
-	</section>
+	<header class="p-4 pb-0 xl:px-32 space-y-8 text-xl w-full text-left justify-start">
+		<h1
+			class={[
+				'font-medium tracking-tighter text-6xl sm:text-7xl lg:text-9xl lg:mb-24 font-display'
+			]}
+		>
+			xylight.dev
+		</h1>
+	</header>
 	<Section>
 		<heading class="space-y-4">
 			<h2 id="about" class="font-display text-2xl">About me</h2>
@@ -66,11 +34,11 @@
 				class="text-2xl sm:text-2xl lg:text-3xl text-zinc-500 dark:text-zinc-400 max-w-3xl leading-[1.5] space-y-6 text-left"
 			>
 				<p>
-					<span class="text-zinc-900 dark:text-zinc-50">I am a developer and designer.</span>
-					I create applications to be helpful and convenient. I explore computing systems in the desktop
-					and server.
+					<span class="text-zinc-900 dark:text-zinc-50">
+						I am a hobbyist developer and designer.
+					</span>
+					I try to create applications that are helpful and convenient.
 				</p>
-				<p>I write posts about my experiences regarding these topics.</p>
 				<p>
 					My socials are at {@render social(
 						'https://matrix.to/#/@xylight:chat.phtn.app',

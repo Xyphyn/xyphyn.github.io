@@ -12,24 +12,29 @@
 </svelte:head>
 
 <div class="min-h-screen w-full flex flex-col">
-	<!-- <div class="pointer-events-none z-50 p-4">
-		<nav class="p-1 w-max h-full flex items-center gap-0.5 pointer-events-auto">
-			{#snippet link(label: string, href: string)}
-				{@const selected = page.url.pathname == href}
-				<a
-					{href}
-					class={[
-						selected ? 'text-indigo-600 dark:text-indigo-400' : 'text-zinc-500 dark:text-zinc-500',
-						'px-3 py-1 rounded-full font-bold text-sm hover:text-zinc-900 hover:dark:text-zinc-50'
-					]}
-				>
-					{label}
-				</a>
-			{/snippet}
-			{@render link('Home', '/')}
-			{@render link('Posts', '/posts')}
-		</nav>
-	</div> -->
+	<nav
+		class={[
+			'flex items-center flex-wrap justify-start px-4 sm:px-8 pt-6 z-50 p-4 pb-0 xl:px-32',
+			page.url.pathname == '/' && 'xl:mt-16'
+		]}
+	>
+		{#snippet link(href: string, label: string, index: number = 0)}
+			<a
+				{href}
+				class={[
+					'font-display font-bold text-zinc-500 dark:text-zinc-400',
+					'hover:bg-zinc-900 hover:dark:bg-zinc-50 hover:text-zinc-50 hover:dark:text-zinc-900',
+					'px-3 lg:px-4 py-2 transition-colors inline-flex flex-row items-center gap-2'
+				]}
+			>
+				{label}
+			</a>
+		{/snippet}
+
+		{@render link('/', 'Home')}
+		{@render link('/#projects', 'Projects')}
+		{@render link('/posts', 'Posts')}
+	</nav>
 	<main class="z-0">
 		{@render children()}
 	</main>
