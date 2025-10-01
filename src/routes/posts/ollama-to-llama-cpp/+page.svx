@@ -12,6 +12,8 @@ keywords: llm, gpu compute, llama.cpp
 
 # Get started
 
+_This guide is oversimplified, and meant to give you a starting point._
+
 For simplicity, I will describe how to build llama.cpp from source for your system. Your distro may provide some prebuilt package for your hardware, but it may not be optimized for your system.
 
 To get started, first clone the repository from (GitHub)[https://github.com/ggml-org/llama.cpp].
@@ -25,7 +27,7 @@ The next steps will depend on whether you have an AMD or NVIDIA GPU, or if you w
 
 ## AMD (HIP/ROCm)
 
-**If your GPU is RDNA 1 or newer** _(RX 5000 series and up)_, you'll likely want to use **HIP/ROCm**. This is AMD's version of CUDA, a way to run compute on your GPU.
+**If your GPU is RDNA 1 or newer** _(RX 5000 series and up)_, you'll likely want to use **HIP/ROCm**.
 
 Figure out how to install ROCm and HIP on your system. On Arch Linux, you'll need to install the following packages:
 

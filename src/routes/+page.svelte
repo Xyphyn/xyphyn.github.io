@@ -1,7 +1,8 @@
 <script lang="ts">
+	import Placeholder from '$lib/Placeholder.svelte'
 	import Section from '$lib/root/Section.svelte'
 	import type { Snippet } from 'svelte'
-	import { ArrowTopRightOnSquare, Icon, type IconSource } from 'svelte-hero-icons'
+	import { ArrowRight, Icon, type IconSource } from 'svelte-hero-icons'
 </script>
 
 <svelte:head>
@@ -10,16 +11,27 @@
 </svelte:head>
 
 <div class="z-0 space-y-8 flex flex-col justify-center items-center">
-	<div class="absolute top-0 w-full -z-10 glow" role="presentation"></div>
-	<header class="p-4 pb-0 xl:px-32 space-y-8 text-xl w-full text-left justify-start">
-		<h1
+	<div class="w-full p-4 sm:p-12 md:p-20 xl:p-24">
+		<div
 			class={[
-				'font-medium tracking-tighter text-6xl sm:text-7xl lg:text-9xl lg:mb-24 font-display'
+				'rounded-3xl border border-zinc-200 dark:border-zinc-700 relative -z-10',
+				'bg-white dark:bg-zinc-900 overflow-hidden min-h-48 sm:min-h-96 lg:min-h-[36rem] grid place-items-center'
 			]}
 		>
-			xylight.dev
-		</h1>
-	</header>
+			<div class="glow"></div>
+		</div>
+		<header
+			class="p-6 sm:px-16 space-y-8 text-xl w-full text-left justify-start -mt-28 sm:-mt-40 lg:-mt-56"
+		>
+			<h1
+				class={[
+					'font-medium tracking-tighter text-6xl sm:text-7xl lg:text-9xl lg:mb-24 font-display'
+				]}
+			>
+				xylight.dev
+			</h1>
+		</header>
+	</div>
 	<Section>
 		<heading class="space-y-4">
 			<h2 id="about" class="font-display text-2xl">About me</h2>
@@ -59,7 +71,7 @@
 		>
 			My projects
 		</h2>
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full max-w-7xl mx-auto text-left">
+		<div class="flex flex-row flex-wrap gap-8 w-full text-left">
 			{#snippet project(
 				number: number,
 				name: string,
@@ -71,97 +83,81 @@
 				<svelte:element
 					this={url ? 'a' : 'article'}
 					href={url}
-					class={[
-						'flex flex-col gap-1 border rounded-3xl border-zinc-200 dark:border-zinc-800 p-8',
-						'hover:bg-indigo-500/2 transition-colors group relative overflow-hidden'
-					]}
+					class={['flex flex-col gap-2 group w-96 first:flex-2']}
 				>
 					{#if img}
-						<div class="h-64 mask-b-from-0 rounded-2xl overflow-hidden -mx-5 -mt-5">
+						<div
+							class="h-64 rounded-2xl overflow-hidden border border-slate-200 dark:border-zinc-800 mb-3"
+						>
 							{@render img()}
 						</div>
 					{/if}
-					<div
-						class={[
-							'bg-radial from-indigo-500/20 via-70% via-indigo-500/0',
-							'w-4xl aspect-square h-auto absolute -top-[33rem] -right-[33rem]',
-							'opacity-0 group-hover:opacity-100 transition-opacity -z-10'
-						]}
-					></div>
-					{#if number != 0}
-						<div
+					<div class={[img && 'flex-1']}></div>
+					<div class={['flex items-center gap-2 px-6']}>
+						<h3
 							class={[
-								'bg-zinc-100 dark:bg-zinc-800 text-indigo-600 dark:text-indigo-400 rounded-full',
-								'w-7 h-7 grid place-items-center font-bold font-display z-10'
+								'font-display text-3xl w-full tracking-tight font-bold group-hover:underline'
 							]}
 						>
-							{number}
-						</div>
-					{/if}
-					<div class={[img && 'flex-1']}></div>
-					<div class={['flex items-start gap-2']}>
-						<h3 class={['font-display text-3xl w-full']}>
 							{name}
 						</h3>
+
+						<div class="group-hover:rotate-90 transition-transform duration-500 ease-out">
+							<Icon src={ArrowRight} size="24" mini />
+						</div>
 					</div>
-					<p class="text-lg text-zinc-700 dark:text-zinc-300">
+					<p class="text-base text-zinc-700 dark:text-zinc-300 px-6">
 						{description}
 					</p>
-					{#if url}
-						<div
-							class="text-indigo-600 dark:text-indigo-400 flex flex-row gap-1 items-center"
-							aria-hidden="true"
-						>
-							<Icon src={ArrowTopRightOnSquare} size="16" micro />
-							<div>{new URL(url).hostname}</div>
-						</div>
-					{/if}
 				</svelte:element>
 			{/snippet}
 
 			{#snippet photonImg()}
 				<div class="contents dark:hidden">
 					<enhanced:img
-						src="./photon.png?w=320;480"
-						sizes="(min-width:1280px) 320px, (min-width:720px) 320px"
+						src="./photon.png?w=640,320"
+						sizes="(min-width:1280px) 640px, (min-width:720px) 320px"
 						alt="A screenshot of the interface of Photon"
 						class="object-cover object-top w-full h-full"
-						fetchpriority="high"
 					/>
 				</div>
 				<div class="hidden dark:contents">
 					<enhanced:img
-						src="./photon-dark.png?w=660;480;320"
-						sizes="(min-width:1280px) 320px, (min-width:720px) 320px"
+						src="./photon-dark.png?w=640,320"
+						sizes="(min-width:1280px) 640px, (min-width:720px) 320px"
 						alt="A screenshot of the interface of Photon"
 						class="object-cover object-top w-full h-full"
-						fetchpriority="high"
 					/>
 				</div>
 			{/snippet}
-			<div class="lg:col-span-2 mx-auto">
-				{@render project(
-					0,
-					'Photon',
-					`A fully-featured, well designed, and mature Svelte based web client for the fediverse.`,
-					undefined,
-					'https://use.phtn.app',
-					photonImg
-				)}
-			</div>
+			{#snippet placeholder()}
+				<div class="scale-200 origin-center h-full overflow-hidden">
+					<Placeholder seed="red" />
+				</div>
+			{/snippet}
+			{@render project(
+				0,
+				'Photon',
+				`A fully-featured, well designed, and mature Svelte based web client for the fediverse.`,
+				undefined,
+				'https://use.phtn.app',
+				photonImg
+			)}
 			{@render project(
 				1,
 				'Websites like this',
 				`I develop sites in SvelteKit and often TailwindCSS.`,
 				undefined,
-				'https://github.com/Xyphyn/xyphyn.github.io'
+				'https://github.com/Xyphyn/xyphyn.github.io',
+				placeholder
 			)}
 			{@render project(
 				2,
 				'More',
 				`Other projects of mine are on my GitHub profile.`,
 				undefined,
-				'https://github.com/Xyphyn'
+				'https://github.com/Xyphyn',
+				placeholder
 			)}
 		</div>
 	</Section>
@@ -188,8 +184,8 @@
 			oklch(67.3% 0.182 276.935 / 0) 70%,
 			transparent
 		);
-		background-position: 50% -40%;
-		background-size: 125rem 32rem;
+		background-position: 50% 0%;
+		background-size: 125rem 48rem;
 		background-repeat: no-repeat;
 	}
 </style>
