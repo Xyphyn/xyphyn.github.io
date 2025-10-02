@@ -3,10 +3,11 @@
 @theme {
 	--animate-pop-in: pop-in 1.1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 
-	--font-display: 'Lora', serif;
-	--font-sans: 'Nata', sans-serif;
+	--font-display: 'Lora', 'Georgia', 'Roboto Serif', 'Noto Serif', serif;
+	--font-sans: 'Newsreader', 'EB Garamond', 'Georgia', sans-serif;
 	--color-zinc-850: color-mix(in oklab, var(--color-zinc-800), var(--color-zinc-900));
 	--text-lg: 1.25rem;
+	--text-base: 1.1rem;
 
 	@keyframes pop-in {
 		from {
@@ -21,8 +22,8 @@
 }
 
 @font-face {
-	font-family: 'Nata';
-	src: url('/font/nata.woff2') format('woff2');
+	font-family: 'Newsreader';
+	src: url('/font/newsreader.woff2') format('woff2');
 	font-display: swap;
 }
 

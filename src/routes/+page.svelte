@@ -12,20 +12,36 @@
 
 <div class="z-0 space-y-8 flex flex-col justify-center items-center">
 	<div class="w-full p-4 sm:p-12 md:p-20 xl:p-24">
-		<div
+		<div class={[]}></div>
+		<header
 			class={[
-				'rounded-3xl border border-zinc-200 dark:border-zinc-700 relative -z-10',
-				'bg-white dark:bg-zinc-900 overflow-hidden min-h-48 sm:min-h-96 lg:min-h-[36rem] grid place-items-center'
+				'flex flex-col justify-end space-y-2 text-xl py-6 sm:py-16 gap-4',
+				'rounded-3xl border border-zinc-200 dark:border-zinc-700 relative z-0',
+				'bg-white dark:bg-zinc-900 overflow-hidden min-h-56 sm:min-h-96 lg:min-h-[36rem]'
 			]}
 		>
 			<div class="glow"></div>
-		</div>
-		<header
-			class="p-6 sm:px-16 space-y-8 text-xl w-full text-left justify-start -mt-28 sm:-mt-40 lg:-mt-56"
-		>
+			<nav class={['flex items-center flex-wrap justify-start sm:px-16']}>
+				{#snippet link(href: string, label: string, index: number = 0)}
+					<a
+						{href}
+						class={[
+							'font-display font-bold text-zinc-900 dark:text-zinc-50 opacity-50 hover:opacity-100',
+							'hover:bg-zinc-900 hover:dark:bg-zinc-50 hover:text-zinc-50 hover:dark:text-zinc-900',
+							'px-3 lg:px-4 py-2 transition-colors inline-flex flex-row items-center gap-2'
+						]}
+					>
+						{label}
+					</a>
+				{/snippet}
+
+				{@render link('/', 'Home')}
+				{@render link('/#projects', 'Projects')}
+				{@render link('/posts', 'Posts')}
+			</nav>
 			<h1
 				class={[
-					'font-medium tracking-tighter text-6xl sm:text-7xl lg:text-9xl lg:mb-24 font-display'
+					'font-medium tracking-tighter text-6xl sm:text-7xl lg:text-9xl font-display sm:px-16'
 				]}
 			>
 				xylight.dev
@@ -65,13 +81,10 @@
 		</heading>
 	</Section>
 	<Section>
-		<h2
-			id="projects"
-			class="font-display text-5xl sm:text-6xl lg:text-7xl tracking-tight lg:mt-12 lg:mb-24"
-		>
+		<h2 id="projects" class="font-display text-5xl sm:text-6xl tracking-tight lg:mt-12 lg:mb-16">
 			My projects
 		</h2>
-		<div class="flex flex-row flex-wrap gap-8 w-full text-left">
+		<div class="flex flex-row flex-wrap gap-x-8 gap-y-16 w-full text-left">
 			{#snippet project(
 				number: number,
 				name: string,
@@ -83,16 +96,15 @@
 				<svelte:element
 					this={url ? 'a' : 'article'}
 					href={url}
-					class={['flex flex-col gap-2 group w-96 first:flex-2']}
+					class={['flex flex-col gap-2 group w-full flex-1 first:flex-2']}
 				>
 					{#if img}
 						<div
-							class="h-64 rounded-2xl overflow-hidden border border-slate-200 dark:border-zinc-800 mb-3"
+							class="h-64 rounded-2xl overflow-hidden border border-slate-200 dark:border-zinc-800 mb-6"
 						>
 							{@render img()}
 						</div>
 					{/if}
-					<div class={[img && 'flex-1']}></div>
 					<div class={['flex items-center gap-2 px-6']}>
 						<h3
 							class={[
@@ -135,6 +147,11 @@
 					<Placeholder seed="red" />
 				</div>
 			{/snippet}
+			{#snippet placeholder2()}
+				<div class="scale-200 origin-center h-full overflow-hidden">
+					<Placeholder seed="*(&&*(788" />
+				</div>
+			{/snippet}
 			{@render project(
 				0,
 				'Photon',
@@ -146,7 +163,7 @@
 			{@render project(
 				1,
 				'Websites like this',
-				`I develop sites in SvelteKit and often TailwindCSS.`,
+				`Svelte is my typical framework of choice.`,
 				undefined,
 				'https://github.com/Xyphyn/xyphyn.github.io',
 				placeholder
@@ -157,7 +174,7 @@
 				`Other projects of mine are on my GitHub profile.`,
 				undefined,
 				'https://github.com/Xyphyn',
-				placeholder
+				placeholder2
 			)}
 		</div>
 	</Section>
@@ -187,5 +204,6 @@
 		background-position: 50% 0%;
 		background-size: 125rem 48rem;
 		background-repeat: no-repeat;
+		pointer-events: none;
 	}
 </style>
