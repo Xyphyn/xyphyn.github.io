@@ -21,12 +21,12 @@
 			]}
 		>
 			<div class="glow"></div>
-			<nav class={['flex items-center flex-wrap justify-start sm:px-16']}>
+			<nav class={['flex items-center flex-wrap justify-start px-5 sm:px-16']}>
 				{#snippet link(href: string, label: string, index: number = 0)}
 					<a
 						{href}
 						class={[
-							'font-display font-bold text-zinc-900 dark:text-zinc-50 opacity-50 hover:opacity-100',
+							'font-display font-medium text-base text-zinc-900 dark:text-zinc-50 opacity-50 hover:opacity-100',
 							'hover:bg-zinc-900 hover:dark:bg-zinc-50 hover:text-zinc-50 hover:dark:text-zinc-900',
 							'px-3 lg:px-4 py-2 transition-colors inline-flex flex-row items-center gap-2'
 						]}
@@ -39,11 +39,7 @@
 				{@render link('/#projects', 'Projects')}
 				{@render link('/posts', 'Posts')}
 			</nav>
-			<h1
-				class={[
-					'font-medium tracking-tighter text-6xl sm:text-7xl lg:text-9xl font-display sm:px-16'
-				]}
-			>
+			<h1 class={['tracking-tighter text-6xl sm:text-7xl lg:text-9xl font-display px-5 sm:px-16']}>
 				xylight.dev
 			</h1>
 		</header>
@@ -108,7 +104,7 @@
 					<div class={['flex items-center gap-2 px-6']}>
 						<h3
 							class={[
-								'font-display text-3xl w-full tracking-tight font-bold group-hover:underline'
+								'font-display text-3xl w-full tracking-tight font-medium group-hover:underline'
 							]}
 						>
 							{name}
@@ -181,6 +177,8 @@
 </div>
 
 <style>
+	@reference '../app.css';
+
 	.glow {
 		--max-opacity: 0.4;
 		@media (prefers-color-scheme: dark) {
@@ -202,8 +200,15 @@
 			transparent
 		);
 		background-position: 50% 0%;
-		background-size: 125rem 48rem;
+		background-size: 30rem 15rem;
 		background-repeat: no-repeat;
 		pointer-events: none;
+
+		@variant sm {
+			background-size: 50rem 30rem;
+		}
+		@variant lg {
+			background-size: 125rem 48rem;
+		}
 	}
 </style>

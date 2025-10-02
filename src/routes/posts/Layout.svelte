@@ -143,7 +143,7 @@
 			h2,
 			h3 {
 				font-family: var(--font-display);
-				font-weight: var(--font-weight-bold);
+				font-weight: var(--font-weight-semibold);
 				margin-top: 3rem;
 			}
 
