@@ -172,7 +172,6 @@
 				@media (prefers-color-scheme: dark) {
 					color: var(--color-zinc-300);
 				}
-				font-weight: 500;
 			}
 
 			a {
