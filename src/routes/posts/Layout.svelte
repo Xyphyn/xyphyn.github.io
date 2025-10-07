@@ -51,7 +51,7 @@
 {/snippet}
 
 <div class={['main-grid mx-auto lg:space-x-24']} style="animation-delay: 100ms;">
-	<nav class="flex flex-col gap-2 lg:sticky top-12 self-start">
+	<nav class="flex flex-col gap-2 lg:sticky top-12 self-start invisible">
 		<h3 class="font-display text-lg">Table of Contents</h3>
 		{#each headings as item}
 			<a
@@ -80,23 +80,13 @@
 					</date>
 				</div>
 			{/if}
-			<ul aria-label="Tags" class="flex flex-row flex-wrap gap-5">
-				{#each keywords.split(', ').slice(0, 3) as keyword}
-					<li class="font-bold text-sm uppercase text-indigo-600 dark:text-indigo-400">
-						{keyword}
-					</li>
-				{/each}
-			</ul>
 			<h1 class="font-display text-4xl md:text-5xl">{title}</h1>
-			<p class="text-base sm:text-lg md:text-xl max-w-2xl w-full">
-				{description}
-			</p>
 		</header>
 		<article class="post">
 			{@render children?.()}
 		</article>
 	</div>
-	<aside class="flex flex-col gap-2 lg:sticky top-12 self-start">
+	<aside class="flex flex-col gap-2 lg:sticky top-12 self-start invisible">
 		<h3 class="font-display text-lg">Links</h3>
 		<a
 			class="text-base text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 hover:dark:text-zinc-100 target-link text-balance active:text-indigo-600"

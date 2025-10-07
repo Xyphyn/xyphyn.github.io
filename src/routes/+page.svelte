@@ -26,8 +26,7 @@
 					<a
 						{href}
 						class={[
-							'font-display font-medium text-base text-zinc-900 dark:text-zinc-50 opacity-50 hover:opacity-100',
-							'hover:bg-zinc-900 hover:dark:bg-zinc-50 hover:text-zinc-50 hover:dark:text-zinc-900',
+							'font-display font-medium text-base hover:underline decoration-2 decoration-purple-200 dark:decoration-zinc-500',
 							'px-3 lg:px-4 py-2 transition-colors inline-flex flex-row items-center gap-2'
 						]}
 					>
@@ -179,11 +178,22 @@
 <style>
 	@reference '../app.css';
 
-	.glow {
-		--max-opacity: 0.4;
-		@media (prefers-color-scheme: dark) {
-			--max-opacity: 0.2;
+	@keyframes brighten {
+		from {
+			opacity: 0.5;
 		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	.glow {
+		--max-opacity: 0.7;
+		@media (prefers-color-scheme: dark) {
+			--max-opacity: 0.4;
+		}
+
+		animation: brighten ease-out 1s forwards;
 
 		position: absolute;
 		width: 100%;
@@ -195,7 +205,7 @@
 		background: radial-gradient(
 			ellipse at top center in oklch,
 			oklch(75% 0.083 55.934 / var(--max-opacity)),
-			oklch(65.6% 0.141 354.308 / 0.2),
+			oklch(65.6% 0.141 354.308 / calc(var(--max-opacity) / 2)),
 			oklch(67.3% 0.182 276.935 / 0) 70%,
 			transparent
 		);

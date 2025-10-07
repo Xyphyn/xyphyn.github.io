@@ -23,8 +23,7 @@
 				<a
 					{href}
 					class={[
-						'font-display font-bold text-zinc-500 dark:text-zinc-400',
-						'hover:bg-zinc-900 hover:dark:bg-zinc-50 hover:text-zinc-50 hover:dark:text-zinc-900',
+						'font-display hover:underline',
 						'px-3 lg:px-4 py-2 transition-colors inline-flex flex-row items-center gap-2'
 					]}
 				>

@@ -2,7 +2,7 @@
 title: How to use llama.cpp (for ex-ollama users)
 description: Here's a relatively simple guide for people who know a bit about LLMs.
 date: 2025-09-27
-link: /posts/ollama-to-llama-cpp
+link: /posts/hidden-ollama-to-llama-cpp
 keywords: llm, gpu compute, llama.cpp
 ---
 

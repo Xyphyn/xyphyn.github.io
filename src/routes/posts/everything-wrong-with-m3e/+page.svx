@@ -23,8 +23,6 @@ The new design system supposedly had a lot of research poured into it to help us
 
 It's been many months, and the "bold" new design has rolled out to **Android** and all the Google apps.
 
-So, how does it hold up?
-
 ## Not very different
 
 The main places updated with the new design language are:
@@ -34,7 +32,7 @@ The main places updated with the new design language are:
 
 It's not quite an insane overhaul, but there are a few big differences:
 
-- Blur is used frequently (I have some strong opinions on how they implemented this)
+- Blur is used occasionally
 - New slider design
 - A few components are animated more
 - In apps, most items in lists are now containerized
@@ -47,7 +45,7 @@ It's not quite an insane overhaul, but there are a few big differences:
 
 After a while of using the system with this new design, I started to notice a few things that seem out of place or straight up look bad.
 
-For example, the blur. The tinted panel with a tiny blur radius just ain't it. There's also the mixed border radiuses (which you can see on the quick setting toggles) which look rather odd.
+For example, the blur. The tinted panel with a tiny blur radius just ain't it. There's also the mixed border radii (which you can see on the quick setting toggles) which look rather odd.
 
 Then I started noticing major inconsistencies between apps. The phone & contacts colors are strangely swapped, some layout margins are completely wrong, padding is off, and some animations are just gone.
 
@@ -73,11 +71,13 @@ You don't even need to pixel peep to see the amount of inconsistency! That's a l
 - Size of the search bars are different.
 - The padding difference is excusable because call items don't need to be as compact.
 
-Did I mention that the animation between pages for the phone app uses a lateral transition, [against Google's own guidelines?](https://m3.material.io/styles/motion/transitions/applying-transitions#98deff91-7469-4647-abdc-2f6562b98d93)
+Additionally, none of the new "expressive" components are used in either.
+
+The animation between the phone app now has a laterial transition, [discouraged by Google's own guidelines.](https://m3.material.io/styles/motion/transitions/applying-transitions#98deff91-7469-4647-abdc-2f6562b98d93)
 
 ### Calculator
 
-I'm not comparing this one to anything. The update is crazy in of itself. Here's what the calculator used to look like **_before the update_**:
+The calculator got absolutely butchered in its update. In its glory days, before the update, it looked like this:
 
 <Img class="w-3xs">
   <enhanced:img loading="lazy" src="./calculator-old.webp" />
@@ -89,17 +89,17 @@ Here is it now, with the ultra mega super expressive expressed feeling emotional
 
 ---
 
-Actually, wait. First I have to talk about the typo in their release notes.
+Actually, wait. Before I installed the update, I spotted this in the release notes:
 
 <Img>
   <enhanced:img loading="lazy" src="./calculator-typo.webp" />
 </Img>
 
-Oops. Anyway,
+Oops.
 
 ---
 
-They changed the calculator to look like this.
+The _Great Butchering_ turned the calculator into this:
 
 <Img class="w-3xs">
   <enhanced:img loading="lazy" src="./calculator-garbage.webp" />
@@ -109,18 +109,18 @@ They changed the calculator to look like this.
 
 In summary: the _"expressive"_ update to the calculator has brought:
 
-- Less padding
-- Incorrect shapes
-- Removal of `sqrt`, Pi, exponents, factorial, etc without expanding
-- Less distinction between the number input
+- Strange padding.
+- _Very very slightly_ imperfect circles.
+- Removal of `sqrt`, Pi, exponents, factorial, etc without expanding.
+- Less distinction between the number input.
 
-That isn't even the worst part of this! Look at how the buttons shift when you press "invert":
+That isn't even the worst part! Look at how the buttons shift when you press "invert":
 
-<Img class="w-3xs">
+<Img title="Look closely at the advanced functions." class="w-3xs">
   <img loading="lazy" src="./calculator-animation.webp" />
 </Img>
 
-So, somehow, the buttons were made in such a way that they are not automatically aligned or sized correctly. They shift when you press "invert", and not even in a consistent way.
+Somehow, the buttons were made in such a way that they are not automatically aligned or sized correctly. They shift when you press "invert", and not even in a consistent way.
 
 - `sqrt` becomes a slightly wider 𝑥<sup>2</sup>
 - Pi through the degrees/radians toggle are fine
@@ -137,15 +137,15 @@ Okay, we're starting off not nearly as bad as the calculator. It at least looks 
   <img loading="lazy" src="./clock.webp" />
 </Img>
 
-The padding of the locations is not the same for the top and bottom, and the font of the navbar isn't correct--or is it? I don't even know what the correct boldness and font are anymore.
+The padding of the locations is not the same for the top and bottom, and the font of the navbar isn't correct--or is it? I don't even know what the correct variables are, they have been completely disregarded everywhere.
 
-Oh and fun fact, the stopwatch is scrollable even though it shouldn't need to be. They allocated way too much space for the duration. (Also, all animations were removed here.)
+Fun fact, the stopwatch is scrollable even though it shouldn't need to be. They allocated way too much space for the duration. To make it less expressive, all animations were removed as well.
 
 <Img class="w-3xs">
   <img loading="lazy" src="./clock-scroll-stopwatch.webp" />
 </Img>
 
-Every one of these apps has to have some weird layout bug though. The clock is no exception here.
+Every one of these apps has to have some weird layout bug. The clock is no exception here.
 
 In the "World Clock" view, the layout shifts every second.
 
@@ -173,8 +173,6 @@ This image from before is what the quick setting/notification panel looks like.
 - What are these new icons? They're iOS-esque, which isn't bad, per se, but I liked the old ones more.
 
 ### The app drawer
-
-I changed wallpapers before I switched to this, that's why the colors are different.
 
 <Img alt="" class="w-3xs">
   <enhanced:img loading="lazy" src="./app-drawer.png">
@@ -226,9 +224,7 @@ This is insanity.
   </Img>
 </div>
 
-I'll add to this list as I find more major problems.
-
-So, Material 3 Expressive was supposed to be unique in that apps would look all different and unique while still following a "design system", compared to Material 3 which encouraged identical looking apps.
+Material 3 Expressive was supposed to be unique in that apps would look all different and unique while still following a "design system", compared to Material 3 which encouraged identical looking apps.
 
 I think for the native apps, they made them unique in the wrong ways.
 
