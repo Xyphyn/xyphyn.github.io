@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Placeholder from '$lib/Placeholder.svelte'
-	import { ArrowLeft, ArrowRight, Icon, Rss } from 'svelte-hero-icons'
+	import { Icon, Rss } from 'svelte-hero-icons'
 
 	let { data } = $props()
 </script>
@@ -28,17 +28,10 @@
 			<article
 				class={[
 					'flex flex-col gap-1 border rounded-3xl border-zinc-200 dark:border-zinc-800 p-6',
-					'hover:bg-indigo-500/2 transition-colors group animate-pop-in relative overflow-hidden'
+					'hover:bg-indigo-500/2 transition-colors group  relative overflow-hidden'
 				]}
-				style="animation-delay: {index * 50}ms; opacity: 0;"
+				style="animation-delay: {index * 50}ms;"
 			>
-				<div
-					class={[
-						'bg-radial from-indigo-500/20 via-70% via-indigo-500/0',
-						'w-4xl aspect-square h-auto absolute -bottom-[33rem] -right-[33rem]',
-						'opacity-0 group-hover:opacity-100 transition-opacity'
-					]}
-				></div>
 				<a
 					href={post.link}
 					class="absolute inset-0 z-10 rounded-[inherit]"
@@ -47,7 +40,7 @@
 					<span class="sr-only">Read article: {post.title}</span>
 				</a>
 				<div
-					class="h-48 overflow-hidden grid place-items-center rounded-2xl *:scale-150 -mt-3 -mx-3 mb-3"
+					class="h-48 overflow-hidden grid place-items-center rounded-2xl *:scale-150 -m-7 mask-b-from-0%"
 				>
 					<Placeholder seed={post.title} />
 				</div>
@@ -56,13 +49,10 @@
 						{new Intl.DateTimeFormat('en', { dateStyle: 'long' }).format(new Date(post.date))}
 					</div>
 				{/if}
-				<h2 class="font-display text-2xl group-hover:underline">{post.title}</h2>
-				<p class="max-w-md text-lg text-zinc-500 dark:text-zinc-400">
+				<h2 class="font-display text-2xl font-medium tracking-tight">{post.title}</h2>
+				<p class="max-w-md text-zinc-600 dark:text-zinc-400">
 					{post.description}
 				</p>
-				<div class="text-indigo-500 font-medium flex flex-row gap-1 items-center text-lg mt-auto">
-					Read <Icon src={ArrowRight} micro size="16" />
-				</div>
 			</article>
 		{/each}
 	</div>

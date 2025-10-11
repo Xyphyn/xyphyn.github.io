@@ -34,9 +34,16 @@
 	font-display: swap;
 }
 
+/* @font-face {
+	font-family: 'Baskervville';
+	src: url('/font/baskervville-italic.woff2') format('woff2');
+	font-display: swap;
+	font-style: italic;
+} */
+
 html,
 body {
-	@apply bg-zinc-50 text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100 accent-indigo-600 dark:accent-indigo-400 font-sans;
+	@apply bg-pink-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 accent-orange-300 dark:accent-orange-200 font-sans;
 }
 
 ::selection {

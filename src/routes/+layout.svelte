@@ -43,11 +43,5 @@
 		class=" flex flex-row px-8 w-full text-zinc-600 dark:text-zinc-400 font-medium text-sm py-6 gap-4 mt-auto"
 	>
 		<div>xylight.dev</div>
-		<div class="flex-1"></div>
-		<div class="flex flex-row flex-wrap gap-4">
-			<a class="hover:underline" href="https://matrix.to/#/@xylight:chat.phtn.app">Matrix</a>
-			<a class="hover:underline" href="https://lemdro.id/u/Xylight">Lemmy</a>
-			<a class="hover:underline" href="https://github.com/Xyphyn">GitHub</a>
-		</div>
 	</footer>
 </div>
