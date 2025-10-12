@@ -43,7 +43,7 @@
 
 html,
 body {
-	@apply bg-pink-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 accent-orange-300 dark:accent-orange-200 font-sans;
+	@apply not-dark:bg-gradient-to-b from-zinc-50 to-red-50 bg-zinc-50 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100 accent-orange-300 dark:accent-orange-200 font-sans;
 }
 
 ::selection {

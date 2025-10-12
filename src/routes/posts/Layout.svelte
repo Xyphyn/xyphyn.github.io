@@ -80,7 +80,7 @@
 					</date>
 				</div>
 			{/if}
-			<h1 class="font-display text-4xl md:text-5xl">{title}</h1>
+			<h1 class="font-display text-4xl md:text-5xl tracking-tighter">{title}</h1>
 		</header>
 		<article class="post">
 			{@render children?.()}
