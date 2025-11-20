@@ -8,7 +8,7 @@ keywords: photon, lemmy, svelte, debugging, web development, cursed code
 
 ## how it started
 
-It's 2 AM. I'm working on infinite scroll for Photon. Everything seems to be working fine.
+It's 2 AM on a Tuesday. I'm working on infinite scroll for Photon. Everything seems to be working fine.
 
 And then I scroll down a bit, scroll back up, and _what the hell is happening to the images?_
 
