@@ -1,0 +1,226 @@
+---
+title: The Great Piefed Translation Nightmare
+description: How I accidentally created 1000+ lines of cursed API adapter code and questioned all my life choices.
+date: 2025-11-20
+link: /posts/photon-cursed-code
+keywords: lemmy, piefed, fediverse, programming, debugging
+---
+
+# the beginning
+
+Photon started as a Lemmy client. Just Lemmy. Beautiful, simple, one API to rule them all. Life was good.
+
+Then someone opened an issue: "Can you add Piefed support?"
+
+For context, Piefed is another fediverse platform that's compatible with Lemmy. Same basic concepts: communities, posts, comments, votes. They even share the ActivityPub protocol! How hard could it be?
+
+_Narrator: It was, in fact, very hard._
+
+## the innocence
+
+I did what any reasonable developer would do. I opened the Piefed API documentation, ready to just swap out a few endpoints and call it a day.
+
+The first warning sign should have been when I noticed their API endpoints ended in `/api/alpha`. Not `/api/v1`. Not `/api/v2`. `/api/alpha`.
+
+**Alpha.**
+
+But I pressed on, young and foolish, thinking "Hey, at least they're honest about it being experimental!"
+
+## the discovery
+
+I started comparing the response formats. Lemmy's `getSite` endpoint returns something sensible:
+
+```json
+{
+  "site_view": {
+    "site": { ... },
+    "local_site": { ... },
+    "counts": {
+      "users": 12345,
+      "posts": 67890,
+      "comments": 111213
+    }
+  }
+}
+```
+
+Piefed's version? Oh boy.
+
+```json
+{
+  "site": {
+    "user_count": 12345
+  }
+}
+```
+
+That's it. No post count. No comment count. No active user statistics. Just... vibes.
+
+My TypeScript types were screaming. I was screaming. My computer was probably screaming too, but silently, because it's a computer.
+
+## the realization
+
+After spending 3 hours comparing API responses, I made a horrifying discovery: **almost nothing matched.**
+
+- Field names were different
+- Data structures were nested differently
+- Some fields just... didn't exist on one side or the other
+- The sorting parameters used different enums
+- Community subscription status was represented completely differently
+
+I sat there, staring at my screen, as the true scope of this "simple feature request" dawned on me.
+
+I would need to translate. Everything.
+
+## the descent into madness
+
+I created a file called `piefed/adapter.ts`. It started innocently enough - a few helper functions to convert between formats.
+
+```typescript
+function toPersonView(piefedPerson: any): PersonView {
+  return {
+    person: toPerson(piefedPerson.person),
+    counts: {
+      // Piefed doesn't track most of these, so... -1?
+      comment_count: -1,
+      post_count: -1,
+      // Wait, they DO have comment score
+      comment_score: piefedPerson.comment_score ?? 0,
+      // But not post score??????
+      post_score: -1,
+    }
+  }
+}
+```
+
+Then I needed to convert posts. And comments. And communities. And users. And moderation actions. And reports. And private messages.
+
+The file grew. And grew. And **grew**.
+
+## the breaking point
+
+At 2am on a Tuesday, I found myself writing this code:
+
+```typescript
+counts: {
+  comments: -1,
+  communities: -1,
+  posts: -1,
+  site_id: -1,
+  users: response.site.user_count ?? -1,
+  users_active_day: -1,
+  users_active_half_year: -1,
+  users_active_month: -1,
+  users_active_week: -1,
+},
+```
+
+Look at it. _Look at it._ Nine fields. **Eight** of them are just `-1` because Piefed doesn't provide that data.
+
+This is when I added the comment to `piefed/adapter.ts`:
+
+```typescript
+// @ts-expect-error i dont feel like fixing this right now
+```
+
+It's still there. I haven't fixed it. I don't think I ever will.
+
+## the metrics of despair
+
+By the time I was done, `piefed/adapter.ts` had ballooned to **1,043 lines of code**. For context, the entire Lemmy adapter is 496 lines, and half of that is just method signatures.
+
+The Piefed schema definitions? **6,001 lines.** I'm not even sure what half of those types are for. I'm afraid to look.
+
+I also created a `rewrite.ts` file with 329 lines of helper functions. Functions with names like:
+
+- `toCommentView`
+- `toPostView`
+- `toCommunityView`
+- `toPersonView`
+- `toFeedView`
+- `toTopicView` (what's a topic? I don't know. It seemed important.)
+
+Each one carefully translating between two APIs that claim to do the same thing but agree on absolutely nothing.
+
+## the cursed patterns
+
+Here are some of my favorite cursed patterns that emerged:
+
+**Pattern 1: The Maybe-Sort**
+```typescript
+sort: params.sort ? toSortType(params.sort) : undefined
+```
+
+Sometimes Piefed uses different sort types. Sometimes it doesn't support a sort type at all. So I wrote a converter that maps between them, but it might return undefined, and that's fine, and everything is fine.
+
+**Pattern 2: The Negative One Of Shame**
+```typescript
+person_id: response.user?.id ?? -1
+```
+
+Throughout the codebase, `-1` became my way of saying "this field is required by TypeScript but Piefed doesn't give it to me, so here's a clearly invalid value that will probably cause bugs later but at least the compiler is happy."
+
+**Pattern 3: The Throw-And-Forget**
+```typescript
+async generateTotpSecret(): ReturnType<BaseClient['generateTotpSecret']> {
+  throw new Error('unsupported')
+}
+```
+
+Piefed doesn't support two-factor authentication yet. Or login token management. Or media galleries. So I just... throw errors and hope nobody calls these methods.
+
+## the todo comments
+
+Scattered throughout the adapter are TODO comments that document my gradual loss of sanity:
+
+```typescript
+// TODO figure out if this is a bug or not
+```
+
+```typescript
+// TODO add private votes
+```
+
+```typescript
+// TODO figure out what's wrong here
+```
+
+That last one doesn't even specify what's wrong. Past me just knew that _something_ was wrong and bailed.
+
+There's also this gem in another file:
+
+```typescript
+// TODO obliterate this file
+```
+
+I don't remember writing that, but I respect the energy.
+
+## the aftermath
+
+Does it work? Yeah, surprisingly. Users can browse Piefed instances through Photon now. They can vote, comment, post, moderate. It all works.
+
+Is it cursed? Absolutely.
+
+The `piefed/adapter.ts` file is a monument to the chaos that emerges when two projects with similar goals take completely different implementation approaches. It's a 1000+ line translation layer that exists solely because someone decided to name their user count field `user_count` instead of using a nested `counts` object.
+
+## lessons learned
+
+1. **"Compatible" is a spectrum.** Just because two platforms use ActivityPub doesn't mean their APIs will be similar.
+
+2. **Documentation lies.** Or rather, documentation describes what _should_ work, not what _does_ work, or what works _consistently_.
+
+3. **TypeScript will not save you.** It will just make you very aware of how much pain you're in.
+
+4. **`-1` is a valid coping mechanism.** Not a good one. But valid.
+
+5. **Sometimes you write cursed code, ship it, and move on.** The perfect is the enemy of the shipped, and I needed to ship.
+
+Would I do it again? I mean, I already did it, so that question is moot. Would I do it _differently_? Probably not. Sometimes the cursed path is the only path forward.
+
+And hey, at least I didn't have to rewrite it in Rust.
+
+_Yet._
+
+---
+
+_If you want to witness this cursed code firsthand, Photon is open source: [github.com/Xyphyn/photon](https://github.com/Xyphyn/photon). The piefed adapter is in `src/lib/api/piefed/adapter.ts`. I'm so sorry._
