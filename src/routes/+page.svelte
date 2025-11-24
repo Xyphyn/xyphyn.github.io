@@ -47,47 +47,34 @@
 				>
 					xylight.dev
 				</span>
-				<svg
-					width="40"
-					height="40"
-					viewBox="0 0 280 280"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-					class="float-right rotate-45 self-center dark:text-red-100"
-				>
-					<path
-						d="M178.73 6.20997C238.87 -19.91 299.91 41.13 273.79 101.27L269.47 111.21C261.5 129.58 261.5 150.42 269.47 168.79L273.79 178.73C299.91 238.87 238.87 299.91 178.73 273.79L168.79 269.47C150.42 261.5 129.58 261.5 111.21 269.47L101.27 273.79C41.128 299.91 -19.9141 238.87 6.20694 178.73L10.526 168.79C18.501 150.42 18.501 129.58 10.526 111.21L6.20694 101.27C-19.9141 41.13 41.128 -19.91 101.27 6.20997L111.21 10.53C129.58 18.5 150.42 18.5 168.79 10.53L178.73 6.20997Z"
-						fill="currentColor"
-					/>
-				</svg>
 			</h1>
 		</div>
 	</header>
+
+	{#snippet social(href: string, label: string)}
+		<a {href} class="inline text-indigo-600 dark:text-indigo-400 hover:underline decoration-2">
+			{label}
+		</a>
+	{/snippet}
+
 	<Section>
 		<heading class="space-y-4">
 			<h2 id="about" class="font-display text-3xl font-medium tracking-tight">About me</h2>
-
-			{#snippet social(href: string, label: string)}
-				<a {href} class="inline text-indigo-600 dark:text-indigo-400 hover:underline decoration-2">
-					{label}
-				</a>
-			{/snippet}
-
 			<div
 				class="text-2xl sm:text-2xl text-zinc-500 dark:text-zinc-400 max-w-3xl leading-[1.5] space-y-6 text-left font-medium tracking-tight"
 			>
 				<p>
 					<span class="text-zinc-900 dark:text-zinc-50">
-						I am a hobbyist developer and designer.
+						I am a hobbyist developer, UX designer, and sysadmin.
 					</span>
-					I try to create applications that are helpful and convenient.
+					I try to create applications that are helpful, and convenient.
 				</p>
 				<p>
-					My socials are at {@render social(
-						'https://matrix.to/#/@xylight:chat.phtn.app',
-						'Matrix'
-					)}, {@render social('https://github.com/Xyphyn', 'GitHub')},
-					{@render social('https://lemdro.id/u/Xylight', 'Lemmy')}, and {@render social(
+					{@render social('https://matrix.to/#/@xylight:chat.phtn.app', 'Matrix')}, {@render social(
+						'https://github.com/Xyphyn',
+						'GitHub'
+					)},
+					{@render social('https://lemdro.id/u/Xylight', 'Lemmy')}, {@render social(
 						'https://mas.to/@Xylight',
 						'Mastodon'
 					)}.
@@ -138,7 +125,7 @@
 						src="./photon.png?w=640,320"
 						sizes="(min-width:1280px) 640px, (min-width:720px) 320px"
 						alt="A screenshot of the interface of Photon"
-						class="object-cover object-top w-full h-full"
+						class="object-cover object-top w-full"
 					/>
 				</div>
 				<div class="hidden dark:contents">
@@ -146,18 +133,13 @@
 						src="./photon-dark.png?w=640,320"
 						sizes="(min-width:1280px) 640px, (min-width:720px) 320px"
 						alt="A screenshot of the interface of Photon"
-						class="object-cover object-top w-full h-full"
+						class="object-cover object-top w-full"
 					/>
 				</div>
 			{/snippet}
 			{#snippet placeholder()}
 				<div class="scale-200 origin-center h-full overflow-hidden">
 					<Placeholder seed="red" />
-				</div>
-			{/snippet}
-			{#snippet placeholder2()}
-				<div class="scale-200 origin-center h-full overflow-hidden">
-					<Placeholder seed="*(&&*(788" />
 				</div>
 			{/snippet}
 			{@render project(
@@ -176,15 +158,13 @@
 				'https://github.com/Xyphyn/xyphyn.github.io',
 				placeholder
 			)}
-			{@render project(
-				2,
-				'More',
-				`Other projects of mine are on my GitHub profile.`,
-				undefined,
-				'https://github.com/Xyphyn',
-				placeholder2
-			)}
 		</div>
+		<p class="tracking-tight text-xl text-zinc-600 dark:text-zinc-400 max-w-xl px-8">
+			If you'd like to support my work, especially on Photon, you can donate at {@render social(
+				'https://buymeacoffee.com/xylight',
+				'Buy me a Coffee'
+			)}.
+		</p>
 	</Section>
 </div>
 
