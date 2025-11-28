@@ -1,0 +1,183 @@
+---
+title: The Ghost in the Feed
+description: Where I spent 6 hours debugging why images would infinitely flicker, and it turned out to be a race condition between localStorage and Svelte 5's reactivity system. As one does.
+date: 2025-11-20
+link: /posts/the-ghost-in-the-feed
+keywords: photon, lemmy, svelte, debugging, web development, cursed code
+---
+
+## how it started
+
+It was 2 AM on a Tuesday, as always. I'm working on infinite scroll for Photon while vibing to some beats. Everything seems to be working fine.
+
+And then I scroll down a bit, scroll back up, and _what the hell is happening to the images?_
+
+They're loading. Then they disappear. Then they load again. Then they disappear again. The entire feed is flickering like a broken CRT monitor from 2003. I thought my GPU was dying.
+
+But no, it's just the feed having an existential crisis.
+
+## the reproduction steps from hell
+
+After about 30 minutes of trying to figure out what I did, I finally nailed down the steps to reproduce this nightmare:
+
+1. Scroll down exactly 4.7 posts
+2. Scroll back up
+3. Wait 3 seconds
+4. Watch in horror as every image starts having a seizure
+
+What kind of bug has _decimal point precision_ in its reproduction steps?
+
+## console.log goes brrrrr
+
+So I did what any reasonable person would do at 2 AM. I added `console.log()` to **everything**.
+
+And I mean everything. Every state change, every render, every single time an image decided to do anything. The console looked like the Matrix. There were so many logs I couldn't even read them anymore.
+
+But I started to notice a pattern:
+
+1. Image `onload` fires
+2. Component unmounts
+3. Component immediately remounts _for no reason_
+4. Repeat infinitely
+
+And here's the thing that made me question reality: **the component should not be unmounting**. There's no conditional rendering. The keys are fine. I triple-checked everything.
+
+WHAT IS HAPPENING.
+
+## svelte 5 and its consequences
+
+_A brief disclaimer: I love Svelte 5. The new runes system is genuinely great. But when things go wrong, they go **really** wrong._
+
+Photon uses Svelte 5's fancy new reactivity with `$state` and `$derived`. It's insanely fast and the DX is amazing... until you accidentally create a reactive loop that violates the laws of thermodynamics.
+
+I eventually narrowed it down to this completely innocent-looking code:
+
+```svelte
+let imageLoaded = $state<boolean | null>(null)
+
+onMount(() => {
+  imageLoaded = false
+})
+```
+
+Looks fine, right? NOPE.
+
+The problem was how the feed state was managed. I had this `Feed` class:
+
+```typescript
+#data = $state<Response>()
+```
+
+Here's what was happening:
+
+1. `imageLoaded` starts as `null`
+2. Component mounts, sets it to `false`
+3. Image loads, sets it to `true`
+4. This somehow triggers the feed to think it needs to update
+5. Feed update causes component to remount
+6. `imageLoaded` resets to `null`
+7. GOTO 1
+
+It's a cascading reactivity nightmare. Svelte 5's fine-grained reactivity was _too good_ at tracking state changes, and it created this infinite loop of suffering.
+
+## but wait, it gets worse
+
+So at this point I'm thinking "okay, I found the bug, I'll just fix the state initialization".
+
+I refresh the page to test.
+
+**The bug is gone.**
+
+I try again. No bug. I'm starting to think I hallucinated the entire thing.
+
+Then I realize: I had closed DevTools.
+
+I open DevTools again. **The bug is back.**
+
+EXCUSE ME?
+
+After another hour of pain, I discovered this bug ONLY happens when:
+
+- You're using Firefox _(of course)_
+- DevTools is open
+- "Disable Cache" is checked
+- Your localStorage has more than 50KB of data
+
+That last one is what really got me. Why would localStorage size matter at all?
+
+## the localStorage rabbit hole
+
+Turns out, when you have a lot of data in localStorage (like, say, multiple Lemmy accounts with their auth tokens, favorite communities, settings, etc), reading from it takes a measurable amount of time.
+
+And I was reading from localStorage _on every single feed update_ to get the user's profile data.
+
+So the actual sequence of events was:
+
+1. User scrolls → feed updates
+2. Feed update starts reading from localStorage _(this is slow)_
+3. While waiting for localStorage, images start loading
+4. Images finish loading before localStorage read completes
+5. localStorage finally finishes, triggers state update
+6. State update causes re-render
+7. Images reset and load again
+8. GOTO 1
+
+It's a **race condition** between localStorage deserialization and image loading, orchestrated by Svelte 5's reactivity system.
+
+A heisenbug. The act of debugging _(opening DevTools, disabling cache)_ was changing the timing enough to trigger the bug.
+
+I hate everything.
+
+## the fix (it's embarrassingly simple)
+
+After 6 hours of debugging, the fix was like 3 lines of code.
+
+First, I added a check to prevent unnecessary feed updates:
+
+```typescript
+async load(params: Params) {
+  if (!recursiveEqual(params, this.#lastParams)) {
+    this.#data = undefined
+  }
+  this.#lastParams = params
+
+  if (this.#data == null) this.#data = await this.#fetch(params)
+
+  return this.#data
+}
+```
+
+That `recursiveEqual` check means the feed won't re-fetch if the params haven't actually changed.
+
+Then I fixed the image state initialization:
+
+```svelte
+let imageLoaded = $state(false)
+```
+
+Just initialize it to `false` directly instead of doing the `null` → `false` → `true` dance.
+
+Done. Bug gone. I wanted to throw my laptop out the window.
+
+## what I learned (unfortunately)
+
+- Svelte 5's fine-grained reactivity is powerful but you _really_ need to think about your state transitions
+- Race conditions are the absolute worst kind of bug because they only happen under very specific timing conditions
+- localStorage is way slower than you think, especially with large JSON objects _(I added a cache layer after this)_
+- Heisenbugs are real and I hate them
+- Opening DevTools can literally change how your code behaves
+- Never trust a bug that only appears at 2 AM _(but also those are the most interesting ones)_
+
+## the epilogue
+
+A week after I fixed this, someone in the Photon Matrix channel goes: "hey I'm getting this weird image flickering bug".
+
+I immediately respond: "let me guess. Firefox, DevTools open, multiple accounts?"
+
+"...how did you know"
+
+Some scars never heal.
+
+---
+
+_Photon is [ghost-free](https://phtn.app) now I promise (please don't find more ghosts)_
