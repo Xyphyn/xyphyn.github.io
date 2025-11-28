@@ -1,0 +1,126 @@
+---
+title: How to setup ComfyUI (oversimplified)
+description: Try out image/video generators that run on your own hardware.
+date: 2025-11-28
+link: /posts/setup-comfyui
+keywords: guide,comfyui,ai,diffusion
+---
+
+<script>
+  import Img from '../components/Image.svelte'
+</script>
+
+<Img>
+  <enhanced:img src="./comfyui.png" />
+</Img>
+
+## Start
+
+ComfyUI is the standard for running diffusion models on your own hardware, akin to how llama.cpp and vLLM are for LLMs.
+
+It uses a node-based workflow system to load models, images, encode prompts, manipulate outputs, etc.
+
+It supports both ROCm for AMD GPUs and CUDA for Nvidia GPUs, and CPU offloading.
+
+This guide will show you how to setup and run the new [Z Image Turbo](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo) model.
+
+## Download
+
+You'll need to first install **Git**, **Python**, and **your GPU's compute library** (ROCm/HIP for AMD, CUDA for Nvidia).
+
+First, clone the ComfyUI repository.
+
+```bash
+git clone https://github.com/comfyanonymous/ComfyUI.git
+cd ComfyUI
+```
+
+Then, we'll setup a `venv` so that we can install dependencies in a clean way. If you know how to, you can use another venv manager if you'd like.
+
+```bash
+python -m venv venv
+source venv/bin/activate # If you're using fish, use the file activate.fish instead
+```
+
+Now, we must install the python dependencies for your GPU.
+
+### AMD (ROCm)
+
+```bash
+pip install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.4
+```
+
+### Nvidia (CUDA)
+
+```bash
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu130
+```
+
+And finally, install the remaining ComfyUI's dependencies from the `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Use
+
+_Note: If you're using a technically unsupported AMD GPU, you may need to include a special environment variable. On my RX 6600 XT, I needed to add `HSA_OVERRIDE_GFX_VERSION=10.3.0`_.
+
+Start ComfyUI.
+
+```bash
+python main.py
+  --listen 0.0.0.0 # (Optional) this lets other devices on the network access ComfyUI \
+  --preview-method auto # (Optional) this gives previews as the images generate
+```
+
+If all goes well, you should see console output like this:
+
+```
+Context impl SQLiteImpl.
+Will assume non-transactional DDL.
+No target revision found.
+Starting server
+
+To see the GUI go to: http://0.0.0.0:8188
+```
+
+You can now open ComfyUI by going to [http://localhost:8188](http://localhost:8188). From here, you'll probably be met with a graph of nodes titled "Unsaved Workflow".
+
+<Img>
+  <enhanced:img loading="lazy" src="./mainui.png" />
+</Img>
+
+Clicking _"Run"_ will not do anything, since we don't have any models installed. Let's try [Z Image Turbo](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)!
+
+I'm actually not going to download straight from there. I'd recommend downloading a quantized version, as it has a miniscule impact on quality while greatly improving memory efficiency and speed.
+
+### Diffusion model
+
+First, [download the diffusion model](https://huggingface.co/T5B/Z-Image-Turbo-FP8/blob/main/z-image-turbo-fp8-e4m3fn.safetensors). We're going to use an `fp8` version. This model does the actual denoising process, getting us an image.
+
+Place this file in `ComfyUI/models/diffusion_models`.
+
+### Text encoder
+
+Second, [download the text encoder](https://huggingface.co/jiangchengchengNLP/qwen3-4b-fp8-scaled/blob/main/qwen3_4b_fp8_scaled.safetensors). This, too, is quantized to `fp8`. Z Image Turbo uses _Qwen3 4b_ as the text encoder. This processes the prompt you enter into embeddings for the diffusion model.
+
+Place this file in `ComfyUI/models/text_encoders`.
+
+### VAE
+
+Finally, [download the VAE](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo/blob/main/vae/diffusion_pytorch_model.safetensors). I'd recommend renaming this to `zimageturbovae.safetensors` just for clarity. This encodes and decodes images to and from latent space.
+
+Place this file in `ComfyUI/models/vae`.
+
+### Workflow
+
+Finally, to use the model, we need a **workflow**. This is a combination of nodes that can take in a prompt and result in an image output.
+
+[Drag this link](./workflow.json) into the ComfyUI web UI to get the workflow.
+
+Put your prompt into the _CLIP Text Encode (Positive Prompt)_, and press "run"!
+
+On my hardware, it took 100 seconds to generate. Yours may be faster or slower.
+
+You'll find your outputs at `ComfyUI/output`.
