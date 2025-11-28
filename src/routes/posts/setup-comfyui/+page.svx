@@ -117,7 +117,7 @@ Place this file in `ComfyUI/models/vae`.
 
 Finally, to use the model, we need a **workflow**. This is a combination of nodes that can take in a prompt and result in an image output.
 
-[Drag this link](./workflow.json) into the ComfyUI web UI to get the workflow.
+[Drag this link](/workflow.json) into the ComfyUI web UI to get the workflow.
 
 Put your prompt into the _CLIP Text Encode (Positive Prompt)_, and press "run"!
 
